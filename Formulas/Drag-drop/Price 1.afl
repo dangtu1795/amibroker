@@ -1,0 +1,22 @@
+//Bo loc diem mua tren nen tich luy chan nan 
+GiaLonNhat40 = HHV (Ref (C, -1), 40); 
+GiaBeNhat40 = LLV (Ref (C, -1), 40); 
+DK1 = GiaLonNhat40 < 1.1*GiaBeNhat40; 
+GiaLonNhat20 = HHV (Ref (C, -1), 20); 
+GiaBeNhat20 = LLV (Ref (C, -1), 20); 
+DK2 = GialonNhat20 <= 1.08*GiaBeNhat20; 
+GialonNhat5 = HHV (Ref(C,-1), 5); 
+GiaBeNhat5 = LLV (Ref(C,-1), 5); 
+DK3 = GiaLonNhat5 <= 1.05*GiaBeNhat5; 
+TyLeTang = (C-Ref (C, -1))/Ref (C, -1); 
+DK4 = TyLeTang >=0.02; 
+KhoiLuongLonNhat5 = HHV(Ref (V, -1), 4); 
+DK5 = V >= KhoiLuongLonNhat5*1.2; 
+DK6 = V <=KhoiLuongLonNhat5*7;  //nhung khonq qua cao 
+DK7 = KhoiLuongLonNhat5 >=40000;  //thanh khoen tren 40k 
+DK9 = V>=40000;
+DK8 = C >= .4;  //gia tren 10 
+//DK1=V>=Ref(V,-1) AND Ref(V,-1)>=Ref(V,-2) AND Ref(V,-2)>=Ref(V,-3) AND V>10000;
+//DK2=MFI(5)>=MFI(10) AND MFI(10)>=MFI(20);
+Buy = DK1 AND DK2 AND DK3 AND DK4 AND DK5 AND DK6 AND DK7 AND DK8 AND DK9; 
+Sell = C <= HHV(C, 21)*0.92; 

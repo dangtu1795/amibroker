@@ -1,0 +1,43 @@
+<HTML><HEAD>
+<TITLE>RB_All_In_One - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'>Statistics</a> | <a href='charts.html'>Charts</a> | <a href='trades.html'><FONT class='SELTAB'>Trades</FONT></a> | <a href='formula.html'>Formula</a> | <a href='settings.html'>Settings</a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Trades</TH></TR>
+</TABLE><P><FONT class='BIG'>Trade list</FONT><DIV ID='partnavigation'></DIV>
+<TABLE width='800' CELLSPACING=3>
+<TR><TH class='CH'>Ticker</TH><TH class='CH'>Trade</TH><TH class='CH'>Entry</TH><TH class='CH'>Exit</TH><TH class='CH'>% change</TH><TH class='CH'>Profit</TH><TH class='CH'>Shares</TH><TH class='CH'>Pos. value</TH><TH class='CH'>Cum. profit</TH><TH class='CH'># bars</TH><TH class='CH'>Profit/bar</TH><TH class='CH'>MAE/MFE</TH><TH class='CH'>Scale In/Out</TH></TR><TBODY id='part0'><TR><TD>HDA</TD><TD>Long</TD><TD>4/4/2018<BR>9.2</TD><TD>5/2/2018<BR>9.3</TD><TD>1.09%</TD><TD>1416.03<BR>1.09%</TD><TD>14160.3</TD><TD>130274.76</TD><TD>1416.03</TD><TD>18</TD><TD>78.67</TD><TD>-6.52%<BR>19.57%</TD><TD>0/0</TD></TR>
+<TR><TD>HDA</TD><TD>Long</TD><TD>5/16/2018<BR>10</TD><TD>5/22/2018<BR>9.7</TD><TD>-3.00%</TD><TD>-3390.00<BR>-3.00%</TD><TD>11300</TD><TD>113000.00</TD><TD>-1973.97</TD><TD>5</TD><TD>-678.00</TD><TD>-4.00%<BR>0.00%</TD><TD>0/0</TD></TR>
+<TR><TD>HDA</TD><TD>Long</TD><TD>5/28/2018<BR>9.9</TD><TD>5/30/2018<BR>9.6</TD><TD>-3.03%</TD><TD>-2199.06<BR>-3.03%</TD><TD>7330.2</TD><TD>72568.97</TD><TD>-4173.03</TD><TD>3</TD><TD>-733.02</TD><TD>-4.04%<BR>1.01%</TD><TD>0/0</TD></TR>
+<TR><TD>HDA</TD><TD>Long</TD><TD>7/13/2018<BR>9.5</TD><TD>8/9/2018<BR>9.8</TD><TD>3.16%</TD><TD>2355.00<BR>3.16%</TD><TD>7850</TD><TD>74575.00</TD><TD>-1818.03</TD><TD>20</TD><TD>117.75</TD><TD>-3.16%<BR>7.37%</TD><TD>0/0</TD></TR>
+<TR><TD>HDA</TD><TD>Long</TD><TD>11/26/2018<BR>10.8</TD><TD>12/5/2018<BR>10.1</TD><TD>-6.48%</TD><TD>-7847.00<BR>-6.48%</TD><TD>11210</TD><TD>121068.00</TD><TD>-9665.03</TD><TD>8</TD><TD>-980.88</TD><TD>-8.33%<BR>1.85%</TD><TD>0/0</TD></TR>
+<TR><TD>HDA</TD><TD>Long</TD><TD>1/8/2019<BR>9</TD><TD>3/20/2019<BR>9.8</TD><TD>8.89%</TD><TD>5752.00<BR>8.89%</TD><TD>7190</TD><TD>64710.00</TD><TD>-3913.03</TD><TD>47</TD><TD>122.38</TD><TD>-3.33%<BR>13.33%</TD><TD>0/0</TD></TR>
+<TR><TD>HDA</TD><TD>Long</TD><TD>3/29/2019<BR>9.9</TD><TD>4/1/2019<BR>9.8</TD><TD>-1.01%</TD><TD>-1340.00<BR>-1.01%</TD><TD>13400</TD><TD>132659.99</TD><TD>-5253.03</TD><TD>2</TD><TD>-670.00</TD><TD>-1.01%<BR>0.00%</TD><TD>0/0</TD></TR>
+<TR><TD>HDA</TD><TD>Long</TD><TD>4/2/2019<BR>9.9</TD><TD>4/4/2019<BR>9.8</TD><TD>-1.01%</TD><TD>-1391.00<BR>-1.01%</TD><TD>13910</TD><TD>137708.99</TD><TD>-6644.03</TD><TD>3</TD><TD>-463.67</TD><TD>-2.02%<BR>1.01%</TD><TD>0/0</TD></TR>
+<TR><TD>HDA</TD><TD>Open Long</TD><TD>4/11/2019<BR>9.9</TD><TD>4/12/2019<BR>10.4</TD><TD>5.05%</TD><TD>8407.00<BR>5.05%</TD><TD>16814</TD><TD>166458.59</TD><TD>1762.97</TD><TD>3</TD><TD>2802.33</TD><TD>-1.01%<BR>9.09%</TD><TD>0/0</TD></TR>
+</TABLE></TBODY></TABLE><SCRIPT>document.getElementById('partnavigation').innerHTML="<P>Pages: <a href='javascript:void(0)' onclick='showPart(0)'>1</a> | </P>";</SCRIPT></BODY></HTML>

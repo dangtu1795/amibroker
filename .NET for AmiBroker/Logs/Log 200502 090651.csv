@@ -1,0 +1,9 @@
+Date,Time,Thread,Source,Category,Message
+20200502,09:06:54.369,15824,DotNetHost,Info,.NET for AmiBroker (x86) - Free Edition, Version: 6.20.3.0
+20200502,09:06:54.370,15824,DotNetHost,Info,OS version: 5.1.0, 
+20200502,09:06:54.371,15824,DotNetHost,Info,AmiBroker version: 6.2
+20200502,09:06:54.372,15824,DotNetHost,Info,CPU Capability: 1110/FPU
+20200502,09:06:54.381,15824,DotNetHost,Info,Loading .NET runtime v4.0.30319.
+20200502,09:06:54.703,15824,DotNetHost,Error,Failed to load the assembly w/hr 0x80070005.
+20200502,09:06:54.712,15824,DotNetHost,Error,Starting DotNetHost plug-in failed.
+20200502,09:06:54.713,15824,DotNetHost,Info,Start Diag and License Utility (dl.exe) to check possible cause of error.

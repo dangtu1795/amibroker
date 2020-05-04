@@ -1,0 +1,22 @@
+Default ASCII (*.*)|*.*|default.format
+Yahoo's CSV (*.csv)|*.csv|yahoo.format
+AmiQuote Historical (*.aqh)|*.aqh|aqh.format
+AmiQuote Historical (Funds) (*.aqh)|*.aqh|aqhfunds.format
+AmiQuote Daily (*.aqd)|*.aqd|aqd.format
+AmiQuote Historical (Google) (*.aqg)|*.aqg|aqg.format
+AmiQuote Intraday (*.aqi)|*.aqi|aqi.format
+AmiQuote Historical (MSN) (*.aqm)|*.aqm|aqm.format
+AmiQuote Historical (eSignal) (*.aqe)|*.aqe|aqe.format
+Metastock ASCII (*.txt)|*.txt|metastock.format
+Omega SC ASCII (*.txt)|*.txt|omega.format
+S-Files (s*.*)|s*.*|sfile.format
+C-Files (c*.*)|c*.*|cfile.format
+Sharenet DN (*.dn)|*.dn|sharenet.format
+PRN Format with Ticker (*.prn)|*.prn|prnn.format
+PRN Format without Ticker (*.prn)|*.prn|prnn2.format
+Space separated Ticker,Date,OHLC (*.txt)|*.txt|ssv.format
+Space separated Date,HLCV (*.txt)|*.txt|ssv2.format
+Short Daily CSV (*.csv)|*.csv|daily.format
+MST Format w/Ticker (*.mst)|*.mst|mst.format
+StockWatch.com format (*.csv)|*.csv|stockwatch.format
+TenBagger format (*.stk)|*.stk|stk.format

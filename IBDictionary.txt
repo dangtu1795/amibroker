@@ -1,0 +1,18 @@
+# This is Interactive Brokers symbol dictionary
+# that is used by IB plugin to translate the symbols
+# It allows to use shorter name for symbols and
+# address situations when IB starts trading given symbol on
+# multiple exchanges and SMART-STK-USD default becomes not enough to
+# uniquely specify US symbol
+#
+# the format of this file is CSV (comma separated values)
+# InputSymbol,OutputSymbol, comment (optional)
+#
+# Please use just one one symbol in one line
+#
+# additionally every line starting with # is treated as a comment
+
+INTC,INTC-!NASDAQ, This one is because INTC is now traded on multiple exchanges, so we need to set primary exchange
+CSCO,CSCO-!NASDAQ, The same as above  
+MSFT,MSFT-!NASDAQ, ditto
+GLD,GLD-!ARCA

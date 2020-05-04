@@ -1,0 +1,80 @@
+// by trash, vers.1.1
+
+SDswitch    = ParamToggle( "Supply/Demand Zones", "OFF|ON", 1 );
+SDmode      = ParamList( "Supply/Demand Mode", "Small|Large|Extra Large", 0 );
+NumZones    = Param( "Number of Zones", 5, 1, 30, 1 );
+Sensitivity = Param( "Sensitivity", 0.4, 0.1, 10, 0.1 );
+
+style1      = ParamStyle( "Style 1", styleNoLabel | styleNoRescale ) | styleCloud;
+style2      = ParamStyle( "Style 2", styleNoLabel | styleNoRescale );
+
+ColorDem    = ParamColor( "Blend Color - Demand Zones", colorBlueGrey );
+ColFacDem   = Param( "Blend Color Factor - Demand Zones", 0.45, 0, 2, 0.01 );
+ColorSup    = ParamColor( "Blend Color - Supply Zones", colorDarkRed );
+ColFacSup   = Param( "Blend Color Factor - Supply Zones", 0.65, 0, 2, 0.01 );
+Colorline   = ParamColor( "Color - Zone Borders", colorBlack );
+
+selectedC   = SelectedValue( C );
+selectedBI  = SelectedValue( BarIndex() );
+MinVal      = Min( O, C );
+MaxVal      = Max( O, C );
+
+if( SDmode == "Small")
+{
+    ValSup  = MaxVal;
+    ValDem  = MinVal;
+}
+else if( SDmode == "Large" )
+{
+    ValSup  = MinVal;
+    ValDem  = MaxVal;
+}
+else
+{
+    ValSup  = L;
+    ValDem  = H;
+}
+
+for ( i = 1; i <= NumZones; i++ )
+{
+    x1      = selectedBI - SelectedValue( PeakBars( H, Sensitivity, i ) );
+
+    y1      = SelectedValue( Peak( H, Sensitivity, i ) );
+    Line1   = LineArray( x1 + 1, y1, selectedBI, y1, 1 );
+
+    y2      = SelectedValue( ValueWhen( H == y1, ValSup ) );
+    Line2   = LineArray( x1 + 1, y2, selectedBI, y2, 1 );
+
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+    x2      = selectedBI - SelectedValue( TroughBars( L, Sensitivity, i ) );
+
+    y3      = SelectedValue( Trough( L, Sensitivity, i ) );
+    Line3   = LineArray( x2 + 1, y3, selectedBI, y3, 1 );
+
+    y4      = SelectedValue( ValueWhen( L == y3, ValDem ) );
+    Line4   = LineArray( x2 + 1, y4, selectedBI, y4, 1 );
+
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+    i_1     = 20 * i;
+    i_2     = 25 + ( i - 1 ) * 10;
+    Rcolor  = ColorBlend( ColorSup, ColorRGB( 180, i_1, i_1 ), ColFacSup ); // ParamColor( "Supply Color", colorBrown  );
+    Scolor  = ColorBlend( ColorDem, ColorRGB( i_2, i_2, 80 + i_1 ), ColFacDem ); // ParamColor( "Demand Color", colorGreen  );
+    RColor  = IIf( selectedC > y1, Scolor, Rcolor );
+    SColor  = IIf( selectedC > y4, Scolor, Rcolor );
+
+    if ( SDSwitch )
+    {
+        zorder = -i - 9;
+
+        PlotOHLC( Line1, Line1, Line2, Line2, "", Rcolor, style1, 0, 1, 0, zorder );
+        Plot( Line1, "", Colorline, style2, 0, 1, 0, zorder + 1 );
+        Plot( Line2, "", Colorline, style2, 0, 1, 0, zorder + 1 );
+
+        PlotOHLC( Line3, Line3, Line4, Line4, "", Scolor, style1, 0, 1, 0, zorder );
+        Plot( Line3, "", Colorline, style2, 0, 1, 0, zorder + 1 );
+        Plot( Line4, "", Colorline, style2, 0, 1, 0, zorder + 1 );
+
+    }
+}

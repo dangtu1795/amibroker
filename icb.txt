@@ -1,0 +1,185 @@
+0001; Oil & Gas 
+0500; Oil & Gas
+0530; Oil & Gas Producers 
+0533; Exploration & Production
+0537; Integrated Oil & Gas
+0570; Oil Equipment, Services & Distribution
+0573; Oil Equipment & Services
+0577; Pipelines
+0580; Alternative Energy 
+0583; Renewable Energy Equipment
+0587; Alternative Fuels
+1000; Basic Materials
+1300; Chemicals
+1350; Chemicals 
+1353; Commodity Chemicals
+1357; Specialty Chemicals
+1700; Basic Resources
+1730; Forestry & Paper 
+1733; Forestry
+1737; Paper
+1750; Industrial Metals & Mining
+1753; Aluminum
+1755; Nonferrous Metals
+1757; Iron & Steel
+1770; Mining 
+1771; Coal
+1773; Diamonds & Gemstones
+1775; General Mining
+1777; Gold Mining
+1779; Platinum & Precious Metals
+2000; Industrials 
+2300; Construction & Materials
+2350; Construction & Materials
+2353; Building Materials & Fixtures
+2357; Heavy Construction	
+2700; Industrial	Goods &	Services
+2710; Aerospace & Defense
+2713; Aerospace
+2717; Defense
+2720; General Industrials 
+2723; Containers & Packaging
+2727; Diversified Industrials
+2730; Electronic & Electrical Equipment
+2733; Electrical Components & Equipment
+2737; Electronic Equipment
+2750; Industrial Engineering
+2753; Commercial Vehicles & Trucks
+2757; Industrial Machinery
+2770; Industrial Transportation
+2771; Delivery Services
+2773; Marine Transportation
+2775; Railroads
+2777; Transportation Services
+2779; Trucking
+2790; Support Services 
+2791; Business Support Services
+2793; Business Training & Employment Agencies
+2795; Financial Administration
+2797; Industrial Suppliers
+2799; Waste & Disposal Services
+3000; Consumer Goods
+3300; Automobiles & Parts
+3350; Automobiles & Parts
+3353; Automobiles
+3355; Auto Parts 
+3357; Tires
+3500; Food & Beverage
+3530; Beverages 
+3533; Brewers
+3535; Distillers & Vintners
+3537; Soft Drinks
+3570; Food Producers
+3573; Farming & Fishing
+3577; Food Products
+3700; Personal &	Household Goods
+3720; Household Goods & Home Construction
+3722; Durable Household Products
+3724; Nondurable Household Products
+3726; Furnishings
+3728; Home Construction
+3740; Leisure Goods 
+3743; Consumer Electronics
+3745; Recreational Products
+3747; Toys
+3760; Personal Goods
+3763; Clothing & Accessories
+3765; Footwear
+3767; Personal Products
+3780; Tobacco 
+3785; Tobacco
+4000; Health Care 
+4500; Health Care 
+4530; Health Care Equipment & Services
+4533; Health Care Providers
+4535; Medical Equipment
+4537; Medical Supplies
+4570; Pharmaceuticals & Biotechnology
+4573; Biotechnology
+4577; Pharmaceuticals
+5000; Consumer Services
+5300; Retail 
+5330; Food & Drug Retailers
+5333; Drug Retailers
+5337; Food Retailers & Wholesalers
+5370; General Retailers
+5371; Apparel Retailers
+5373; Broadline Retailers
+5375; Home Improvement Retailers
+5377; Specialized Consumer Services
+5379; Specialty Retailers
+5500; Media 
+5550; Media 
+5553; Broadcasting & Entertainment
+5555; Media Agencies
+5557; Publishing
+5700; Travel & Leisure
+5750; Travel & Leisure
+5751; Airlines
+5752; Gambling
+5753; Hotels
+5755; Recreational Services
+5757; Restaurants & Bars
+5759; Travel & Tourism
+6000; Telecommunications
+6500; Telecommunications
+6530; Fixed Line Telecommunications
+6535; Fixed Line Telecommunications
+6570; Mobile Telecommunications
+6575; Mobile Telecommunications
+7000; Utilities 
+7500; Utilities 
+7530; Electricity 
+7535; Conventional Electricity
+7537; Alternative Electricity
+7570; Gas, Water & Multiutilities
+7573; Gas Distribution
+7575; Multiutilities
+7577; Water
+8000; Financials 
+8300; Banks 
+8350; Banks 
+8355; Banks
+8500; Insurance 
+8530; Nonlife Insurance 
+8532; Full Line Insurance
+8534; Insurance Brokers
+8536; Property & Casualty Insurance
+8538; Reinsurance
+8570; Life Insurance 
+8575; Life Insurance
+8600; Real Estate 
+8630; Real Estate Investment & Services
+8633; Real Estate Holding & Development
+8637; Real Estate Services
+8670; Real Estate Investment Trusts 
+8671; Industrial & Office REITs
+8672; Retail REITs
+8673; Residential REITs
+8674; Diversified REITs
+8675; Specialty REITs
+8676; Mortgage REITs
+8677; Hotel & Lodging REITs
+8700; Financial Services
+8770; Financial Services 
+8771; Asset Managers
+8773; Consumer Finance
+8775; Specialty Finance
+8777; Investment Services
+8779; Mortgage Finance
+8900; Investment Instruments
+8980; Equity Investment Instruments 
+8985; Equity Investment Instruments
+8990; Nonequity Investment Instruments
+8995; Nonequity Investment Instruments
+9000; Technology
+9500; Technology 
+9530; Software & Computer Services 
+9533; Computer Services
+9535; Internet
+9537; Software
+9570; Technology Hardware & Equipment
+9572; Computer Hardware
+9574; Electronic Office Equipment
+9576; Semiconductors
+9578; Telecommunications Equipment

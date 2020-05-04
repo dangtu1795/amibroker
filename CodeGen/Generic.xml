@@ -1,0 +1,1272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Generator CompactMode="1" Name="Generic code generator" Text="$part1.text $part2.text $part3.text $part4.text $part5.text $part6.text $part7.text" Code="$part3.code1 $part1.code1 $part2.code $part1.code2 $part3.code2 $part4.code $part7.code1 $part5.code1 $part6.code $part5.code2 $part7.code2">
+	<Parts>
+		<Item Name="Left Value" ActiveRule="0">
+			<Rules>
+				<Item Name="Value of">
+					<Texts>
+						<Item Text="Value of"/>
+					</Texts>
+					<Codes>
+						<Item Text=""/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="MA - Simple Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="MA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="EMA - Exponential Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar exponential moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="EMA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="DEMA - Double Exponential Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar double exp. moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="DEMA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="TEMA - Triple Exponential Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar triple exp. moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="TEMA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Weighted Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar Weighted moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="WMA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Wilders' Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar Wilders' moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Wilders( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="LinearReg - Linear Regression">
+					<Texts>
+						<Item Text="$param1 -bar linear regression of"/>
+					</Texts>
+					<Codes>
+						<Item Text="LinearReg( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="TSF - Time Series Forecast">
+					<Texts>
+						<Item Text="$param1 -bar TSF of"/>
+					</Texts>
+					<Codes>
+						<Item Text="TSF( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="SUM - Sum over specified number of bars">
+					<Texts>
+						<Item Text="$param1-bar sum of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Sum( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="CUM - Cumulative sum (all bars)">
+					<Texts>
+						<Item Text="Cumulative sum of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Cum( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Highest (all time)">
+					<Texts>
+						<Item Text="Highest value of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Highest( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Highest High Value (n-bar)">
+					<Texts>
+						<Item Text="$param1-bar highest high value of"/>
+					</Texts>
+					<Codes>
+						<Item Text="HHV( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Lowest (all time)">
+					<Texts>
+						<Item Text="Lowest value of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Lowest( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Lowest Low Value (n-bar)">
+					<Texts>
+						<Item Text="$param1-bar lowest low value of"/>
+					</Texts>
+					<Codes>
+						<Item Text="LLV( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Bars since Highest (all time)">
+					<Texts>
+						<Item Text="Number of bars passed since reaching highest of"/>
+					</Texts>
+					<Codes>
+						<Item Text="HighestBars( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Bars since Highest High Value (n-bar)">
+					<Texts>
+						<Item Text="Number of bars passed since reaching $param1-bar HHV of"/>
+					</Texts>
+					<Codes>
+						<Item Text="HHVBars( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Bars since Lowest (all time)">
+					<Texts>
+						<Item Text="Number of bars passed since reaching lowest of"/>
+					</Texts>
+					<Codes>
+						<Item Text="LowestBars( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Bars since Lowest Low Value (n-bar)">
+					<Texts>
+						<Item Text="Number of bars passed since reaching $param1-bar LLV of"/>
+					</Texts>
+					<Codes>
+						<Item Text="LLVBars( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+			</Rules>
+		</Item>
+		<Item Name="Left Field" ActiveRule="0">
+			<Rules>
+				<Item Name="Close">
+					<Texts>
+						<Item Text="Close"/>
+					</Texts>
+					<Codes>
+						<Item Text="Close"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="Open">
+					<Texts>
+						<Item Text="Open"/>
+					</Texts>
+					<Codes>
+						<Item Text="Open"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="High">
+					<Texts>
+						<Item Text="High"/>
+					</Texts>
+					<Codes>
+						<Item Text="High"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="Low">
+					<Texts>
+						<Item Text="Low"/>
+					</Texts>
+					<Codes>
+						<Item Text="Low"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="Volume">
+					<Texts>
+						<Item Text="Volume"/>
+					</Texts>
+					<Codes>
+						<Item Text="Volume"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="Open Interest">
+					<Texts>
+						<Item Text="Open Interest"/>
+					</Texts>
+					<Codes>
+						<Item Text="OpenInt"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="ADX - Average Directional Movement">
+					<Texts>
+						<Item Text="ADX( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="ADX( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="ATR - Average True Range">
+					<Texts>
+						<Item Text="$param1-bar Average True Range"/>
+					</Texts>
+					<Codes>
+						<Item Text="ATR( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="Bollinger Band (upper)">
+					<Texts>
+						<Item Text="Upper Bollinger Band( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="BBandTop( Close, $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+						<Item Type="0" Name="Width" Value="2" DefValue="2"/>
+					</Params>
+				</Item>
+				<Item Name="Bollinger Band (lower)">
+					<Texts>
+						<Item Text="Lower Bollinger Band( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="BBandBot( Close, $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+						<Item Type="0" Name="Width" Value="2" DefValue="2"/>
+					</Params>
+				</Item>
+				<Item Name="CCI - Commodity Channel Index">
+					<Texts>
+						<Item Text="CCI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="CCI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="Chaikin Oscillator">
+					<Texts>
+						<Item Text="Chaikin( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="Chaikin( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Fast period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Slow period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="MACD - Moving Average Conv/Diverg.">
+					<Texts>
+						<Item Text="MACD( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="MACD( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Short Period" Value="12" DefValue="12"/>
+						<Item Type="0" Name="Long Period" Value="26" DefValue="26"/>
+					</Params>
+				</Item>
+				<Item Name="MDI - Minus Directional Movement">
+					<Texts>
+						<Item Text="-DI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="MDI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="MFI - Money Flow Index">
+					<Texts>
+						<Item Text="MFI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="MFI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="NVI - Negative Volume Index">
+					<Texts>
+						<Item Text="NVI"/>
+					</Texts>
+					<Codes>
+						<Item Text="NVI()"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="OBV - On Balance Volume">
+					<Texts>
+						<Item Text="OBV"/>
+					</Texts>
+					<Codes>
+						<Item Text="OBV()"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="OSCP - Price Oscillator">
+					<Texts>
+						<Item Text="OSCP( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="OSCP( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Fast period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Slow period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="OSCV - Volume Oscillator">
+					<Texts>
+						<Item Text="OSCV( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="OSCV( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Fast period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Slow period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="PDI - Plus Directional Movement">
+					<Texts>
+						<Item Text="+DI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="PDI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="PVI - Positive Volume Index">
+					<Texts>
+						<Item Text="PVI"/>
+					</Texts>
+					<Codes>
+						<Item Text="PVI()"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="RMI - Relative Momentum Index">
+					<Texts>
+						<Item Text="RMI( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RMI( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="20" DefValue="20"/>
+						<Item Type="0" Name="Momentum" Value="5" DefValue="5"/>
+					</Params>
+				</Item>
+				<Item Name="RSI - Relative Strength Index">
+					<Texts>
+						<Item Text="RSI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RSI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="RWI - Random Walk Index">
+					<Texts>
+						<Item Text="RWI( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RWI( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Min Period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Max Period" Value="40" DefValue="40"/>
+					</Params>
+				</Item>
+				<Item Name="RWIHI - Random Walk Index of Highs">
+					<Texts>
+						<Item Text="RWIHI( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RWIHI( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Min Period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Max Period" Value="40" DefValue="40"/>
+					</Params>
+				</Item>
+				<Item Name="RWILO - Random Walk Index of Lows">
+					<Texts>
+						<Item Text="RWILO( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RWILO( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Min Period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Max Period" Value="40" DefValue="40"/>
+					</Params>
+				</Item>
+				<Item Name="SAR - Parabolic Stop-And-Reverse">
+					<Texts>
+						<Item Text="SAR( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="SAR( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Acceleration" Value="0.02" DefValue="0.02"/>
+						<Item Type="0" Name="Max" Value="0.2" DefValue="0.2"/>
+					</Params>
+				</Item>
+				<Item Name="Signal - MACD signal line">
+					<Texts>
+						<Item Text="MACD Signal( $param1, $param2, $param3 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="Signal( $param1, $param2, $param3 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Short Period" Value="12" DefValue="12"/>
+						<Item Type="0" Name="Long Period" Value="26" DefValue="26"/>
+						<Item Type="0" Name="Signal Period" Value="9" DefValue="9"/>
+					</Params>
+				</Item>
+				<Item Name="StochD - Stochastic Slow %D">
+					<Texts>
+						<Item Text="Slow Stochastic %D ($param1, $param2, $param3)"/>
+					</Texts>
+					<Codes>
+						<Item Text="StochD( $param1, $param2, $param3 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Periods" Value="14" DefValue="14"/>
+						<Item Type="0" Name="%K smoothing" Value="3" DefValue="3"/>
+						<Item Type="0" Name="%D smoothing" Value="3" DefValue="3"/>
+					</Params>
+				</Item>
+				<Item Name="StochK - Stochastic Slow %K">
+					<Texts>
+						<Item Text="Slow Stochastic %K ($param1, $param2)"/>
+					</Texts>
+					<Codes>
+						<Item Text="StochK( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Periods" Value="14" DefValue="14"/>
+						<Item Type="0" Name="%K smoothing" Value="3" DefValue="3"/>
+					</Params>
+				</Item>
+				<Item Name="TRIX - Triple exponential smoothed price">
+					<Texts>
+						<Item Text="TRIX( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="TRIX( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Periods" Value="9" DefValue="9"/>
+					</Params>
+				</Item>
+				<Item Name="Ultimate indicator">
+					<Texts>
+						<Item Text="Ultimate( $param1, $param2, $param3 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="Ultimate( $param1, $param2, $param3 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="fast" Value="7" DefValue="7"/>
+						<Item Type="0" Name="medium" Value="14" DefValue="14"/>
+						<Item Type="0" Name="slow" Value="28" DefValue="28"/>
+					</Params>
+				</Item>
+			</Rules>
+		</Item>
+		<Item Name="Left Bar Ago" ActiveRule="0">
+			<Rules>
+				<Item Name="(now)">
+					<Texts>
+						<Item Text="(now)"/>
+					</Texts>
+					<Codes>
+						<Item Text=""/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="bars ago">
+					<Texts>
+						<Item Text="$param1 -bars ago"/>
+					</Texts>
+					<Codes>
+						<Item Text="Ref("/>
+						<Item Text=", -$param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Bars" Value="1" DefValue="1"/>
+					</Params>
+				</Item>
+			</Rules>
+		</Item>
+		<Item Name="Comparison" ActiveRule="0">
+			<Rules>
+				<Item Name="is greater than">
+					<Texts>
+						<Item Text="is greater than"/>
+					</Texts>
+					<Codes>
+						<Item Text="&gt;"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="is less than">
+					<Texts>
+						<Item Text="is less than"/>
+					</Texts>
+					<Codes>
+						<Item Text="&lt;"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="is equal to">
+					<Texts>
+						<Item Text="is equal to"/>
+					</Texts>
+					<Codes>
+						<Item Text="=="/>
+					</Codes>
+					<Params/>
+				</Item>
+			</Rules>
+		</Item>
+		<Item Name="Right Value" ActiveRule="0">
+			<Rules>
+				<Item Name="Constant" TextOverride="$part1.text $part2.text $part3.text $part4.text $part5.text" CodeOverride="$part3.code1 $part1.code1 $part2.code $part1.code2 $part3.code2 $part4.code $part5.code">
+					<Texts>
+						<Item Text="$param1"/>
+					</Texts>
+					<Codes>
+						<Item Text="$param1"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Value" Value="10" DefValue="10"/>
+					</Params>
+				</Item>
+				<Item Name="Its Value" TextOverride="$part1.text $part2.text $part3.text $part4.text $part5.text $part7.text" CodeOverride="$part3.code1 $part1.code1 $part2.code $part1.code2 $part3.code2 $part4.code $part7.code1 $part1.code1 $part2.code $part1.code2 $part7.code2">
+					<Texts>
+						<Item Text="its value"/>
+					</Texts>
+					<Codes>
+						<Item Text=""/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="Value of">
+					<Texts>
+						<Item Text="value of"/>
+					</Texts>
+					<Codes>
+						<Item Text=""/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="MA - Simple Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="MA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="EMA - Exponential Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar exponential moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="EMA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="DEMA - Double Exponential Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar double exp. moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="DEMA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="TEMA - Triple Exponential Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar triple exp. moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="TEMA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Weighted Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar Weighted moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="WMA( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Wilders' Moving Average">
+					<Texts>
+						<Item Text="$param1 -bar Wilders' moving average of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Wilders( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="LinearReg - Linear Regression">
+					<Texts>
+						<Item Text="$param1 -bar linear regression of"/>
+					</Texts>
+					<Codes>
+						<Item Text="LinearReg( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="TSF - Time Series Forecast">
+					<Texts>
+						<Item Text="$param1 -bar TSF of"/>
+					</Texts>
+					<Codes>
+						<Item Text="TSF( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="SUM - Sum over specified number of bars">
+					<Texts>
+						<Item Text="$param1-bar sum of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Sum( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="CUM - Cumulative sum (all bars)">
+					<Texts>
+						<Item Text="Cumulative sum of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Cum( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Highest (all time)">
+					<Texts>
+						<Item Text="Highest value of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Highest( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Highest High Value (n-bar)">
+					<Texts>
+						<Item Text="$param1-bar highest high value of"/>
+					</Texts>
+					<Codes>
+						<Item Text="HHV( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Lowest (all time)">
+					<Texts>
+						<Item Text="Lowest value of"/>
+					</Texts>
+					<Codes>
+						<Item Text="Lowest( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Lowest Low Value (n-bar)">
+					<Texts>
+						<Item Text="$param1-bar lowest low value of"/>
+					</Texts>
+					<Codes>
+						<Item Text="LLV( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Bars since Highest (all time)">
+					<Texts>
+						<Item Text="Number of bars passed since reaching highest of"/>
+					</Texts>
+					<Codes>
+						<Item Text="HighestBars( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Bars since Highest High Value (n-bar)">
+					<Texts>
+						<Item Text="Number of bars passed since reaching $param1-bar HHV of"/>
+					</Texts>
+					<Codes>
+						<Item Text="HHVBars( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+				<Item Name="Bars since Lowest (all time)">
+					<Texts>
+						<Item Text="Number of bars passed since reaching lowest of"/>
+					</Texts>
+					<Codes>
+						<Item Text="LowestBars( "/>
+						<Item Text=" )"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="Bars since Lowest Low Value (n-bar)">
+					<Texts>
+						<Item Text="Number of bars passed since reaching $param1-bar LLV of"/>
+					</Texts>
+					<Codes>
+						<Item Text="LLVBars( "/>
+						<Item Text=", $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+					</Params>
+				</Item>
+			</Rules>
+		</Item>
+		<Item Name="Right Field" ActiveRule="0">
+			<Rules>
+				<Item Name="Close">
+					<Texts>
+						<Item Text="Close"/>
+					</Texts>
+					<Codes>
+						<Item Text="Close"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="Open">
+					<Texts>
+						<Item Text="Open"/>
+					</Texts>
+					<Codes>
+						<Item Text="Open"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="High">
+					<Texts>
+						<Item Text="High"/>
+					</Texts>
+					<Codes>
+						<Item Text="High"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="Low">
+					<Texts>
+						<Item Text="Low"/>
+					</Texts>
+					<Codes>
+						<Item Text="Low"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="Volume">
+					<Texts>
+						<Item Text="Volume"/>
+					</Texts>
+					<Codes>
+						<Item Text="Volume"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="Open Interest">
+					<Texts>
+						<Item Text="Open Interest"/>
+					</Texts>
+					<Codes>
+						<Item Text="OpenInt"/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="ADX - Average Directional Movement">
+					<Texts>
+						<Item Text="ADX( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="ADX( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="ATR - Average True Range">
+					<Texts>
+						<Item Text="$param1-bar Average True Range"/>
+					</Texts>
+					<Codes>
+						<Item Text="ATR( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="Bollinger Band (upper)">
+					<Texts>
+						<Item Text="Upper Bollinger Band( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="BBandTop( Close, $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+						<Item Type="0" Name="Width" Value="2" DefValue="2"/>
+					</Params>
+				</Item>
+				<Item Name="Bollinger Band (lower)">
+					<Texts>
+						<Item Text="Lower Bollinger Band( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="BBandBot( Close, $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="15" DefValue="15"/>
+						<Item Type="0" Name="Width" Value="2" DefValue="2"/>
+					</Params>
+				</Item>
+				<Item Name="CCI - Commodity Channel Index">
+					<Texts>
+						<Item Text="CCI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="CCI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="Chaikin Oscillator">
+					<Texts>
+						<Item Text="Chaikin( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="Chaikin( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Fast period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Slow period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="MACD - Moving Average Conv/Diverg.">
+					<Texts>
+						<Item Text="MACD( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="MACD( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Short Period" Value="12" DefValue="12"/>
+						<Item Type="0" Name="Long Period" Value="26" DefValue="26"/>
+					</Params>
+				</Item>
+				<Item Name="MDI - Minus Directional Movement">
+					<Texts>
+						<Item Text="-DI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="MDI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="MFI - Money Flow Index">
+					<Texts>
+						<Item Text="MFI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="MFI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="NVI - Negative Volume Index">
+					<Texts>
+						<Item Text="NVI"/>
+					</Texts>
+					<Codes>
+						<Item Text="NVI()"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="OBV - On Balance Volume">
+					<Texts>
+						<Item Text="OBV"/>
+					</Texts>
+					<Codes>
+						<Item Text="OBV()"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="OSCP - Price Oscillator">
+					<Texts>
+						<Item Text="OSCP( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="OSCP( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Fast period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Slow period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="OSCV - Volume Oscillator">
+					<Texts>
+						<Item Text="OSCV( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="OSCV( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Fast period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Slow period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="PDI - Plus Directional Movement">
+					<Texts>
+						<Item Text="+DI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="PDI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="PVI - Positive Volume Index">
+					<Texts>
+						<Item Text="PVI"/>
+					</Texts>
+					<Codes>
+						<Item Text="PVI()"/>
+					</Codes>
+					<Params>
+					</Params>
+				</Item>
+				<Item Name="RMI - Relative Momentum Index">
+					<Texts>
+						<Item Text="RMI( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RMI( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="20" DefValue="20"/>
+						<Item Type="0" Name="Momentum" Value="5" DefValue="5"/>
+					</Params>
+				</Item>
+				<Item Name="RSI - Relative Strength Index">
+					<Texts>
+						<Item Text="RSI( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RSI( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Period" Value="14" DefValue="14"/>
+					</Params>
+				</Item>
+				<Item Name="RWI - Random Walk Index">
+					<Texts>
+						<Item Text="RWI( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RWI( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Min Period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Max Period" Value="40" DefValue="40"/>
+					</Params>
+				</Item>
+				<Item Name="RWIHI - Random Walk Index of Highs">
+					<Texts>
+						<Item Text="RWIHI( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RWIHI( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Min Period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Max Period" Value="40" DefValue="40"/>
+					</Params>
+				</Item>
+				<Item Name="RWILO - Random Walk Index of Lows">
+					<Texts>
+						<Item Text="RWILO( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="RWILO( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Min Period" Value="9" DefValue="9"/>
+						<Item Type="0" Name="Max Period" Value="40" DefValue="40"/>
+					</Params>
+				</Item>
+				<Item Name="SAR - Parabolic Stop-And-Reverse">
+					<Texts>
+						<Item Text="SAR( $param1, $param2 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="SAR( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Acceleration" Value="0.02" DefValue="0.02"/>
+						<Item Type="0" Name="Max" Value="0.2" DefValue="0.2"/>
+					</Params>
+				</Item>
+				<Item Name="Signal - MACD signal line">
+					<Texts>
+						<Item Text="MACD Signal( $param1, $param2, $param3 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="Signal( $param1, $param2, $param3 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Short Period" Value="12" DefValue="12"/>
+						<Item Type="0" Name="Long Period" Value="26" DefValue="26"/>
+						<Item Type="0" Name="Signal Period" Value="9" DefValue="9"/>
+					</Params>
+				</Item>
+				<Item Name="StochD - Stochastic Slow %D">
+					<Texts>
+						<Item Text="Slow Stochastic %D ($param1, $param2, $param3)"/>
+					</Texts>
+					<Codes>
+						<Item Text="StochD( $param1, $param2, $param3 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Periods" Value="14" DefValue="14"/>
+						<Item Type="0" Name="%K smoothing" Value="3" DefValue="3"/>
+						<Item Type="0" Name="%D smoothing" Value="3" DefValue="3"/>
+					</Params>
+				</Item>
+				<Item Name="StochK - Stochastic Slow %K">
+					<Texts>
+						<Item Text="Slow Stochastic %K ($param1, $param2)"/>
+					</Texts>
+					<Codes>
+						<Item Text="StochK( $param1, $param2 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Periods" Value="14" DefValue="14"/>
+						<Item Type="0" Name="%K smoothing" Value="3" DefValue="3"/>
+					</Params>
+				</Item>
+				<Item Name="TRIX - Triple exponential smoothed price">
+					<Texts>
+						<Item Text="TRIX( $param1 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="TRIX( $param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Periods" Value="9" DefValue="9"/>
+					</Params>
+				</Item>
+				<Item Name="Ultimate indicator">
+					<Texts>
+						<Item Text="Ultimate( $param1, $param2, $param3 )"/>
+					</Texts>
+					<Codes>
+						<Item Text="Ultimate( $param1, $param2, $param3 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="fast" Value="7" DefValue="7"/>
+						<Item Type="0" Name="medium" Value="14" DefValue="14"/>
+						<Item Type="0" Name="slow" Value="28" DefValue="28"/>
+					</Params>
+				</Item>
+			</Rules>
+		</Item>
+		<Item Name="Right Bar Ago" ActiveRule="0">
+			<Rules>
+				<Item Name="(current)">
+					<Texts>
+						<Item Text="now"/>
+					</Texts>
+					<Codes>
+						<Item Text=""/>
+					</Codes>
+					<Params/>
+				</Item>
+				<Item Name="bars ago">
+					<Texts>
+						<Item Text="$param1 -bars ago"/>
+					</Texts>
+					<Codes>
+						<Item Text="Ref("/>
+						<Item Text=", -$param1 )"/>
+					</Codes>
+					<Params>
+						<Item Type="0" Name="Bars" Value="1" DefValue="1"/>
+					</Params>
+				</Item>
+			</Rules>
+		</Item>
+	</Parts>
+</Generator>

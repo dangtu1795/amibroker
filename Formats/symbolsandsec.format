@@ -1,0 +1,10 @@
+# Format definition file generated automatically
+# by AmiBroker's ASCII Import Wizard
+$FORMAT Ticker, FullName,SectorName,IndustryName,Group
+$SKIPLINES 1
+$SEPARATOR ,
+$AUTOADD 1
+$NOQUOTES 1
+$OVERWRITE 1
+$CLEANSECTORS 1
+$SORTSECTORS 1

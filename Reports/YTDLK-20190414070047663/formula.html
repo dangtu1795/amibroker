@@ -1,0 +1,462 @@
+<HTML><HEAD>
+<TITLE>YTDLK - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'>Statistics</a> | <a href='charts.html'>Charts</a> | <a href='trades.html'>Trades</a> | <a href='formula.html'><FONT class='SELTAB'>Formula</FONT></a> | <a href='settings.html'>Settings</a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Formula</TH></TR>
+</TABLE><PRE> 
+_SECTION_BEGIN("TBINH 102 - Tong Hop"); 
+ 
+Plot(C,"",IIf(C&gt;Ref(C,-1),colorCustom9,colorRed),styleCandle); 
+ 
+ 
+Plot(EMA( C, 6 ),"EMA6",colorCustom15,styleThick); 
+Plot(EMA( C, 10 ),"EMA10",colorCustom9,styleThick); 
+ 
+Plot(MA( C, 65 ),"MA65",colorCustom12,styleLine|styleThick); 
+Plot(MA( C, 50 ),"MA50",colorCustom11,styleLine|styleThick); 
+Plot(MA( C, 20 ),"MA20",colorYellow,styleLine|styleThick); 
+Plot(MA( C, 200 ),"MA200",colorBrown,styleThick); 
+Plot(MA( C, 250 ),"MA250",colorCustom16,styleThick); 
+ 
+MA65 = MA(C,65); 
+MA50 = MA(C,50); 
+MA20 = MA(C,20); 
+Cover = Cross(MA20, MA65); 
+Short = Cross ( MA65, MA20); 
+ 
+PlotShapes( shapeUpArrow * Cover, colorCustom12, 0,Low); 
+PlotShapes( shapeDownArrow * Short, colorCustom12, 0,High ); 
+ 
+Buy = Cross(MA20, MA50); 
+Sell = Cross ( MA50, MA20); 
+ 
+PlotShapes( shapeUpArrow * Buy, colorCustom11, 0,Low); 
+PlotShapes( shapeDownArrow * Sell, colorCustom11, 0,High ); 
+ 
+SetBarsRequired(100000,0); 
+GraphXSpace = 1; 
+SetTradeDelays(1,1,1,1); 
+Factor=Param("Factor",2,1,10,1); 
+Pd=Param("ATR Periods",1,1,100,1); 
+Up=(H+L)/2+(Factor*ATR(Pd)); 
+Dn=(H+L)/2-(Factor*ATR(Pd)); 
+iATR=ATR(Pd); 
+TrendUp=TrendDown=Null; 
+trend[0]=1; 
+changeOfTrend=0; 
+flag=flagh=0; 
+ 
+for (i = 1; i &lt;BarCount; i++) { 
+      TrendUp[i] = Null; 
+      TrendDown[i] = Null; 
+      
+      trend[i]=1; 
+    
+       
+      if (Close[i]&gt;Up[i-1]) { 
+         trend[i]=1; 
+         if (trend[i-1] == -1) changeOfTrend = 1; 
+          
+      } 
+      else if (Close[i]&lt;Dn[i-1]) { 
+         trend[i]=-1; 
+         if (trend[i-1] == 1) changeOfTrend = 1; 
+      } 
+      else if (trend[i-1]==1) { 
+         trend[i]=1; 
+         changeOfTrend = 0;        
+      } 
+      else if (trend[i-1]==-1) { 
+         trend[i]=-1; 
+         changeOfTrend = 0; 
+      } 
+ 
+      if (trend[i]&lt;0 && trend[i-1]&gt;0) { 
+         flag=1; 
+      } 
+      else { 
+         flag=0; 
+      } 
+       
+      if (trend[i]&gt;0 && trend[i-1]&lt;0) { 
+         flagh=1; 
+      } 
+      else { 
+         flagh=0; 
+      } 
+       
+      if (trend[i]&gt;0 && Dn[i]&lt;Dn[i-1]){ 
+         Dn[i]=Dn[i-1]; 
+		} 
+       
+      if (trend[i]&lt;0 && Up[i]&gt;Up[i-1]) 
+        { Up[i]=Up[i-1]; 
+		} 
+       
+      if (flag==1) 
+       {  Up[i]=(H[i]+L[i])/2+(Factor*iATR[i]);; 
+        }  
+      if (flagh==1) 
+        { Dn[i]=(H[i]+L[i])/2-(Factor*iATR[i]);; 
+         } 
+      if (trend[i]==1) { 
+         TrendUp[i]=Dn[i]; 
+         if (changeOfTrend == 1) { 
+            TrendUp[i-1] = TrendDown[i-1]; 
+            changeOfTrend = 0; 
+         } 
+      } 
+      else if (trend[i]==-1) { 
+         TrendDown[i]=Up[i]; 
+         if (changeOfTrend == 1) { 
+            TrendDown[i-1] = TrendUp[i-1]; 
+            changeOfTrend = 0; 
+         } 
+      } 
+   }  
+ 
+//y thien xanh 
+ 
+Buy = Cross(MA20, MA50); 
+Sell = Cross ( MA50, MA20); 
+ 
+ 
+ 
+TrendSL=IIf(trend==1,TrendUp,TrendDown); 
+ 
+for(i=BarCount-1;i&gt;1;i--) 
+{ 
+if(Buy[i] == 1) 
+{ 
+entry = L[i]; 
+sig = "Mua"; 
+nududo = "vao"; 
+sl = TrendSL[i]; 
+bars = i; 
+i = 0; 
+} 
+if(Sell[i] == 1) 
+{ 
+sig = "Ban"; 
+nududo = "ra"; 
+entry = L[i]; 
+sl = TrendSL[i]; 
+bars = i; 
+i = 0; 
+} 
+} 
+Clr = IIf(sig == "Mua", colorLime, colorRed); 
+ssl = IIf(bars == BarCount-1, TrendSL[BarCount-1], Ref(TrendSL, -1)); 
+sl = ssl[BarCount-1]; 
+ 
+// code y thien tim 
+Buy = Cross(MA20, MA65); 
+Sell = Cross ( MA65, MA20); 
+ 
+for(i=BarCount-1;i&gt;1;i--) 
+{ 
+if(Buy[i] == 1) 
+{ 
+entry2 = L[i]; 
+sig2 = "Mua"; 
+nududo2 = "vao"; 
+bars2 = i; 
+i = 0; 
+} 
+if(Sell[i] == 1) 
+{ 
+sig2 = "Ban"; 
+nududo2 = "ra"; 
+entry2 = L[i]; 
+ 
+bars2 = i; 
+i = 0; 
+} 
+} 
+Offset = 20; 
+Clr2 = IIf(sig2 == "Mua", colorLime, colorRed); 
+ssl2 = IIf(bars2 == BarCount-1, TrendSL[BarCount-1], Ref(TrendSL, -1)); 
+sl2 = ssl[BarCount-1]; 
+ 
+//tat mo box mua ban 
+messageboard = ParamToggle("Tat box mua ban","Hien|An",1); 
+if (messageboard == 1 ) 
+{ 
+GfxSelectFont( "Tahoma", 13, 100 ); 
+GfxSetBkMode( 1 ); 
+GfxSetTextColor( colorWhite ); 
+//cam nang 
+messageboard = ParamToggle("Cam nang","An|Hien",1); 
+if (messageboard == 1 ) 
+{ 
+GfxSelectFont( "Tahoma", 13, 100 ); 
+GfxSetBkMode( 1 ); 
+GfxSetTextColor( colorWhite ); 
+GfxSelectSolidBrush( colorCustom2); 
+pxHeight = Status( "pxchartheight" ) ; 
+xx = Status( "pxchartwidth"); 
+Left = 1100; 
+width = 310; 
+x = 5; 
+x2 = 253; 
+  
+y = pxHeight; 
+GfxSelectFont("arial", 9,700); 
+GfxSelectPen( colorCustom1, 1); // broader color 
+GfxRoundRect( x, y - 500, x2*2.25, y , 5, 5) ; 
+//GfxSetTextColor( colorCustom8 ); 
+//GfxTextOut( ("Cam nang Nududo"  ), 80, y-345) ; 
+//GfxTextOut( ("Luon dong hanh cung cac ban"  ), 45, y-330) ; 
+GfxSetTextColor( colorWhite ); 
+GfxSelectFont("arial", 8, 700); 
+GfxTextOut( ("$ Dang giao dich" + " : " + C  ), 13, y-480) ; 
+GfxTextOut( ("1. Diem mua co phieu :"), 13, y-455) ; 
+GfxTextOut( ("- Khi duong"), 13, y-430); 
+GfxSetTextColor( colorYellow ); 
+GfxTextOut( ("MA20"), 140, y-430); 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("cat duong"), 200, y-430); 
+GfxSetTextColor( colorCustom11); 
+GfxTextOut( ("MA50 (Mui ten xanh)"), 315, y-430); 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("va khi duong"), 13, y-400) ; 
+GfxSetTextColor( colorYellow ); 
+GfxTextOut( ("MA20"), 150, y-400); 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("cat duong"), 210, y-400); 
+GfxSetTextColor( colorCustom12); 
+GfxTextOut( ("MA65 (Mui ten tim)"), 320, y-400) ; 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("cat trong dai hoa loa ken xem muc"), 13, y-370) ; 
+GfxSetTextColor( colorCustom8); 
+GfxTextOut( ("(Khuyen nghi)"), 370, y-370) ; 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("2. Truong hop 2 mui ten cat cao hon"), 13, y-340) ; 
+GfxSetTextColor( colorYellow ); 
+GfxTextOut( ("MA20"), 385, y-340) ; 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("- Co phieu truong hop nay co dau hieu tao dinh :"), 13, y-310) ; 
+GfxTextOut( ("+ TH1 : Gia co xu huong cham lai"), 13, y-280) ; 
+GfxSetTextColor( colorYellow ); 
+GfxTextOut( ("MA20"), 350, y-280) ; 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("roi tang."), 410, y-280) ; 
+GfxTextOut( ("+ TH2 : Gia co xu huong gay xuong duoi"), 13, y-250) ; 
+GfxSetTextColor( colorYellow ); 
+GfxTextOut( ("MA20"), 420, y-250) ; 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("3. Diem bao ban co phieu :"), 13, y-220) ; 
+GfxTextOut( ("- Diem bao ban cuc manh khi"), 13, y-190) ; 
+GfxSetTextColor( colorYellow ); 
+GfxTextOut( ("MA20"), 315, y-190) ; 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("cat 2 duong"), 375, y-190) ; 
+GfxSetTextColor( colorCustom11); 
+GfxTextOut( ("MA50"), 13, y-160) ; 
+GfxSetTextColor( colorWhite ); 
+GfxTextOut( ("va duong"), 75, y-160) ; 
+GfxSetTextColor( colorCustom12); 
+GfxTextOut( ("MA65"), 180, y-160) ; 
+ 
+} 
+if ( (bars2 - bars) &lt; 7 AND sig2 == "Mua" AND sig == "Mua" AND (bars2 - bars) &gt; -5) 
+{ 
+GfxSelectSolidBrush( ColorRGB( 2, 100, 3 )); // this is the box background color 
+} 
+else 
+{ 
+if ( (bars2 - bars) &lt; 7 AND sig2 == "Ban" AND sig == "Ban"  AND (bars2 - bars) &gt; -5) 
+{ 
+GfxSelectSolidBrush( ColorRGB( 148, 50, 0 )); 
+} 
+else 
+{ 
+GfxSelectSolidBrush( ColorRGB( 20, 20, 13 )); 
+} 
+} 
+ 
+ 
+//code ket luan 
+if((bars2 - bars) &lt; 7 AND (sig2 == "Mua") AND (sig == "Mua") AND (bars2 - bars) &gt; -5 )// 
+{ 
+sig3 = "Xem xet mua"; 
+} 
+else 
+{ 
+if((bars2 - bars) &lt; 7 AND (sig2 == "Ban") AND (sig == "Ban") AND (bars2 - bars) &gt; -5) 
+{ 
+sig3 = "Xem xet ban"; 
+} 
+else 
+{ 
+sig3 = "Chua co ket luan cho"; 
+} 
+} 
+ 
+pxHeight = Status( "pxchartheight" ) ; 
+xx = Status( "pxchartwidth"); 
+Left = 1100; 
+width = 310; 
+x = 5; 
+x2 = 253; 
+  
+y = pxHeight; 
+GfxSelectPen( colorCustom1, 1); // broader color 
+GfxRoundRect( x, y - 128, x2*2.25, y+10, 5, 5) ; 
+//GfxSelectFont("arial", 9,700); 
+//GfxSetTextColor( colorCustom8 ); 
+//GfxTextOut( ("App Y Thien Do Long Kiem"  ), 58, y-123) ; 
+GfxSelectFont("arial", 8,700); 
+GfxSetTextColor( colorCustom12 );//y thien tim 
+GfxTextOut( ("- Tu dong Bao " + sig2 + " truoc do " + (BarCount-bars2-1) + " phien"), 13, y-130) ; 
+GfxTextOut( ("- Diem bao " + sig2 +" "+ nududo2 + " : " + entry2 +" "+ "(Mui ten tim)"), 13, y-110) ;  
+GfxTextOut( ("- Loi / Lo (-) : " + WriteVal(IIf(sig2 == "Mua",(C-entry2),(entry2-C)),2.2)), 13, y-90); 
+GfxSetTextColor( colorCustom11 );//y thien xanh 
+GfxTextOut( ("- Tu dong Bao " + sig + " truoc do " + (BarCount-bars-1) + " phien"), 13, y-70) ;  
+GfxTextOut( ("- Diem bao " + sig +" "+ nududo + " : " + entry +" "+ "(Mui ten xanh)"), 13, y-50) ;  
+GfxTextOut( ("- Loi / Lo (-) : " + WriteVal(IIf(sig == "Mua",(C-entry),(entry-C)),2.2))+" " + "(Nghin dong)", 13, y-30); 
+GfxSetTextColor( colorCustom8 ); 
+GfxTextOut( ("Khuyen nghi : " + sig3 +" "+ Name()), 13, y-10) ; 
+} 
+_SECTION_END(); 
+ 
+_SECTION_BEGIN("Bollinger Bands"); 
+P = ParamField("Price field",-1); 
+Periods = Param("Periods", 15, 2, 100, 1 ); 
+Width = Param("Width", 2, 0, 10, 0.05 ); 
+Color = ParamColor("Color", colorDarkGrey ); 
+Style = ParamStyle("Style", styleLine | styleNoLabel ) | styleNoLabel; 
+Plot( bbt = BBandTop( P, Periods, Width ), "BBTop" + _PARAM_VALUES(), colorGrey40, Style );  
+Plot( bbb = BBandBot( P, Periods, Width ), "BBBot" + _PARAM_VALUES(), colorGrey40, Style );  
+PlotOHLC( bbt, bbt, bbb, bbb, "", ColorBlend( Color, GetChartBkColor(), 0.1 ), styleThick | styleCloud | styleNoRescale, Null, Null, Null, -1 ); 
+_SECTION_END(); 
+ 
+_SECTION_BEGIN("Price"); 
+Title = EncodeColor(colorYellow)+ FullName()+"("+Name()+") - " + "Hotline :" + EncodeColor(colorRed)+ " 0372.095.129" + EncodeColor(colorYellow)+ " - Website :  "+ EncodeColor(colorRed)+"Nududo.com" + EncodeColor(colorWhite) + " - " + Interval(2) + EncodeColor(colorWhite) + 
+ "  - " + Date() +"\n" +EncodeColor(colorWhite) +"Mo cua-"+O+"  "+"Cao-"+H+"  "+"Thap-"+L+"  "+ 
+"Dong cua-"+C+"  "+ "Khoi Luong= "+ WriteVal(V); 
+_SECTION_BEGIN("Magnified Market Price"); 
+FS=Param("Font Size",35,11,100,1); 
+GfxSelectFont("Times New Roman", 34, 700, italic = True, underline = False, True ); 
+GfxSetBkMode( colorWhite ); 
+GfxSetTextColor( ParamColor("Color",colorCustom9) ); 
+Hor=Param("Horizontal Position",234,1,1200,1); 
+Ver=Param("Vertical Position",1,1,1,1); 
+GfxTextOut(""+C,Hor-150 , Ver+30 ); 
+GfxTextOut( Name(), Hor,Ver-50 ); 
+YC=TimeFrameGetPrice("C",inDaily,-1); 
+DD=Prec(C-YC,2); 
+xx=Prec((DD/YC)*100,2); 
+GfxSelectFont("Times New Roman", 14, 700, italic =True, underline = False, True ); 
+GfxSetBkMode( colorWhite ); 
+GfxSetTextColor(ParamColor("Color",colorCustom9) ); 
+GfxTextOut(""+DD+" ("+xx+"%)", Hor-150, Ver+85 ); 
+GfxSelectFont("arial", 18 ); 
+GfxSetTextColor(ParamColor("dong",colorCustom8) ); 
+GfxSetTextAlign( 6 );// center alignment 
+GfxSetTextColor( ColorRGB( 255, 255, 0 ) ); 
+GfxSetBkMode(0); // transparent 
+//GfxSelectFont("UVN But Long 1", Status("pxheight")/26 ); 
+//GfxTextOut( "Y THIEN DO LONG KIEM", Status("pxwidth")/2, Status("pxheight")/18 ); 
+//GfxSelectFont("UVN But Long 1", Status("pxheight")/36 ); 
+/* GfxTextOut( "Hotline : 0372.095.129 - Website : Nududo.com" , Status("pxwidth")/2, Status("pxheight")/8 ); */ 
+/*GfxSetTextColor( colorLightGrey ); 
+GfxSelectFont("UVN But Long 1", Status("pxheight")/46 ); 
+GfxTextOut( FullName() , Status("pxwidth")/1.2, Status("pxheight")/9 ); 
+GfxTextOut( "("+Name()+") " , Status("pxwidth")/1.2, Status("pxheight")/7 ); 
+*/ 
+_SECTION_END(); 
+/* ICHIMOKU CHART */ 
+n1 = Param("9 1",9,1,200,1);  
+n2 = Param("26: период 2",26,1,400,1);  
+n3 = Param("26: период 3",52,1,600,1);  
+  
+TenkanSen   =(HHV(H,n1)+LLV(L,n1))/2;              
+KijunSen    =(HHV(H,n2)+LLV(L,n2))/2;             
+ChinkouSpan =Ref(C,-n2);                           
+Cks         = Close;                              
+SenkouSpanA =Ref((KijunSen+TenkanSen)/2,-n2);     
+SpA         =(KijunSen+TenkanSen)/2;              
+SenkouSpanB =Ref((HHV(H,n3)+LLV(L,n3))/2,-n2);     
+SpB         =(HHV(H,n3)+LLV(L,n3))/2;             
+DL = Ref( C, 25 ); 
+Cond1 =  Ref(Close &gt; Max(SenkouSpanA,SenkouSpanB),-1);    
+Cond2 =  Ref(Close &lt; Min(SenkouSpanA,SenkouSpanB),-1);   
+Cond3 =  Ref(Cross(TenkanSen,KijunSen),-1);   
+Cond4 =  Ref(Cross(KijunSen,TenkanSen),-1);   
+Cond5 =  Ref(Cross(Close,ChinkouSpan ),-1);   
+Cond6 =  Ref(Cross(ChinkouSpan ,Close),-1);   
+Cond7 =  Ref(Cross (Close , Max(SenkouSpanA,SenkouSpanB)),-1);   
+Cond8 =  Ref(Cross ( Min(SenkouSpanA,SenkouSpanB), Close),-1);   
+Cond9 = Close &gt; TenkanSen AND TenkanSen &gt; KijunSen AND KijunSen &gt; Max(SenkouSpanA,SenkouSpanB);  
+Cond10= Close &lt; TenkanSen AND TenkanSen &lt; KijunSen AND KijunSen &lt; Min(SenkouSpanA,SenkouSpanB);  
+RemCond9=ExRem(Cond9,NOT Cond9);                   
+RemCond10=ExRem(Cond10,NOT Cond10);  
+  
+ColSenk =IIf (Cond1,colorGreen, IIf(Cond2,colorRed,colorLightGrey));  
+Flat  =  TenkanSen == Ref(TenkanSen,-1) OR (NOT(Cond1) AND NOT(Cond2)) ;  
+  
+for( i = 0; i &lt; BarCount; i++ )  
+{  
+   if (Flat[i])  
+      ColTenk[i] = colorLightGrey;  
+   else 
+   {  
+if (Cond1[i] AND TenkanSen[i] &gt; TenkanSen[i-1])  
+     ColTenk[i] = colorGreen;  
+if (Cond1[i] AND TenkanSen[i] &lt; TenkanSen[i-1])  
+     ColTenk[i] = colorRed;  
+if (Cond2[i] AND TenkanSen[i] &lt; TenkanSen[i-1])  
+     ColTenk[i] = colorRed;  
+if (Cond2[i] AND TenkanSen[i] &gt; TenkanSen[i-1])  
+     ColTenk[i] = colorGreen;  
+   }  
+}   
+PlotOHLC (SpA,SpA,SpB,SpB,"Cloud",IIf (SpA &gt; SpB,ColorRGB( 64, 128, 128 ),ColorRGB( 128, 128, 128 )),styleCloud, 10, 10, n2 );  
+above = IIf(KijunSen&gt;SenkouSpanA AND TenkanSen&gt;SenkouSpanB,1,0); 
+within = IIf(KijunSen&gt;SenkouSpanA AND TenkanSen&lt;SenkouSpanB,1,0); 
+below = IIf(TenkanSen&lt;SenkouSpanA AND TenkanSen&lt;SenkouSpanB,1,0); 
+Buy = Cross(TenkanSen,KijunSen) AND (DL&gt;Close); 
+Sell = Cross(KijunSen,TenkanSen) AND (DL&lt;KijunSen); 
+StrongBuy = Buy AND above; 
+MediumBuy = Buy AND within; 
+WeakBuy = Buy AND below; 
+StrongSell = Sell AND below; 
+MediumSell = Sell AND within; 
+WeakSell = Sell AND above; 
+//IIf( (StrongBuy),PlotShapes(shapeUpArrow*StrongBuy,colorYellow, layer = 0, yposition = Graph0, offset = -52, xshift = 0) , 0); 
+//IIf( (MediumBuy),PlotShapes(shapeUpArrow*MediumBuy,colorYellow, layer = 0, yposition = Graph0, offset = -52, xshift = 0), 0); 
+//IIf( (WeakBuy),PlotShapes(shapeUpArrow*WeakBuy,colorYellow, layer = 0, yposition = Graph0, offset = -52, xshift = 0), 0); 
+//IIf( (StrongSell),PlotShapes(shapeDownArrow*StrongSell,colorYellow, layer = 0, yposition = Graph0, offset = -52, xshift = 0), 0); 
+//IIf( (MediumSell),PlotShapes(shapeDownArrow*MediumSell,colorYellow, layer = 0, yposition = Graph0, offset = -52, xshift = 0), 0); 
+//IIf( (WeakSell),PlotShapes(shapeDownArrow*WeakSell,colorYellow, layer = 0, yposition = Graph0, offset = -52, xshift = 0), 0); 
+///end ichimoku 
+///end ichimoku 
+
+</PRE></BODY></HTML>

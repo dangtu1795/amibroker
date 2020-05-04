@@ -1,0 +1,6 @@
+$FORMAT Date_DMY,Open,High,Low,Close,Volume
+$SKIPLINES 1
+$SEPARATOR ,
+$DEBUG 1
+$BREAKONERR 1
+$AUTOADD 1

@@ -1,0 +1,88 @@
+_SECTION_BEGIN("Kill The Operator MACD");
+SetChartBkColor(ParamColor("Panel color ",colorBlack));
+r1 = Param( "Fast avg", 12, 2, 200, 1 );
+r2 = Param( "Slow avg", 26, 2, 200, 1 );
+r3 = Param( "Signal avg", 9, 2, 200, 1 );
+Plot( ml = MACD(r1, r2), StrFormat(_SECTION_NAME()+"(%g,%g)", r1, r2), ParamColor("MACD color", colorRed ), ParamStyle("MACD style") );
+Plot( sl = Signal(r1,r2,r3), "Signal" + _PARAM_VALUES(), ParamColor("Signal color", colorBlue ), ParamStyle("Signal style") );
+Histogram_color = IIf( ml-sl > 0, colorBlue, colorRed);
+Plot( ml-sl, "MACD Histogram", Histogram_color, styleNoTitle | ParamStyle("Histogram style", styleHistogram | styleThick | styleNoLabel, maskHistogram ) );
+Title = EncodeColor(colorWhite)+ "Kill The Operator MACD";
+_SECTION_END();
+ 
+x = ml;
+y = sl;
+ 
+Buy=Cross(x,y);
+PlotShapes(shapeUpArrow*Buy,colorBlue);
+Sell=Cross(y,x);
+PlotShapes(shapeDownArrow*Sell,colorYellow);
+AlertIf( Buy, "SOUND C:\\Windows\\Media\\notify.wav", "Audio alert", 2 );
+AlertIf( Sell, "SOUND C:\\Windows\\Media\\chord.wav", "Audio alert", 2 );
+ 
+/* Trend Filters */
+TimeFrameSet(in15Minute);
+SwingTrd151 = 100 * (Close - ((MA(C,2)+
+MA(MA(C,2),2)+
+MA(MA(MA(C,2),2),2) +
+MA(MA(MA(MA(C,2),2),2),2) +
+MA(MA(MA(MA(MA(C,2),2),2),2),2) +
+MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2) +
+MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2),2)+
+MA(MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2),2),2)+
+MA(MA(MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2),2), 2),2)+
+MA(MA(MA(MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2), 2),2),2),2))
+/10))/(HHV(C,10)-LLV(C,10));
+SwingTrd152=EMA(SwingTrd151,13);
+SwingTrd153=EMA(SwingTrd152,13);
+RMO15= EMA(SwingTrd151,34);
+Bull_Trend15=EMA(SwingTrd151,34)>0;
+Bear_Trend15=EMA(SwingTrd151,34)<0;
+TimeFrameRestore();
+Ribbon_kol15=IIf(TimeFrameExpand(Bull_Trend15,in15Minute),colorBlue, IIf(TimeFrameExpand(Bear_Trend15,in15Minute),colorRed, colorBlack));
+Plot(2, "ribbon", Ribbon_kol15, styleOwnScale|styleArea|styleNoLabel, -0.5,100);
+ 
+TimeFrameSet(10*in1Minute);
+SwingTrd101 = 100 * (Close - ((MA(C,2)+
+MA(MA(C,2),2)+
+MA(MA(MA(C,2),2),2) +
+MA(MA(MA(MA(C,2),2),2),2) +
+MA(MA(MA(MA(MA(C,2),2),2),2),2) +
+MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2) +
+MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2),2)+
+MA(MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2),2),2)+
+MA(MA(MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2),2), 2),2)+
+MA(MA(MA(MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2), 2),2),2),2))
+/10))/(HHV(C,10)-LLV(C,10));
+SwingTrd102=
+EMA(SwingTrd101,13);
+SwingTrd103=EMA(SwingTrd102,13);
+RMO10= EMA(SwingTrd101,34);
+Bull_Trend10=EMA(SwingTrd101,34)>0;
+Bear_Trend10=EMA(SwingTrd101,34)<0;
+TimeFrameRestore();
+Ribbon_kol10=IIf(TimeFrameExpand(Bull_Trend10,10*in1Minute),colorBlue, IIf(TimeFrameExpand(Bear_Trend10,10*in1Minute),colorRed, colorBlack));
+Plot(4, "ribbon", Ribbon_kol10, styleOwnScale|styleArea|styleNoLabel, -0.5,100);
+ 
+ 
+SwingTrd1 = 100 * (Close - ((MA(C,2)+
+MA(MA(C,2),2)+
+MA(MA(MA(C,2),2),2) +
+MA(MA(MA(MA(C,2),2),2),2) +
+MA(MA(MA(MA(MA(C,2),2),2),2),2) +
+MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2) +
+MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2),2)+
+MA(MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2),2),2)+
+MA(MA(MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2),2), 2),2)+
+MA(MA(MA(MA(MA(MA(MA(MA(MA(MA(C,2),2),2),2),2),2), 2),2),2),2))
+/10))/(HHV(C,10)-LLV(C,10));
+SwingTrd2=
+EMA(SwingTrd1,13);
+SwingTrd3=
+EMA(SwingTrd2,13);
+RMO= EMA(SwingTrd1,34);
+Bull_Trend=EMA(SwingTrd1,34)>0;
+Bear_Trend=EMA(SwingTrd1,34)<0;
+Ribbon_kol=IIf(Bull_Trend,colorBlue, IIf(Bear_Trend,colorRed, colorBlack));
+Plot(6, "ribbon", Ribbon_kol, styleOwnScale|styleArea|styleNoLabel, -0.5,100);
+// End of Trend Filters

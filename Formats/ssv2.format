@@ -1,0 +1,10 @@
+# Format definition for importing
+# ASCII file with Space separated values 
+# Required AmiBroker 3.23 or higher
+$FORMAT Date_MDY,High,Low,Close,Volume
+$SEPARATOR	
+$DEBUG 1
+$AUTOADD 1
+$GROUP 255
+
+

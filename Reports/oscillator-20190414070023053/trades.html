@@ -1,0 +1,69 @@
+<HTML><HEAD>
+<TITLE>oscillator - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'>Statistics</a> | <a href='charts.html'>Charts</a> | <a href='trades.html'><FONT class='SELTAB'>Trades</FONT></a> | <a href='formula.html'>Formula</a> | <a href='settings.html'>Settings</a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Trades</TH></TR>
+</TABLE><P><FONT class='BIG'>Trade list</FONT><DIV ID='partnavigation'></DIV>
+<TABLE width='800' CELLSPACING=3>
+<TR><TH class='CH'>Ticker</TH><TH class='CH'>Trade</TH><TH class='CH'>Entry</TH><TH class='CH'>Exit</TH><TH class='CH'>% change</TH><TH class='CH'>Profit</TH><TH class='CH'>Shares</TH><TH class='CH'>Pos. value</TH><TH class='CH'>Cum. profit</TH><TH class='CH'># bars</TH><TH class='CH'>Profit/bar</TH><TH class='CH'>MAE/MFE</TH><TH class='CH'>Scale In/Out</TH></TR><TBODY id='part0'><TR><TD>LCG</TD><TD>Long</TD><TD>4/3/2018<BR>9.181</TD><TD>4/4/2018<BR>8.996</TD><TD>-2.02%</TD><TD>-2462.72<BR>-2.02%</TD><TD>13312</TD><TD>122217.47</TD><TD>-2462.72</TD><TD>2</TD><TD>-1231.36</TD><TD>-4.04%<BR>0.00%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>4/5/2018<BR>9.042</TD><TD>4/11/2018<BR>9.181</TD><TD>1.54%</TD><TD>540.01<BR>1.54%</TD><TD>3885</TD><TD>35128.17</TD><TD>-1922.71</TD><TD>5</TD><TD>108.00</TD><TD>-1.54%<BR>8.21%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>4/13/2018<BR>9.459</TD><TD>4/18/2018<BR>9.274</TD><TD>-1.96%</TD><TD>-2705.99<BR>-1.96%</TD><TD>14627</TD><TD>138356.78</TD><TD>-4628.70</TD><TD>4</TD><TD>-676.50</TD><TD>-3.82%<BR>0.50%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>4/23/2018<BR>9.367</TD><TD>4/27/2018<BR>9.367</TD><TD>0.00%</TD><TD>0.00<BR>0.00%</TD><TD>67855</TD><TD>635597.76</TD><TD>-4628.70</TD><TD>4</TD><TD>0.00</TD><TD>-1.59%<BR>3.96%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>5/7/2018<BR>9.645</TD><TD>5/10/2018<BR>9.227</TD><TD>-4.33%</TD><TD>-30469.27<BR>-4.33%</TD><TD>72893</TD><TD>703053.02</TD><TD>-35097.97</TD><TD>4</TD><TD>-7617.32</TD><TD>-4.72%<BR>0.96%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>5/23/2018<BR>9.181</TD><TD>5/25/2018<BR>9.051</TD><TD>-1.42%</TD><TD>-223.21<BR>-1.42%</TD><TD>1717</TD><TD>15763.78</TD><TD>-35321.18</TD><TD>3</TD><TD>-74.40</TD><TD>-3.94%<BR>0.00%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>5/31/2018<BR>9.172</TD><TD>6/5/2018<BR>8.81</TD><TD>-3.95%</TD><TD>-2255.62<BR>-3.95%</TD><TD>6231</TD><TD>57150.73</TD><TD>-37576.81</TD><TD>4</TD><TD>-563.91</TD><TD>-6.98%<BR>0.00%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>6/7/2018<BR>9.088</TD><TD>6/11/2018<BR>8.986</TD><TD>-1.12%</TD><TD>-760.72<BR>-1.12%</TD><TD>7458</TD><TD>67778.31</TD><TD>-38337.52</TD><TD>3</TD><TD>-253.57</TD><TD>-5.09%<BR>1.53%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>6/15/2018<BR>8.977</TD><TD>6/18/2018<BR>8.634</TD><TD>-3.82%</TD><TD>-1043.41<BR>-3.82%</TD><TD>3042</TD><TD>27308.03</TD><TD>-39380.93</TD><TD>2</TD><TD>-521.70</TD><TD>-3.82%<BR>0.00%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>6/22/2018<BR>8.662</TD><TD>6/28/2018<BR>8.541</TD><TD>-1.40%</TD><TD>-684.01<BR>-1.40%</TD><TD>5653</TD><TD>48966.28</TD><TD>-40064.94</TD><TD>5</TD><TD>-136.80</TD><TD>-3.00%<BR>0.32%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>6/29/2018<BR>8.662</TD><TD>7/3/2018<BR>8.346</TD><TD>-3.65%</TD><TD>-1243.78<BR>-3.65%</TD><TD>3936</TD><TD>34093.63</TD><TD>-41308.72</TD><TD>3</TD><TD>-414.59</TD><TD>-3.65%<BR>0.00%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>7/4/2018<BR>8.69</TD><TD>7/9/2018<BR>8.439</TD><TD>-2.89%</TD><TD>-5844.79<BR>-2.89%</TD><TD>23286</TD><TD>202355.33</TD><TD>-47153.50</TD><TD>4</TD><TD>-1461.20</TD><TD>-4.17%<BR>3.83%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>7/16/2018<BR>8.346</TD><TD>7/18/2018<BR>8.291</TD><TD>-0.66%</TD><TD>-450.45<BR>-0.66%</TD><TD>8190</TD><TD>68353.73</TD><TD>-47603.95</TD><TD>3</TD><TD>-150.15</TD><TD>-1.10%<BR>0.34%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>7/20/2018<BR>8.365</TD><TD>8/8/2018<BR>8.94</TD><TD>6.87%</TD><TD>2136.12<BR>6.87%</TD><TD>3715</TD><TD>31075.97</TD><TD>-45467.83</TD><TD>14</TD><TD>152.58</TD><TD>-0.67%<BR>8.09%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>8/15/2018<BR>8.959</TD><TD>8/17/2018<BR>8.894</TD><TD>-0.73%</TD><TD>-570.24<BR>-0.73%</TD><TD>8773</TD><TD>78597.30</TD><TD>-46038.07</TD><TD>3</TD><TD>-190.08</TD><TD>-1.45%<BR>0.93%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>8/23/2018<BR>8.866</TD><TD>8/27/2018<BR>9.2</TD><TD>3.77%</TD><TD>1177.02<BR>3.77%</TD><TD>3524</TD><TD>31243.78</TD><TD>-44861.06</TD><TD>3</TD><TD>392.34</TD><TD>-0.63%<BR>7.15%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>8/31/2018<BR>9.39</TD><TD>9/6/2018<BR>9.36</TD><TD>-0.32%</TD><TD>-489.87<BR>-0.32%</TD><TD>16329</TD><TD>153329.32</TD><TD>-45350.93</TD><TD>4</TD><TD>-122.47</TD><TD>-3.62%<BR>2.24%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>9/13/2018<BR>9.26</TD><TD>9/14/2018<BR>9.15</TD><TD>-1.19%</TD><TD>-1104.84<BR>-1.19%</TD><TD>10044</TD><TD>93007.43</TD><TD>-46455.77</TD><TD>2</TD><TD>-552.42</TD><TD>-1.19%<BR>2.05%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>9/18/2018<BR>9.45</TD><TD>9/20/2018<BR>9.3</TD><TD>-1.59%</TD><TD>-5441.25<BR>-1.59%</TD><TD>36275</TD><TD>342798.74</TD><TD>-51897.02</TD><TD>3</TD><TD>-1813.75</TD><TD>-4.76%<BR>1.27%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>9/27/2018<BR>9.25</TD><TD>10/5/2018<BR>9.45</TD><TD>2.16%</TD><TD>6512.20<BR>2.16%</TD><TD>32561</TD><TD>301189.25</TD><TD>-45384.82</TD><TD>7</TD><TD>930.31</TD><TD>-0.65%<BR>5.95%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>10/15/2018<BR>9.15</TD><TD>10/19/2018<BR>9.36</TD><TD>2.30%</TD><TD>5503.68<BR>2.30%</TD><TD>26208</TD><TD>239803.19</TD><TD>-39881.14</TD><TD>5</TD><TD>1100.74</TD><TD>-1.20%<BR>8.20%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>11/5/2018<BR>8.8</TD><TD>11/8/2018<BR>8.63</TD><TD>-1.93%</TD><TD>-565.08<BR>-1.93%</TD><TD>3324</TD><TD>29251.20</TD><TD>-40446.22</TD><TD>4</TD><TD>-141.27</TD><TD>-2.27%<BR>1.14%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>11/12/2018<BR>8.64</TD><TD>11/15/2018<BR>8.55</TD><TD>-1.04%</TD><TD>-475.29<BR>-1.04%</TD><TD>5281</TD><TD>45627.84</TD><TD>-40921.51</TD><TD>4</TD><TD>-118.82</TD><TD>-3.13%<BR>0.00%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>11/16/2018<BR>8.6</TD><TD>11/21/2018<BR>8.55</TD><TD>-0.58%</TD><TD>-107.75<BR>-0.58%</TD><TD>2155</TD><TD>18533.00</TD><TD>-41029.26</TD><TD>4</TD><TD>-26.94</TD><TD>-2.33%<BR>0.47%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>11/27/2018<BR>8.64</TD><TD>12/10/2018<BR>8.7</TD><TD>0.69%</TD><TD>343.02<BR>0.69%</TD><TD>5717</TD><TD>49394.88</TD><TD>-40686.24</TD><TD>10</TD><TD>34.30</TD><TD>-1.62%<BR>1.85%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>12/26/2018<BR>7.99</TD><TD>1/2/2019<BR>7.93</TD><TD>-0.75%</TD><TD>-219.78<BR>-0.75%</TD><TD>3663</TD><TD>29267.37</TD><TD>-40906.02</TD><TD>4</TD><TD>-54.95</TD><TD>-3.63%<BR>3.75%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>1/3/2019<BR>7.93</TD><TD>1/21/2019<BR>9.22</TD><TD>16.27%</TD><TD>12863.88<BR>16.27%</TD><TD>9971.999</TD><TD>79077.95</TD><TD>-28042.14</TD><TD>13</TD><TD>989.53</TD><TD>-4.16%<BR>18.54%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>1/25/2019<BR>8.96</TD><TD>1/28/2019<BR>9</TD><TD>0.45%</TD><TD>304.16<BR>0.45%</TD><TD>7604</TD><TD>68131.84</TD><TD>-27737.98</TD><TD>2</TD><TD>152.08</TD><TD>-0.22%<BR>2.57%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>1/30/2019<BR>9.19</TD><TD>2/1/2019<BR>9</TD><TD>-2.07%</TD><TD>-2708.07<BR>-2.07%</TD><TD>14253</TD><TD>130985.06</TD><TD>-30446.05</TD><TD>3</TD><TD>-902.69</TD><TD>-3.16%<BR>3.92%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>2/21/2019<BR>9.05</TD><TD>3/1/2019<BR>10.2</TD><TD>12.71%</TD><TD>30495.70<BR>12.71%</TD><TD>26518</TD><TD>239987.91</TD><TD>49.65</TD><TD>7</TD><TD>4356.53</TD><TD>-0.99%<BR>12.71%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>3/5/2019<BR>10.25</TD><TD>3/7/2019<BR>10.6</TD><TD>3.41%</TD><TD>45522.40<BR>3.41%</TD><TD>130064</TD><TD>1333156.00</TD><TD>45572.05</TD><TD>3</TD><TD>15174.13</TD><TD>-0.98%<BR>6.34%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>3/12/2019<BR>10.8</TD><TD>3/13/2019<BR>10.3</TD><TD>-4.63%</TD><TD>-104145.00<BR>-4.63%</TD><TD>208290</TD><TD>2249532.04</TD><TD>-58572.95</TD><TD>2</TD><TD>-52072.50</TD><TD>-4.63%<BR>1.85%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>3/18/2019<BR>11.15</TD><TD>3/21/2019<BR>11.25</TD><TD>0.90%</TD><TD>21744.40<BR>0.90%</TD><TD>217444</TD><TD>2424500.52</TD><TD>-36828.55</TD><TD>4</TD><TD>5436.10</TD><TD>-8.07%<BR>5.83%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Long</TD><TD>3/28/2019<BR>11.15</TD><TD>4/9/2019<BR>11.8</TD><TD>5.83%</TD><TD>115170.90<BR>5.83%</TD><TD>177186</TD><TD>1975623.83</TD><TD>78342.35</TD><TD>9</TD><TD>12796.77</TD><TD>-3.14%<BR>12.11%</TD><TD>0/0</TD></TR>
+<TR><TD>LCG</TD><TD>Open Long</TD><TD>4/12/2019<BR>12.25</TD><TD>4/12/2019<BR>12.25</TD><TD>0.00%</TD><TD>0.00<BR>0.00%</TD><TD>139001</TD><TD>1702762.25</TD><TD>78342.35</TD><TD>2</TD><TD>0.00</TD><TD>-2.45%<BR>0.41%</TD><TD>0/0</TD></TR>
+</TABLE></TBODY></TABLE><SCRIPT>document.getElementById('partnavigation').innerHTML="<P>Pages: <a href='javascript:void(0)' onclick='showPart(0)'>1</a> | </P>";</SCRIPT></BODY></HTML>

@@ -1,0 +1,7 @@
+$FORMAT Ticker,Date_YMD,Open,High,Low,Close,Volume
+$SKIPLINES 1
+$SEPARATOR ,
+$DEBUG 1
+$AUTOADD 1
+$CONT 1
+$GROUP 254

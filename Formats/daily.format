@@ -1,0 +1,8 @@
+# Short daily download format (.AQD extension)
+$FORMAT Ticker,Close,Date_MDY,Open,High,Low,Volume,FullName
+$SKIPLINES 0
+$SEPARATOR ,
+$DEBUG 1
+#$AUTOADD 1
+$CONT 1
+$GROUP 254

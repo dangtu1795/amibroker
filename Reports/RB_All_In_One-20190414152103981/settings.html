@@ -1,0 +1,54 @@
+<HTML><HEAD>
+<TITLE>RB_All_In_One - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'>Statistics</a> | <a href='charts.html'>Charts</a> | <a href='trades.html'>Trades</a> | <a href='formula.html'>Formula</a> | <a href='settings.html'><FONT class='SELTAB'>Settings</FONT></a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Settings</TH></TR>
+</TABLE><TABLE CELLSPACING=2 WIDTH=100%>
+<TR><TH COLSPAN=5>&nbsp;</TH></TR>
+<TR><TH>Initial Equity:</TH><TD>100000000</TD><TD></TD><TH>Periodicity/Positions:</TH><TD>Daily/Long </TD></TR>
+<TR><TH>Commissions:</TH><TD>0.00 (Use portfolio settings)</TD><TD></TD><TH>Annual interest rate:</TH><TD>0.00%</TD></TR>
+<TR><TH>Range:</TH><TD>4/1/2018 - 4/12/2019</TD><TD></TD><TH>Apply to:</TH><TD>Current Symbol</TD></TR><TR><TH>Account margin:</TH><TD>100</TD><TD></TD><TH>Futures mode:</TH><TD>No</TD></TR>
+<TR><TH>Def. round lot size:</TH><TD>0</TD><TD></TD><TH>Def. Tick Size</TH><TD>0</TD></TR>
+<TR><TH>Drawdowns based on:</TH><TD>High/Low prices</TD><TD></TD><TH>&nbsp;</TH><TD>&nbsp;</TD></TR>
+<TR><TH COLSPAN=5><b>Long trades</b></TH></TR>
+<TR><TH>Buy price:</TH><TD>Close</TD><TD></TD><TH>Sell price:</TH><TD>Close</TD></TR>
+<TR><TH>Buy delay:</TH><TD>0</TD><TD></TD><TH>Sell delay:</TH><TD>0</TD></TR>
+<TR><TH COLSPAN=5><b>Short trades</b></TH></TR>
+<TR><TH>Short price:</TH><TD>Close</TD><TD></TD><TH>Cover price:</TH><TD>Close</TD></TR>
+<TR><TH>Short delay:</TH><TD>0</TD><TD></TD><TH>Cover delay:</TH><TD>0</TD></TR>
+<TR><TH COLSPAN=5><b>Stops</b></TH></TR>
+<TR><TH>Maximum loss:</TH><TD>disabled</TD><TD></TD><TH>Profit target:</TH><TD>disabled</TD></TR>
+<TR><TH>Value:</TH><TD>0.00</TD><TD></TD><TH>Value:</TH><TD>0.00</TD></TR>
+<TR><TH>Exit at stop?</TH><TD>no</TD><TD></TD><TH>Exit at stop?</TH><TD>no</TD></TR>
+<TR><TD colspan=5>&nbsp;</TD></TR><TR><TH>Trailing stop:</TH><TD>disabled</TD><TD></TD><TH>&nbsp;</TH><TD>&nbsp;</TD></TR>
+<TR><TH>Value:</TH><TD>0.00</TD><TD></TD><TH>&nbsp;</TH><TD>&nbsp;</TD></TR>
+<TR><TH>Exit at stop?</TH><TD>no</TD><TD></TD><TH>&nbsp;</TH><TD>&nbsp;</TD></TR>
+</TABLE><P><P><FONT class='BIG'>Parameters</FONT>
+<TABLE CELLSPACING=3 WIDTH=100%>
+<TR><TH><B>Name</B></TH><TD><B>Value</B></TD></TR><TR><TH>BB-EMA	Color</TH><TD>47</TD></TR><TR><TH>Price	Color</TH><TD>42</TD></TR><TR><TH>BB-EMA	StDev Period</TH><TD>20</TD></TR><TR><TH>BB-EMA	EMA Periods</TH><TD>20</TD></TR><TR><TH>BB-EMA	Width</TH><TD>2</TD></TR><TR><TH>EMA	Style</TH><TD>1</TD></TR><TR><TH>EMA	Periods</TH><TD>20</TD></TR><TR><TH>Bollinger Bands	Price field</TH><TD>Close</TD></TR><TR><TH>Bollinger Bands	Style</TH><TD>1</TD></TR><TR><TH>Bollinger Bands	Periods</TH><TD>15</TD></TR><TR><TH>EMA	Color</TH><TD>33</TD></TR><TR><TH>Bollinger Bands	Color</TH><TD>33</TD></TR><TR><TH>EMA	Price field</TH><TD>Close</TD></TR><TR><TH>Price	Tooltip shows</TH><TD>All Values</TD></TR><TR><TH>Bollinger Bands	Width</TH><TD>2</TD></TR><TR><TH>Price	Style</TH><TD>1</TD></TR><TR><TH>BB-EMA	color</TH><TD>18</TD></TR></TABLE></BODY></HTML>

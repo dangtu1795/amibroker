@@ -1,0 +1,82 @@
+<HTML><HEAD>
+<TITLE>RB_All_In_One - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'><FONT class='SELTAB'>Statistics</FONT></a> | <a href='charts.html'>Charts</a> | <a href='trades.html'>Trades</a> | <a href='formula.html'>Formula</a> | <a href='settings.html'>Settings</a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Statistics</TH></TR>
+</TABLE><TABLE CELLSPACING=3 WIDTH=100%>
+<TR><TH>&nbsp;</TH><TH class='CH'>All trades</TH><TH class='CH'>Long trades</TH><TH class='CH'>Short trades</TH><TH class='CH'>Buy&Hold (AAA)</TH></TR>
+<TR><TH TITLE='Initial capital'>Initial capital</TH><TD>100000000.00</TD><TD>100000000.00</TD><TD>100000000.00</TD><TD>100000000.00</TD></TR>
+<TR><TH TITLE='Ending capital'>Ending capital</TH><TD>100806604.13</TD><TD>100806604.13</TD><TD>100000000.00</TD><TD>106900167.35</TD></TR>
+<TR><TH TITLE='Net Profit'>Net Profit</TH><TD class='good'>806604.13</TD><TD class='good'>806604.13</TD><TD class='neut'>0.00</TD><TD class='good'>6900167.35</TD></TR>
+<TR><TH TITLE='Net Profit %'>Net Profit %</TH><TD class='good'>0.81% </TD><TD class='good'>0.81% </TD><TD class='neut'>0.00% </TD><TD class='good'>6.90% </TD></TR>
+<TR><TH TITLE='Market exposure of the trading system calculated on bar by bar basis. Sum of bar exposures divided by number of bars. Single bar exposure is the value of open positions divided by portfolio equity.'>Exposure %</TH><TD>1.35% </TD><TD>1.35% </TD><TD>0.00% </TD><TD>100.00% </TD></TR>
+<TR><TH TITLE='Net profit % divided by Exposure %'>Net Risk Adjusted Return %</TH><TD class='good'>59.55% </TD><TD class='good'>59.55% </TD><TD>  N/A  </TD><TD class='good'>6.90% </TD></TR>
+<TR><TH TITLE='Compounded Annual Return % (CAR)'>Annual Return %</TH><TD class='neut'>0.79% </TD><TD class='neut'>0.79% </TD><TD class='neut'>0.00% </TD><TD class='neut'>6.71% </TD></TR>
+<TR><TH TITLE='Annual return % divided by Exposure %'>Risk Adjusted Return %</TH><TD class='neut'>57.96% </TD><TD class='neut'>57.96% </TD><TD>  N/A  </TD><TD class='neut'>6.71% </TD></TR>
+<TR><TH TITLE='Total transaction costs'>Total transaction costs</TH><TD class='neut'>0.00</TD><TD class='neut'>0.00</TD><TD class='neut'>0.00</TD><TD class='neut'>0.00</TD></TR>
+<TR><TD COLSPAN=5><hr size=1></TD></TR>
+<TR><TH><b>All trades</b></TH><TD>6</TD><TD>6 (100.00 %)</TD><TD>0 (0.00 %)</TD><TD>1</TD></TR>
+<TR><TH TITLE='(Profit of winners + Loss of losers)/(number of trades), also known as Expectancy ($), it represents expected dollar gain/loss per trade'>&nbsp;Avg. Profit/Loss</TH><TD class='good'>134434.02</TD><TD class='good'>134434.02</TD><TD>  N/A</TD><TD class='good'>6900171.07</TD></TR>
+<TR><TH TITLE='(% Profit of winners + % Loss of losers)/(number of trades), also known as Expectancy (%), it represents expected percent gain/loss per trade'>&nbsp;Avg. Profit/Loss %</TH><TD class='good'>1.35% </TD><TD class='good'>1.35% </TD><TD>  N/A  </TD><TD class='good'>6.90% </TD></TR>
+<TR><TH TITLE='Avg. Bars Held'>&nbsp;Avg. Bars Held</TH><TD class='good'>17.17</TD><TD class='good'>17.17</TD><TD>  N/A</TD><TD class='good'>260.00</TD></TR>
+<TR><TD COLSPAN=5><hr size=1></TD></TR>
+<TR><TH><b>Winners</b></TH><TD>2 (33.33 %)</TD><TD>2 (33.33 %)</TD><TD>0 (0.00 %)</TD><TD>1 (100.00 %)</TD></TR>
+<TR><TH TITLE='Total Profit'>&nbsp;Total Profit</TH><TD>1414504.50</TD><TD>1414504.50</TD><TD>0.00</TD><TD>6900171.07</TD></TR>
+<TR><TH TITLE='Average Profit'>&nbsp;Avg. Profit</TH><TD>707252.25</TD><TD>707252.25</TD><TD>  N/A</TD><TD>6900171.07</TD></TR>
+<TR><TH TITLE='(% Profit of winners )/(number of winning trades)'>&nbsp;Avg. Profit %</TH><TD>12.59% </TD><TD>12.59% </TD><TD>  N/A  </TD><TD>6.90% </TD></TR>
+<TR><TH TITLE='Winners Average Bars Held'>&nbsp;Avg. Bars Held</TH><TD>21.50</TD><TD>21.50</TD><TD>  N/A</TD><TD>260.00</TD></TR>
+<TR><TH TITLE='Max. Consecutive winners'>&nbsp;Max. Consecutive</TH><TD class='good'>2</TD><TD class='good'>2</TD><TD class='neut'>0</TD><TD class='good'>1</TD></TR>
+<TR><TH TITLE='Profit of largest winning trade'>&nbsp;Largest win</TH><TD>1159490.10</TD><TD>1159490.10</TD><TD>0.00</TD><TD>6900171.07</TD></TR>
+<TR><TH TITLE='Number of bars in the largest winning trade'>&nbsp;# bars in largest win</TH><TD>13</TD><TD>13</TD><TD>0</TD><TD>260</TD></TR>
+<TR><TD COLSPAN=5><hr size=1></TD></TR>
+<TR><TH><b>Losers</b></TH><TD>4 (66.67 %)</TD><TD>4 (66.67 %)</TD><TD>0 (0.00 %)</TD><TD>0 (0.00 %)</TD></TR>
+<TR><TH TITLE='Total Loss'>&nbsp;Total Loss</TH><TD>-607900.37</TD><TD>-607900.37</TD><TD>0.00</TD><TD>0.00</TD></TR>
+<TR><TH TITLE='Average Loss'>&nbsp;Avg. Loss</TH><TD>-151975.09</TD><TD>-151975.09</TD><TD>  N/A</TD><TD>  N/A</TD></TR>
+<TR><TH TITLE='(% Loss of losers )/(number of losing trades)'>&nbsp;Avg. Loss %</TH><TD>-4.27% </TD><TD>-4.27% </TD><TD>  N/A  </TD><TD>  N/A  </TD></TR>
+<TR><TH TITLE='Losers Average Bars Held'>&nbsp;Avg. Bars Held</TH><TD>15.00</TD><TD>15.00</TD><TD>  N/A</TD><TD>  N/A</TD></TR>
+<TR><TH TITLE='Max. Consecutive losers'>&nbsp;Max. Consecutive</TH><TD>4</TD><TD>4</TD><TD>0</TD><TD>0</TD></TR>
+<TR><TH TITLE='Loss of largest losing trade'>&nbsp;Largest loss</TH><TD>-343828.78</TD><TD>-343828.78</TD><TD>0.00</TD><TD>0.00</TD></TR>
+<TR><TH TITLE='Number of bars in the largest losing trade'># bars in largest loss</TH><TD>6</TD><TD>6</TD><TD>0</TD><TD>0</TD></TR>
+<TR><TD COLSPAN=5><hr size=1></TD></TR>
+<TR><TH TITLE='The largest peak to valley decline experienced in any single trade'>Max. trade drawdown</TH><TD>-745510.35</TD><TD>-745510.35</TD><TD>0.00</TD><TD>-51102147.63</TD></TR>
+<TR><TH TITLE='The largest peak to valley percentage decline experienced in any single trade'>Max. trade % drawdown</TH><TD>-13.91</TD><TD>-13.91</TD><TD>0.00</TD><TD>-40.22</TD></TR>
+<TR><TH TITLE='The largest peak to valley decline experienced in portfolio equity'>Max. system drawdown</TH><TD>-1213627.53</TD><TD>-1213627.53</TD><TD>0.00</TD><TD>-51102147.63</TD></TR>
+<TR><TH TITLE='The largest peak to valley percentage decline experienced in portfolio equity'>Max. system % drawdown</TH><TD class='good'>-1.21% </TD><TD class='good'>-1.21% </TD><TD class='good'>0.00% </TD><TD class='bad'>-40.22% </TD></TR>
+<TR><TH TITLE='Net profit divided by Max. system drawdown'>Recovery Factor</TH><TD class='bad'>0.66</TD><TD class='bad'>0.66</TD><TD>  N/A</TD><TD class='bad'>0.14</TD></TR>
+<TR><TH TITLE='Compound Annual % Return divided by Max. system % drawdown'>CAR/MaxDD</TH><TD class='bad'>0.65</TD><TD class='bad'>0.65</TD><TD>  N/A</TD><TD class='bad'>0.17</TD></TR>
+<TR><TH TITLE='Risk Adjusted Return divided by Max. system % drawdown'>RAR/MaxDD</TH><TD class='good'>48.04</TD><TD class='good'>48.04</TD><TD>  N/A</TD><TD class='bad'>0.17</TD></TR>
+<TR><TH TITLE='Profit of winners divided by loss of losers'>Profit Factor</TH><TD class='good'>2.33</TD><TD class='good'>2.33</TD><TD> N/A</TD><TD class='good'> N/A</TD></TR>
+<TR><TH TITLE='Ratio average win / average loss'>Payoff Ratio</TH><TD class='good'>4.65</TD><TD class='good'>4.65</TD><TD> N/A</TD><TD> N/A</TD></TR>
+<TR><TH TITLE='Standard error measures chopiness of equity line. The lower the better.'>Standard Error</TH><TD>204914.12</TD><TD>204914.12</TD><TD>0.00</TD><TD>8191540.21</TD></TR>
+<TR><TH TITLE='Measure of the relation between the risk inherent in a trading the system compared to its potential gain. Higher is better. Calculated as slope of equity line (expected annual return) divided by its standard error.'>Risk-Reward Ratio</TH><TD>-2.22</TD><TD>-2.22</TD><TD>  N/A</TD><TD>-3.61</TD></TR>
+<TR><TH TITLE='Square root of sum of squared drawdowns divided by number of bars. It measures the volatility in the downward direction. Smaller is better.'>Ulcer Index</TH><TD>0.81</TD><TD>0.81</TD><TD>0.00</TD><TD>27.25</TD></TR>
+<TR><TH TITLE='(Annual profit - Tresury notes profit)/Ulcer Index. Risk-free rate (5.4%) used for UPI is user-definable in the Settings-&gt;Portfolio'>Ulcer Performance Index</TH><TD>-5.73</TD><TD>-5.73</TD><TD>  N/A</TD><TD>0.05</TD></TR>
+<TR><TH TITLE='Measure of risk adjusted return of investment. Above 1.0 is good, more than 2.0 is excellent. Note that Risk-free rate (5%) used to calculate Sharpe ratio is user-definable in the Settings-&gt;Portfolio'>Sharpe Ratio of trades</TH><TD>0.46</TD><TD>0.46</TD><TD>0.00</TD><TD> N/A</TD></TR>
+<TR><TH TITLE='K-Ratio'>K-Ratio</TH><TD>-0.04</TD><TD>-0.04</TD><TD>  N/A</TD><TD>-0.07</TD></TR>
+</TABLE></BODY></HTML>

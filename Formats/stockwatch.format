@@ -1,0 +1,21 @@
+# ASX www.StockWatch.com.au import format definition file
+# 
+# To download this data
+# simply ftp anonymously to www.stockwatch.com.au
+# cd /pub/csv/yyyymm 
+# where yyyy is year and mm is month
+#( for June 2000 this will be /pub/csv/200006
+# and download appropriate .csv file
+#
+# AmiBroker 3.25 has a bug in handling names enclosed with quotation marks
+# so it needs following format command
+# $FORMAT NAME,SKIP,SKIP,SKIP,SKIP,DATE_DMY,OPEN,CLOSE,LOW,HIGH,VOLUME
+#
+# but for AmiBroker 3.30 and above correct format command is as follows
+
+$FORMAT TICKER,APPENDTICKER,FULLNAME,DATE_DMY,OPEN,CLOSE,LOW,HIGH,VOLUME
+$SEPARATOR ,
+$SKIPLINES 1
+$AUTOADD 1
+$DEBUG 1
+$OVERWRITE 1

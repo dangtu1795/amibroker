@@ -1,0 +1,6 @@
+# Format definition for importing
+# DM BOS (www.dmbos.com.pl) C-files,
+# (C)2000 Tomasz Janeczko
+$FORMAT Skip,Name,Date_YMD,Open,High,Low,Close,Volume,VolFactor
+$SEPARATOR ,
+$DEBUG 1

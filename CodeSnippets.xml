@@ -1,0 +1,960 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<AmiBroker-CodeSnippets CompactMode="0">
+
+<Snippet>
+<Name>'for' loop</Name>
+<Description>This is general-purpose 'for' loop that iterates thru all bars</Description>
+<Category>Loops</Category>
+<KeyTrigger>?for</KeyTrigger>
+<Formula>
+<![CDATA[
+for( i = 0; i < BarCount; i++ )
+{
+  // body of the loop
+}
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>'while' loop</Name>
+<Description>This is general-purpose 'while' loop that iterates thru all bars</Description>
+<Category>Loops</Category>
+<KeyTrigger>?while</KeyTrigger>
+<Formula>
+<![CDATA[
+i = 0; // starting point
+while( i < BarCount )
+{
+  // body of the loop
+  i++; // increment the counter
+}
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>'do-while' loop</Name>
+<Description>This is general-purpose 'do-while' loop that iterates thru all bars</Description>
+<Category>Loops</Category>
+<KeyTrigger>?dowhile</KeyTrigger>
+<Formula>
+<![CDATA[
+i = 0; // starting point
+do
+{
+  
+  // body of the loop
+} 
+while( ++i < BarCount );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Iterate thru list of symbols</Name>
+<Description>Shows how to iterate thru comma-separated list of symbols</Description>
+<Category>Loops</Category>
+<KeyTrigger>?forlist</KeyTrigger>
+<Formula>
+<![CDATA[
+SymList = "MSFT,AAPL,INTC,GOOG"; // any comma separated list can be result of CategoryGetSymbols for example
+for( i = 0; ( symbol = StrExtract( SymList, i ) ) != ""; i++ )
+{
+  // body of the loop
+  _TRACE("Symbol is " + symbol );
+}
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Immediate IF</Name>
+<Description>Immediate IF (Iif) conditional assignment. It assigns 'ThenValue' to the result when 'Condition' is met
+and 'ElseValue' when 'Condition' is not met. 'Condition' can be either scalar (simple value) or array.</Description>
+<Category>Conditional</Category>
+<KeyTrigger>?iif</KeyTrigger>
+<Formula>
+<![CDATA[
+result = Iif( Condition, ThenValue, ElseValue );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>if-then-else</Name>
+<Description>Basic (scalar) if-then-else statement. Executes different part of the code depending on condition. Condition needs to be simple boolean value (not array)</Description>
+<Category>Conditional</Category>
+<KeyTrigger>?if</KeyTrigger>
+<Formula>
+<![CDATA[
+if( condition )
+{
+  // this part is executed when condition is met
+}
+else
+{
+  // this part is executed when condition is not met
+}
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>if-then-else in a loop</Name>
+<Description>Array (loop based) if-then-else statement</Description>
+<Category>Conditional</Category>
+<KeyTrigger>?ifl</KeyTrigger>
+<Formula>
+<![CDATA[
+for( i = 0; i < BarCount; i++ )
+{
+  if( condition[ i ] )
+  {
+    // this part is executed when condition is met
+  }
+  else
+  {
+    // this part is executed when condition is not met
+  }
+}
+]]>
+</Formula>
+</Snippet>
+
+
+
+<Snippet>
+<Name>switch</Name>
+<Description>Switch statement (multiple choice flow control). "value" can be either a number or string</Description>
+<Category>Conditional</Category>
+<KeyTrigger>?switch</KeyTrigger>
+<Formula>
+<![CDATA[
+value = Name(); // value can be a string (as here) or a number
+switch( value )
+{
+  case "MSFT":
+        // do something  
+        break;
+
+  case "AAPL":
+        // do something else
+        break;
+        
+  case "GOOG":
+        // do something else
+        break;
+        
+  default:
+        // default action
+        break;
+}
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>switch in a loop</Name>
+<Description>Switch statement (multiple choice flow control). Array version</Description>
+<Category>Conditional</Category>
+<KeyTrigger>?switchloop</KeyTrigger>
+<Formula>
+<![CDATA[
+value = DayOfWeek(); // replace with array value of your own
+
+for( i = 0; i < BarCount; i++ )
+{
+  switch( value[ i ] )
+  {
+    case 1:
+          // do something when value[ i ] is equal 1 
+          break;
+
+    case 2:
+          // do something when value[ i ] is equal 2 
+          break;
+          
+    case 3:
+          // do something when value[ i ] is equal 3 
+          break;
+          
+    default:
+          // default action
+          break;
+  }
+}
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Price chart</Name>
+<Description>Candlestick price chart</Description>
+<Category>Charts</Category>
+<KeyTrigger>?chartprice</KeyTrigger>
+<Formula>
+<![CDATA[
+Plot( C, "Price", colorDefault, styleCandle );
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>Price chart (parametrized)</Name>
+<Description>Candlestick price chart with color and style parameters</Description>
+<Category>Charts</Category>
+<KeyTrigger>?chartprice2</KeyTrigger>
+<Formula>
+<![CDATA[
+Plot( C, "Price", ParamColor( "Color", colorDefault ), ParamStyle( "Style", styleCandle, maskPrice ) );
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>Oscillator Gradient fill</Name>
+<Description>Oscillator with gradient fill coloring</Description>
+<Category>Charts</Category>
+<KeyTrigger>?chartoscgrad</KeyTrigger>
+<Formula>
+<![CDATA[
+array = ROC( C, 14 ); // change the oscillator used 
+SetGradientFill( colorGreen /*top*/, colorRed /*bottom*/, 0 /*baseline level*/, GetChartBkColor() /*baseline color */); 
+Plot( array, "IndicatorName", colorLightOrange, styleLine | styleGradient, Null, Null, 0, -1  );
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>Ribbon</Name>
+<Description>Ribbon on the bottom of the chart</Description>
+<Category>Charts</Category>
+<KeyTrigger>?chartribbon</KeyTrigger>
+<Formula>
+<![CDATA[
+Condition = Close > MA( Close, 10 ); // data to plot the ribbon
+Plot( 2, /* defines the height of the ribbon in percent of pane width */
+ "Ribbon",
+ IIf( Condition , colorGreen, colorRed ), /* choose color */
+ styleOwnScale|styleArea|styleNoLabel, -0.5, 100 );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Paint Bar</Name>
+<Description>Paint a bar with color that depends on condition</Description>
+<Category>Charts</Category>
+<KeyTrigger>?chartpaintbar</KeyTrigger>
+<Formula>
+<![CDATA[
+Condition = Close > MA( Close, 10 ); // your condition here
+BarColor = Iif( Condition, colorBlue, colorOrange ); // define colors here
+Plot( Close, "Price", BarColor, styleBar );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>CBT Hi-level</Name>
+<Description>Basic template for high-level custom backtester</Description>
+<Category>Custom backtest</Category>
+<KeyTrigger>?cbthi</KeyTrigger>
+<Formula>
+<![CDATA[
+SetCustomBacktestProc(""); 
+
+/* Custom-backtest procedure follows */ 
+
+if( Status("action") == actionPortfolio ) 
+{ 
+     bo = GetBacktesterObject(); 
+
+     bo.Backtest(); // run default backtest procedure 
+
+     // your code here
+}
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>CBT Hi-level + trade list</Name>
+<Description>Basic template for high-level custom backtester with loops that iterates thru trade list and open position list</Description>
+<Category>Custom backtest</Category>
+<KeyTrigger>?cbthit</KeyTrigger>
+<Formula>
+<![CDATA[
+SetCustomBacktestProc(""); 
+
+/* Custom-backtest procedure follows */ 
+
+if( Status("action") == actionPortfolio ) 
+{ 
+     bo = GetBacktesterObject(); 
+
+     bo.Backtest(); // run default backtest procedure 
+
+    for (trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade())
+    {
+        _TRACE("Symbol = " + trade.Symbol	);//  Use Trade object here
+    }
+    for (trade = bo.GetFirstOpenPos(); trade; trade = bo.GetNextOpenPos())
+    {
+        _TRACE("Symbol = " + trade.Symbol	);//	//  Use Trade object here
+    }
+}
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>CBT Mid-level</Name>
+<Description>Basic template for mid-level custom backtester</Description>
+<Category>Custom backtest</Category>
+<KeyTrigger>?cbtmid</KeyTrigger>
+<Formula>
+<![CDATA[
+SetCustomBacktestProc("");
+
+if (Status("action") == actionPortfolio) 
+{
+    bo = GetBacktesterObject();	//  Get backtester object
+    bo.PreProcess();	//  Do pre-processing (always required)
+
+    for (i = 0; i < BarCount; i++)	//  Loop through all bars
+    {
+        for (sig = bo.GetFirstSignal( i ); sig; sig = bo.GetNextSignal( i ) )
+        {	
+              // do your custom signal processing
+        }	
+        
+        bo.ProcessTradeSignals( i );	//  Process trades at bar (always required)
+    }	  
+      
+    bo.PostProcess();	//  Do post-processing (always required)
+}
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>CBT Low-level</Name>
+<Description>Basic template for low-level custom backtester</Description>
+<Category>Custom backtest</Category>
+<KeyTrigger>?cbtlow</KeyTrigger>
+<Formula>
+<![CDATA[
+SetCustomBacktestProc("");
+
+if (Status("action") == actionPortfolio)
+{
+    bo = GetBacktesterObject();	//  Get backtester object
+    
+    bo.PreProcess();	//  Do pre-processing
+    
+    for (i = 0; i < BarCount; i++)	//  Loop through all bars
+    {
+        for (sig = bo.GetFirstSignal( i ); sig; sig = bo.GetNextSignal( i ) )
+        {	//  Loop through all signals at this bar
+        
+           if( sig.IsEntry() ) 
+                bo.EnterTrade( i, sig.Symbol, sig.IsLong(), sig.Price, sig.PosSize );
+                
+           if( sig.IsExit() )
+                bo.ExitTrade( i, sig.Symbol, sig.Price );
+          
+        }	
+        
+        bo.HandleStops( i );	//  Handle programmed stops at this bar
+        bo.UpdateStats( i, 1 );	//  Update MAE/MFE stats for bar
+        bo.UpdateStats( i, 2 );	//  Update stats at bar's end
+    }	//  End of for loop over bars
+    
+    bo.PostProcess();	//  Do post-processing
+}
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Custom metric simple</Name>
+<Description>Basic template for custom metric</Description>
+<Category>Custom backtest</Category>
+<KeyTrigger>?cbtmetric</KeyTrigger>
+<Formula>
+<![CDATA[
+SetCustomBacktestProc(""); 
+
+/* Now custom-backtest procedure follows */ 
+
+if( Status("action") == actionPortfolio ) 
+ { 
+     bo = GetBacktesterObject(); 
+
+     bo.Backtest(); // run default backtest procedure 
+
+     st = bo.GetPerformanceStats(0); // get stats for all trades 
+
+     yourmetric = 1; // your calculation here
+     // Here we add custom metric to backtest report 
+     bo.AddCustomMetric( "yourmetric", yourmetric ); 
+ }
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Per-trade custom metric</Name>
+<Description>Basic template for per-trade custom metric</Description>
+<Category>Custom backtest</Category>
+<KeyTrigger>?cbtmetrictrade</KeyTrigger>
+<Formula>
+<![CDATA[
+SetCustomBacktestProc(""); 
+
+/* Now custom-backtest procedure follows */ 
+if( Status("action") == actionPortfolio ) 
+{ 
+    bo = GetBacktesterObject(); 
+
+    bo.Backtest(1); // run default backtest procedure 
+
+    // iterate through closed trades first 
+    for( trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade() ) 
+    { 
+        // do your calculations involving trade objects (list of closed trades)
+        yourmetric = 1; // your value here
+        trade.AddCustomMetric("Your per trade metric", yourmetric  ); 
+    } 
+
+    bo.ListTrades(); 
+}
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>AddToComposite</Name>
+<Description>Basic AddToComposite scan</Description>
+<Category>Composites</Category>
+<KeyTrigger>?atc</KeyTrigger>
+<Formula>
+<![CDATA[
+value = Close; // replace with the value you want
+AddToComposite( value, "~COMPOSITENAME", "X" ); // "X" writes OHLC fields
+Buy = 0; // needed so Scan does not complain about missing Buy/Sell variables
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>AddToComposite w/ number of components</Name>
+<Description>AddToComposite scan with number of components placed in Volume field</Description>
+<Category>Composites</Category>
+<KeyTrigger>?atcn</KeyTrigger>
+<Formula>
+<![CDATA[
+value = Close; // replace with the value you want
+cname = "~COMPOSITENAME";
+AddToComposite( value, cname, "X" ); // "X" writes OHLC fields
+AddToComposite( 1, cname, "V" ); // put number of components into "Volume" field
+Buy = 0; // needed so Scan does not complain about missing Buy/Sell variables
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>MA Crossover</Name>
+<Description>Simple Moving Average crossover</Description>
+<Category>Trading system</Category>
+<KeyTrigger>?crossma</KeyTrigger>
+<Formula>
+<![CDATA[
+period = 20; // number of averaging periods 
+m = MA( Close, period ); // simple moving average
+Buy = Cross( Close, m ); // buy when close crosses ABOVE moving average
+Sell = Cross( m, Close ); // sell when closes crosses BELOW moving average
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>EMA Crossover</Name>
+<Description>Exp. Moving Average crossover</Description>
+<Category>Trading system</Category>
+<KeyTrigger>?crossema</KeyTrigger>
+<Formula>
+<![CDATA[
+period = 20; // number of averaging periods 
+m = EMA( Close, period ); // exponential moving average
+Buy = Cross( Close, m ); // buy when close crosses ABOVE moving average
+Sell = Cross( m, Close ); // sell when closes crosses BELOW moving average
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>Channel Breakout Buy</Name>
+<Description>Buy when close prices breaks above N-bar HHV channel</Description>
+<Category>Trading system</Category>
+<KeyTrigger>?channelbkup</KeyTrigger>
+<Formula>
+<![CDATA[
+period = 10; // 10 bars 
+ChannelBreakUp = Close > Ref( HHV( High, period ), -1 );
+Buy = ChannelBreakUp;
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>Equal % allocation</Name>
+<Description>Allocate equal percentage of portfolio equity into each security.</Description>
+<Category>Position sizing</Category>
+<KeyTrigger>?possizeequal</KeyTrigger>
+<Formula>
+<![CDATA[
+maxpos = 10; // maximum number of open positions
+SetOption("InitialEquity", 100000 ); // set initial equity = 100K
+SetOption( "MaxOpenPositions", maxpos );
+SetPositionSize( 100 / maxpos, spsPercentOfEquity );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Equal dollar allocation</Name>
+<Description>Allocate equal amount into each trade.</Description>
+<Category>Position sizing</Category>
+<KeyTrigger>?possizedollar</KeyTrigger>
+<Formula>
+<![CDATA[
+maxpos = 10; // maximum number of open positions
+SetOption("InitialEquity", 100000 ); // set initial equity = 100K
+SetOption( "MaxOpenPositions", maxpos );
+SetPositionSize( 10000, spsValue ); // 10K in each trade
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>Fixed number of shares/contracts</Name>
+<Description>Allocate fixed number of shares into each trade.</Description>
+<Category>Position sizing</Category>
+<KeyTrigger>?possizefixed</KeyTrigger>
+<Formula>
+<![CDATA[
+maxpos = 10; // maximum number of open positions
+SetOption("InitialEquity", 100000 ); // set initial equity = 100K
+SetOption( "MaxOpenPositions", maxpos );
+SetPositionSize( 10, spsShares ); // number of shares/contracts per trade
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>Points-only test</Name>
+<Description>Trade single share/contract.</Description>
+<Category>Position sizing</Category>
+<KeyTrigger>?possizepointsonly</KeyTrigger>
+<Formula>
+<![CDATA[
+SetOption("FuturesMode", True );
+SetPositionSize( 1, spsShares ); // trade 1 contract
+]]>
+</Formula>
+</Snippet>
+<Snippet>
+
+<Name>Max. loss stop</Name>
+<Description>Maximum percentage loss stop</Description>
+<Category>Stops</Category>
+<KeyTrigger>?stoploss</KeyTrigger>
+<Formula>
+<![CDATA[
+amount = 10; // 10% loss
+ApplyStop( stopTypeLoss, stopModePercent, amount, True );
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>Trailing stop</Name>
+<Description>Trailing percentage stop</Description>
+<Category>Stops</Category>
+<KeyTrigger>?stoptrail</KeyTrigger>
+<Formula>
+<![CDATA[
+amount = 10; // 10% loss (trailing)
+ApplyStop( stopTypeTrailing, stopModePercent, amount, True );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Take profit stop</Name>
+<Description>Take profit stop</Description>
+<Category>Stops</Category>
+<KeyTrigger>?stopprofit</KeyTrigger>
+<Formula>
+<![CDATA[
+amount = 10; // 10% profit
+ApplyStop( stopTypeProfit, stopModePercent, amount, True );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>N-bar stop</Name>
+<Description>Exit trade after given number of bars</Description>
+<Category>Stops</Category>
+<KeyTrigger>?stopn</KeyTrigger>
+<Formula>
+<![CDATA[
+bars = 10; // exit after 10 bars
+ApplyStop( stopTypeNBar, stopModeBars, bars, True );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Chandelier Exit</Name>
+<Description>ATR-based Chandelier stop</Description>
+<Category>Stops</Category>
+<KeyTrigger>?stopchandelier</KeyTrigger>
+<Formula>
+<![CDATA[
+period = 22; // ATR period
+multiplier = 3; // ATR multiplier
+ApplyStop(stopTypeTrailing, stopModePoint, multiplier*ATR( period ), True, True );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Trailing stop loop</Name>
+<Description>Loop version of Trailing percentage stop with plots and arrows</Description>
+<Category>Stops</Category>
+<KeyTrigger>?stoptrailloop</KeyTrigger>
+<Formula>
+<![CDATA[
+Buy = 1; // replace with your buy rule
+Sell = 0; // replace with your sell rule
+
+StopLevel = 1 - Param("trailing stop %", 3, 0.1, 10, 0.1)/100;
+
+trailARRAY = Null;
+trailstop = 0;
+
+for( i = 1; i < BarCount; i++ )
+ {
+
+   if( trailstop == 0 AND Buy[ i ] ) 
+    { 
+       trailstop = High[ i ] * stoplevel;
+    }
+    else Buy[ i ] = 0; // remove excess buy signals
+
+   if( trailstop > 0 AND Low[ i ] < trailstop )
+    {
+       Sell[ i ] = 1;
+       SellPrice[ i ] = trailstop;
+       trailstop = 0;
+    }
+
+   if( trailstop > 0 )
+    {   
+       trailstop = Max( High[ i ] * stoplevel, trailstop );
+       trailARRAY[ i ] = trailstop;
+    }
+
+}
+
+PlotShapes(Buy*shapeUpArrow,colorGreen,0,Low);
+PlotShapes(Sell*shapeDownArrow,colorRed,0,High);
+
+Plot( Close,"Price",colorBlack,styleBar);
+Plot( trailARRAY,"trailing stop level", colorRed );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Read from file</Name>
+<Description>Reading all lines from text file</Description>
+<Category>File</Category>
+<KeyTrigger>?fileread</KeyTrigger>
+<Formula>
+<![CDATA[
+fh = fopen("filename.txt", "r" );
+if( fh ) 
+{ 
+   while( ! feof( fh ) ) 
+   { 
+      line = fgets( fh ); // read a line of text
+      _TRACE( line );    
+   }
+
+	fclose( fh ); 
+} 
+else 
+{ 
+   Error("ERROR: file can not be open"); 
+} 
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Write to file</Name>
+<Description>Write string to text file</Description>
+<Category>File</Category>
+<KeyTrigger>?filewrite</KeyTrigger>
+<Formula>
+<![CDATA[
+fh = fopen("filename.txt", "w" );
+if( fh ) 
+{ 
+  fputs( "Text to be written", fh );
+  fclose( fh );
+} 
+else 
+{ 
+   Error("ERROR: file can not be open"); 
+} 
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Data export</Name>
+<Description>Export current symbol data to the text file</Description>
+<Category>File</Category>
+<KeyTrigger>?fileexport</KeyTrigger>
+<Formula>
+<![CDATA[
+fname = Name() + ".txt"; // file name = symbol.txt
+fh = fopen( fname, "w" );
+if( fh ) 
+{ 
+  dt = DateTime();
+  for( i = 0; i < BarCount; i++ )
+  {
+    line = DateTimeToStr( dt[ i ] ) + "," +
+           Open[ i ] + "," +
+           High[ i ] + "," +
+           Low[ i ] + "," +
+           Close[ i ] + "," +
+           Volume[ i ] + "\\n";
+           
+    fputs( line, fh );
+  }
+
+  fclose( fh );
+} 
+else 
+{ 
+   Error("ERROR: file can not be open"); 
+} 
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Persistent variable</Name>
+<Description>Set a persistent variable. Persistent variables are saved on exit and reloaded on next run automatically.</Description>
+<Category>Static variables</Category>
+<KeyTrigger>?staticpersist</KeyTrigger>
+<Formula>
+<![CDATA[
+StaticVarSet( "varname", Close /* replace with your own value */, True );
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Delete all static variables</Name>
+<Description>Delete all static variables</Description>
+<Category>Static variables</Category>
+<KeyTrigger>?staticdelall</KeyTrigger>
+<Formula>
+<![CDATA[
+StaticVarRemove( "*" ); // "*" means all, "X*" would delete all variables with names starting with "X"
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Semaphore</Name>
+<Description>Simple semaphore (critical section without waiting)</Description>
+<Category>Static variables</Category>
+<KeyTrigger>?staticsemaphore</KeyTrigger>
+<Formula>
+<![CDATA[
+if( StaticVarCompareExchange( "semaphore", 1, 0 ) == 0 ) // obtain semaphore 
+{ 
+    // protected section here 
+    // Here you have exclusive access (no other threads that check for semaphore will enter simultaneously)     
+    ///////////////////////// 
+    StaticVarSet("semaphore", 0 ); // reset semaphore 
+} 
+else 
+{ 
+   _TRACE("Can not obtain semaphore"); 
+}
+]]>
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Critical section with wait</Name>
+<Description>Critical section functions that wait for release of locked section</Description>
+<Category>Static variables</Category>
+<KeyTrigger>?staticcs</KeyTrigger>
+<Formula>
+<![CDATA[
+// functions to enter/exit critical section
+function _TryEnterCS( secname ) 
+ { 
+   global _cursec; 
+    _cursec= ""; 
+
+   // try obtaining semaphore for 1000 ms 
+   for( i = 0; i < 1000; i++ ) 
+    if( StaticVarCompareExchange( secname, 1, 0 ) == 0 ) 
+    { 
+        _cursec = secname; 
+       break; 
+    } 
+    else ThreadSleep( 1 ); //sleep one millisecond 
+
+   return _cursec != ""; 
+ } 
+
+// call it ONLY when _TryEnterCS returned TRUE ! 
+function _LeaveCS() 
+{     
+    global _cursec; 
+    if( _cursec != "" ) 
+      { 
+       StaticVarSet( _cursec, 0 ); 
+        _cursec = ""; 
+      } 
+}
+
+// Example usage (critical section) 
+if( _TryEnterCS( "mysemaphore" ) ) 
+{ 
+    // you are inside critical section now
+
+    _LeaveCS(); 
+} 
+else 
+{ 
+    _TRACE("Unable to enter CS"); 
+}
+]]>
+</Formula>
+</Snippet>
+
+
+<Snippet>
+<Name>Function template</Name>
+<Description>This is general-purpose user-defined function template</Description>
+<Category>Functions</Category>
+<KeyTrigger>?fun</KeyTrigger>
+<Formula>
+function fun_name( arg1, arg2 )
+{
+  result = arg1 + arg2; // do something with arguments
+
+  return result;
+}
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Function with local variables</Name>
+<Description>This is general-purpose user-defined function template</Description>
+<Category>Functions</Category>
+<KeyTrigger>?funlocal</KeyTrigger>
+<Formula>
+function fun_name_local( arg1, arg2 )
+{
+  local var1, var2; // local variables (not visible from outside of the function)
+
+  result = arg1 + arg2; // do something with arguments
+
+  return result;
+}
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Function with multiple return values</Name>
+<Description>This example shows how to return multiple values</Description>
+<Category>Functions</Category>
+<KeyTrigger>?funmultiple</KeyTrigger>
+<Formula>
+// This example shows how to return multiple values
+// the idea is to pass the name of the function instead of
+// value
+
+function fun_multiple_results( result1, result2 )
+{
+  VarSet( result1, 1 ); // setting variable using passed name
+  VarSet( result2, 2 ); 
+
+  return;
+}
+
+// to get multiple values from a function 
+// we call the function passing NAMES of variables
+
+a = 10;
+b = 20;
+printf("a = %g\\n", a );
+printf("b = %g\\n", b );
+
+fun_multiple_results( "a", "b" ); // pass the names of variables
+
+printf("a = %g\\n", a );
+printf("b = %g\\n", b );
+</Formula>
+</Snippet>
+
+<Snippet>
+<Name>Procedure template</Name>
+<Description>This is general-purpose user-defined procedure template</Description>
+<Category>Functions</Category>
+<KeyTrigger>?proc</KeyTrigger>
+<Formula>
+procedure proc_name( arg1, arg2 )
+{
+  //  procedure is a user-defined function that does not return any value
+  
+  printf("sum of arguments = %g", arg1 + arg2 );
+
+}
+</Formula>
+</Snippet>
+
+</AmiBroker-CodeSnippets>

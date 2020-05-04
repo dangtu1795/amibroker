@@ -1,0 +1,536 @@
+<html>
+<head>
+<title>AmiBroker 6.20 Read Me</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body {  font-family: Arial, Helvetica, sans-serif; font-size: small}
+.jscript1-comment { color: #808080; }
+.jscript1-event { }
+.jscript1-identifier { color: #006FDD; }
+.jscript1-non-reservedkeyword { }
+.jscript1-number { color: #000000; }
+.jscript1-reservedword { color: #71CE55; }
+.jscript1-space { }
+.jscript1-string { color: #000000; }
+.jscript1-symbol { color: #FF2424; }
+-->
+</style>
+<style type="text/css">
+<!--
+li {
+	line-height: 150%;
+}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<h2><b>AmiBroker 6.20 Read Me</b></h2>
+<p>
+  <!-- #BeginDate format:Am1m -->February 17, 2017  22:33<!-- #EndDate -->
+</p>
+<p><b>INSTALLATION INSTRUCTIONS</b></p>
+<p>Just run the installer and follow the instructions. </p>
+<p>Then run AmiBroker. You should see &quot;AmiBroker 6.20&quot; written in the
+  About box.</p>
+<p><b>See Release Notes document below for detailed list of changes.</b></p>
+<p><b>Highlights of version 6.20</b></p>
+<p>Version 6.20 brings lots of new functionality especially with regards to system
+  testing. There are hundreds of new features and changes to existing functionality
+  as compared to version 6.00, listed in detail in &quot;Release Notes&quot; document
+  in AmiBroker directory. Below is just a short list of few of them:</p>
+<ul>
+  <li><strong>HIGHLIGHT: Integrated Batch Processor </strong>-
+    allowing you to automate complex, sequential tasks, featuring
+      <ul>
+        <li>easy-to-use interface</li>
+        <li>built-in time scheduler</li>
+        <li>command line interface</li>
+        <li>AFL triggering</li>
+        <li>logging</li>
+      </ul>
+  </li>
+  <li><strong>New features in AmiBroker Formula Language</strong>:
+      <ul>
+        <li>direct internet access functions (IntenetOpenURL/InternetReadString/InternetClose)
+          allow interfacing with web / REST services from AFL</li>
+        <li>general purpose distribution function: PriceVolDisribution</li>
+        <li>more statistical functions: NormDist/Kurtosis/Skewness</li>
+        <li>variable period PercentRank and StDev</li>
+        <li>cumulative product functions CumProd/Prod/ProdSince</li>
+        <li>bitmap image drawing function GfxDrawImage</li>
+        <li>ability to select Speech API voice via VoiceSelect/VoiceCount</li>
+        <li>multi-text exploration columns via AddMultiTextColumn </li>
+      </ul>
+  </li>
+  <li><strong>Performance improvements</strong>
+      <ul>
+        <li>faster startup</li>
+        <li>more responsive Analysis window while it is busy processing (plus
+          new Pause function)</li>
+      </ul>
+  </li>
+  <li><strong>UI and usability improvements</strong>
+      <ul>
+        <li>many adjustments in UI scaling to better support HiDPI/4K displays</li>
+        <li>walk-forward settings are now per-project, not global</li>
+        <li>debugger's watch window supports display of static variables and
+          expressions with static variables</li>
+      </ul>
+  </li>
+</ul>
+<p><b>Highlights of version 6.10</b> </p>
+<p>Version 6.10 brings lots of new functionality especially with regards to system
+  testing. There are hundreds of new features and changes to existing functionality
+  as compared to version 6.00, listed in detail in &quot;Release Notes&quot; document
+in AmiBroker directory. Below is just a short list of few of them:</p>
+<ul>
+  <li><strong>HIGHLIGHT: Integrated Visual Debugger </strong>-
+    featuring
+      <ul>
+        <li> single-step execution</li>
+        <li>breakpoints</li>
+        <li>user-definable watches with expression evaluator</li>
+        <li>array view with per-item change highlighting</li>
+        <li>value inspection tooltips</li>
+        <li>output window (for printf output)<br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>HIGHLIGHT: Enhanced Matrix support</strong>
+      <ul>
+        <li>matrix inversion (via Gauss-Jordan
+          elimination)</li>
+        <li> solving linear equation systems (example
+          polynomial fit code included)</li>
+        <li>determinant</li>
+        <li>fast block access</li>
+        <li>matrix column/row sorting</li>
+        <li>converting matrix from/to string</li>
+        <li> persistency (saving/loading
+          matrices from/to disk via static variable mechanism)<br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>New features in the AFL Editor: </strong>
+      <ul>
+        <li>Bookmarks</li>
+        <li>Find in Files</li>
+        <li>Block comment/uncomment</li>
+        <li>Clickable links to external documentation/files in comments<br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>New features in AmiBroker Formula Language</strong>
+      <ul>
+        <li>faster composites by means of StaticVarAdd</li>
+        <li>compression of persistent static variables (can save as much as 90%
+          of disk space and memory)</li>
+        <li>stricter error checking (printf/StrFormat format string checking)</li>
+        <li>static and dynamic variable functions now support matrices</li>
+        <li>new functions GfxFillSolidRect, SumSince, MxInverse, MxSolve, MxDet, MxSetBlock, MxGetBlock, MxSort, MxSortRows, MxToString, MxFromString, StaticVarAdd, fgetcwd</li>
+        <li>new parameters in functions: DateTimeToStr, StaticVarSet</li>
+        <li>performance improvements in printf(), variable period Sum<br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>Charting, User interface and under-the-hood improvements </strong>
+      <ul>
+        <li>enhanced category window (allowing
+          to rearrange move up/down markets/groups/sectors/industries and watch
+          lists)</li>
+        <li>user-definable candlestick wick thickness</li>
+        <li>user-definable decimal places in horizontal line price level</li>
+        <li>cycle tool handles years past 2038 </li>
+        <li>large icons are used on HighDPI displays fort ree views and list
+          view checkboxes for much better accessability</li>
+        <li>auto-size Analysis columns to contents</li>
+        <li>crash recovery improvements</li>
+        <li>tons of other improvements (see Release Notes for details)</li>
+      </ul>
+  </li>
+</ul>
+<p><b>Highlights of version 6.00</b> <br>
+  <br>
+  Version 6.00 brings lots of new functionality especially with regards to system
+  testing. There are hundreds of new features and changes to existing functionality
+  as compared to version 5.90, listed in detail in &quot;Release Notes&quot; document
+in AmiBroker directory. Below is just a short list of few of them:</p>
+<ul>
+  <li>Integrated high-performance <strong>Monte Carlo
+        simulator</strong> - with cumulative distribution charts of equity,
+        max. drawdowns, support for custom user-definable metrics and ability
+        to peform MC simulator driven optimizations.<br>
+  </li>
+  <li>Full <strong>Matrix support</strong> (two
+    dimensional arrays) in AFL with direct native matrix arithmetic (matrix operations
+    like addition, subtraction, multiplication, division, transpose, etc), see Matrix, MxIdentity, MxTranspose, MxGetSize<br>
+  </li>
+  <li>Detailed <strong>Buy-and-hold (benchmark) statistics </strong>automatically
+    added to the backtest reports<br>
+  </li>
+  <li>User <strong>definable stop precedence</strong> (SetStopPrecedence function)
+    and <strong>stop validity</strong> (ValidFrom/ValidTo parameters in ApplyStop function)<br>
+  </li>
+  <li><strong>Sparse array </strong>support: SparseCompress, SparseExpand<br>
+  </li>
+  <li><strong>Infinite Impulse Response</strong> filter function (IIR)
+    for efficient implementation of higher order smoothing algorithms<br>
+  </li>
+  <li><strong>Raw text output in explorations</strong> via AddRow function<br>
+  </li>
+  <li> New styles supported by Exploration XYCharts<br>
+  </li>
+  <li><strong>Variable period Percentile</strong> function<br>
+  </li>
+  <li><strong>Unicode (UCN) support</strong> in PlotText, PlotTextSetFont, GfxDrawText, GfxTextOut,
+    chart titles, interpretations and commentary windows (allows various graphic
+    annotations / windings )<br>
+  </li>
+  <li><strong>New Low level graphic functions</strong>: GfxSelectHatchBrush, GfxSelectStockObject<br>
+  </li>
+  <li>wildcard matching function StrMatch<br>
+  </li>
+  <li>enhanced Assignment Organizer<br>
+  </li>
+  <li><strong>Word-wrap</strong> functionality in AFL editor and<strong> enhanced &quot;Code
+      Prettify&quot;</strong> function</li>
+</ul>
+<p><b>Highlights of version 5.90</b> </p>
+<ul>
+  <li><strong>Performance improvements</strong>
+      <ul>
+        <li><strong>AFL Engine</strong>: custom memory allocator does not use
+          Microsoft runtime lib for reference tracking anymore. Result - <strong>complex</strong> <strong>formulas</strong> with
+          lots of loops and OLE (especially low-level custom backtests) <strong>run
+          upto 3 times faster in 32 bit and 4 times faster in 64-bit</strong></li>
+      </ul>
+  </li>
+  <ul>
+    <li>execution <strong>speed improved by factor &gt; 2x</strong> for AFL functions:
+      MACD, Signal, CCI, Sum (variable period)<br>
+    </li>
+  </ul>
+  <li><strong>Brand new Code Snippets window and keyboard triggers</strong>
+      <ul>
+        <li> added <strong>Code Snippets</strong> window - allows inserting/deleting/saving
+          selected parts of the formula as snippets. Also implemented is convenient
+          drag-drop of snippet to the formula edit window</li>
+      </ul>
+  </li>
+  <ul>
+    <li>Code snippets are available in auto complete list (type @ plus first
+      letter of snippet key trigger), and even without auto complete activated
+      @keytrigger is replaced by snippet text<br>
+    </li>
+  </ul>
+  <li><strong>Re-designed Report Explorer and improved Report Viewer (HTMLView)</strong>
+      <ul>
+        <li>Column layout (order and sizes) is now saved and restored between
+          runs</li>
+        <li>Loading and refresh performance significantly improved (5x) using
+          owner draw/ virtual mode</li>
+        <li> Multi-column sorting implemented</li>
+        <li>Numeric columns are now right aligned for better readability</li>
+        <li>visuals significantly improved (list uses modern style, grid lines,
+          immediate column resizing, double buffering for no flicker, thousand
+          separators, negative values are displayed in dark red, HighDPI aware,
+          changed toolbar)</li>
+        <li>HTMLView - Backtest report viewer - added Edit/Copy, Edit/Select
+          All and Edit/Copy TABLE. The last command transforms HTML tables into
+          CSV format and copies it into clipboard so tables can be pasted easily
+          to Excel. Also it divides Entry/Exit columns into separate Entry/exit
+          date/price columns<br>
+        </li>
+      </ul>
+  </li>
+  <li>new <strong>Bid/Ask trend indicator</strong> in <strong>Real-time quote
+      window</strong> - a graphical indicator showing the direction of 10 most
+      recent changes in real-time bid/ask prices The right-most box is most recent
+      and as new bid/ask quotes arrive they are shifted to the left side.<br>
+  </li>
+  <li><strong>User-definable HTML backtest reports</strong> </li>
+  <ul>
+    <li> now it is possible to output HTML instead of graphics in report chart
+      formulas using AFL: EnableTextOutput( 3 ) - HTML output to backtest report</li>
+    <li>rewritten <em>3. Profit Table.afl</em> using HTML embedding features
+      auto-scalable layout (so it enlarges when numbers are bigger), bold summary
+      columns, negative values in red, boundary date changed to last day of year/month<br>
+    </li>
+  </ul>
+  <li><strong>Charting improvements</strong>
+      <ul>
+        <li>Left/right extended Trend lines and Rays now use user-definable Extension
+          Factor (new field in Study properties) instead of always infinite extent.
+          Ext. Factor equal to ZERO means INFINITE, other values 0.1 ... 26 define
+          how far to the left/right line is extended</li>
+        <li>Max zoom achievable via View-&gt;Zoom Out is increased to 5 million
+          bars, also Pref/Charting/Default zoom limit set to 5 million.</li>
+        <li>Line drawings now have user definable line width in pixels (new &quot;Line
+          width&quot; field in Study Properties dialog). In addition to that &quot;Thick
+          line&quot; box makes line twice as wide (so actual width of thick line
+          is 2 * lineWidth instead of adding 1 pixel to width)</li>
+        <li>added ability to control number of decimals in chart value labes
+          via GraphLabelDecimals variable (example, adding GraphLabelDecimals
+          = 2; to the formula would give you value lables with 2 decimal places)<br>
+                  <strong> </strong> </li>
+      </ul>
+  </li>
+  <li><strong>User Interface improvements</strong>
+      <ul>
+        <li>Parameter window look and feel improved. Item height is increased
+          and slider thumb made wider for easier use on small size/high DPI screen</li>
+        <li>New Analysis UI refreshes faster</li>
+        <li>Colors, bold and italic styles are now added to Interpretation and
+          Commentary windows</li>
+        <li>Filter dialog now shows number of matching symbols in real-time</li>
+        <li>Column setup dialog has new Mark All / Toggle All buttons<br>
+        </li>
+      </ul>
+  </li>
+</ul>
+<ul>
+  <li><strong>AFL new features / improvements:</strong>
+      <ul>
+        <li><strong>new</strong> AFL functions: GetFormulaPath, NullCount, Sort,
+          Reverse, StrSort, StrTrim, SendEmail</li>
+        <li>extended functionality of AFL functions: StrExtract, StrMid, RestorePriceArrays,
+          PlotGrid, EnableTextOutput, GetOption</li>
+        <li>single-characters literals added to AFL<br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>Stability &amp; debug improvements</strong>
+      <ul>
+        <li>added lots of parameter checks</li>
+        <li>64-bit version has now call stack trace in the bug report for better
+          debugging</li>
+        <li>added more memory checks, early warnings and error messages when
+          running out of memory</li>
+        <li>added checks for unusual, yet potentially 'troublemaker' scenarios</li>
+      </ul>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p><b>H</b><b>ighlights of version 5.80</b></p>
+<ul>
+  <li><strong>Brand-new completely rewritten AFL Formula Editor </strong>that
+    supports the following features:
+            <ul>
+              <li>Improved Syntax highlighting</li>
+              <li>Automatic brace matching/highlighting (NEW)</li>
+              <li>Auto indentation (NEW)</li>
+              <li>Indentation markers (NEW)</li>
+              <li>Enhanced auto-complete in two modes (immediate (NEW) and on-demand)</li>
+              <li>Parameter information </li>
+              <li>Line numbering margin and selection margin (NEW)</li>
+              <li>Code folding (NEW)</li>
+              <li>In-line Error Reporting (NEW)</li>
+              <li>New tabbed user interface with ability to work in both MDI
+                and separate floating frame mode, can be moved behind main AmiBroker
+                screen and brought back (Window-&gt;Toggle Frame) (NEW) or kept
+                on top (Window-&gt;Keep on top)</li>
+              <li>Rectangular block copy/paste/delete (Use mouse and hold down
+                left <strong>Alt</strong> key to mark rectangular block)</li>
+              <li>Enhanced printing (with syntax highlighting and header/footer)<br>
+              </li>
+            </ul>
+  </li>
+  <li><strong>Code snippets </strong>- these are small pieces of re-usable AFL
+    code. They can be inserted by right-clicking in the AFL editor window and
+    choosing &quot;Insert Snippet&quot; menu. Code snippets are user-definable. <br>
+  </li>
+  <li><strong>New features in Low-level graphics</strong>
+      <ul>
+        <li>multiple Z-order layers GfxSetZOrder</li>
+        <li>co-ordinates can now be given in both pixels and bar-price mode GfxSetCoordsMode</li>
+        <li>speed improvements (upto 3x)<br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>Persistent Static variables - </strong>StaticVarSet/StaticVarSetText
+    (added 'persistent' parameter) <strong><br>
+      </strong></li>
+  <li><strong>Analysis (Backtest/Optimize) enhancements</strong>
+      <ul>
+        <li>new &quot;Trade using FX cash conversion&quot; setting</li>
+        <li>64-bit SPSO/Tribes engine fixes<br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>New/enhanced AFL functions</strong>
+      <ul>
+        <li>PlotTextSetFont (NEW)</li>
+        <li>GfxSetCoordsMode (NEW)</li>
+        <li>GfxSetZOrder (NEW)</li>
+        <li>GfxGetTextWidth (NEW)</li>
+        <li>fopen (added 'shared' parameter)</li>
+        <li>StaticVarSet/StaticVarSetText (added 'persistent' parameter)</li>
+        <li>SetOption (new option &quot;StaticVarAutoSave&quot;)</li>
+        <li>SetChartOptions (new flags chartDisableYAxisCursor, chartDisableTooltips
+          )</li>
+        <li>PlotText (new parameter yoffset)</li>
+      </ul>
+  </li>
+</ul>
+<p><b>Highlights of version 5.70</b></p>
+<ul>
+  <li><strong>Analysis improvements:</strong>
+      <ul>
+        <li><strong>New Multi-threaded Individual Optimization</strong></li>
+        <li><strong>New general-purpose ranking functions</strong></li>
+        <li>User-definable ranking columns (via AddRankColumn function)</li>
+        <li>Lots of internal speedups in backtesting/optimization engine</li>
+        <li>SPSO, Tribes optimization engines now available also in 64-bit<br>
+            <br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>Time&amp;Sales improvements</strong>: user-definable filtering,
+    user-definable colors, 2 user-selectable display modes <br>
+  </li>
+  <li><strong>Database improvements</strong>:
+      <ul>
+        <li> 64-bit version supports files larger than 2GB per symbol</li>
+        <li>in-memory cache can hold upto 100 000 symbols (up from 20K)</li>
+        <li>new 64-bit DDE and ODBC plugins<br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>Charting improvements:</strong></li>
+  <ul>
+    <li>Greatly improved performance QuickData technology implemented lowering
+      CPU usage for charts</li>
+    <li>Edit-&gt;'Paste Special' allows to copy-paste entire chart pane with
+      various options</li>
+    <li>Distance measuring when drawing trendlines (X,Y distance in the status
+      bar)</li>
+    <li>X/Y constrains for drawing tools (press X and/or Y key to constrain movement
+      in either X or Y direction when drawing)</li>
+    <li>ASCII importer adds support for millisecond timestamps<br>
+    </li>
+  </ul>
+  <li><strong>AFL improvements</strong>:
+      <ul>
+        <li>new functions:
+            <ul>
+              <li> StaticVarGenerateRanks, StaticVarGetRankedSymbols - general-purpose
+                user-definable ranking</li>
+              <li>Error - display user-definable error messages (also useful
+                for plugin developers)</li>
+              <li>fdir - directory listing</li>
+              <li>CategoryCreate - programmatic creation of watch-lists</li>
+              <li>AddRankColumn - ranking columns in exploration<br>
+              </li>
+            </ul>
+        </li>
+        <li>performance improved for Percentile() (order(s) of magnitude)</li>
+        <li>new fields supported in GetFnData</li>
+        <li>XShift support added to PlotShapes</li>
+        <li>speeded up transcendental mathfunctions (sqrt, sin,asin, cos, acos,
+          tan, atan, ln, log10, etc)</li>
+        <li>improved SetSortColumns</li>
+      </ul>
+  </li>
+</ul>
+<p><b>Highlights of version 5.60</b></p>
+<ul>
+  <li><b>Multithreaded GDI (graphics) rendering </b>- now all drawing (graphic
+    rendering) is done in separate worker threads so the user interface is way
+    more responsive and charts are updated faster and completely independently
+    from each other.<br>
+  </li>
+  <li><b>Automatic Walk-Forward out-of-sample summary report -</b> each out-of-sample
+    step produces individual report now, plus there is a new <strong>summary
+    report</strong> that covers all out-of-sample steps. It is visible in the
+    Report Explorer as last one and has &quot;PS&quot; type.<br>
+            <b> </b></li>
+  <li><b>Enhanced color-coded backtest report<br>
+  </b></li>
+  <li><strong>XY (scatter) charts in explorations</strong><br>
+  </li>
+  <li><strong>Chart themes</strong> and improved chart look (esp. the grid)<br>
+  </li>
+  <li><strong>One-click automatic setup and update of stocks listing, sector
+      and industry assignments</strong> for all major US exchanges<br>
+  </li>
+  <li><strong>Unlimited ad-hoc chart intervals</strong> by means of new Interval
+    combo box that accepts any interval typed manually<br>
+  </li>
+  <li><strong>support for ICB</strong> (Industry Classification Benchmark) categories
+    in AFL, UI, ASCII importer and OLE interface<br>
+  </li>
+  <li>native <strong>Gradient area charts<br>
+  </strong></li>
+  <li><strong>super-thick lines </strong> in Plot, PlotOHLC, PlotForeign <br>
+  </li>
+  <li><strong>new AFL functions</strong>: GetAsyncKeyState, InIcb, IcbID, StaticVarInfo,
+    SetGradientFill, XYChartAddPoint, XYChartSetAxis<br>
+  </li>
+  <li><strong>updated AFL functions</strong> with new functionality: Status,
+    CategoryGetSymbols, CategoryGetName, CategorySetName, CategoryAddSymbol,
+    CategoryRemoveSymbol, CategoryFind, Plot, PlotOHLC, PlotForeign<br>
+  </li>
+  <li>new 64-bit eSignal plugin<br>
+  </li>
+  <li>updated UI in many places<br>
+  </li>
+  <li>many other improvements (see Release Notes for details)</li>
+</ul>
+<p>&nbsp; </p>
+<p><b>Highlights of version 5.50</b></p>
+<ul>
+  <li><strong>New Analysis window</strong> introduced in version 5.50 brings
+    the following improvements over old Automatic Analysis<br>
+        <ul>
+          <li><strong>multi-threaded operation = speed - </strong>new Analysis
+            window uses all available CPUs/cores to execute formulas in many
+            threads in parallel providing significant speed ups. For example
+            on 4 core Intel i7 that can run upto 8 threads, it can run upto 8
+            times faster than old Analysis window. Exact speed up depends on
+            complexity of the formula (the more complex it is, the more speedup
+            is possible), amount of data processed (RAM access may be not as
+            fast as CPU thus limiting possible speed gains).<br>
+          </li>
+          <li><strong>non-blocking operation</strong> - you can now view, scroll
+            and sort results of analysis while they are still generated, also
+            as user interface thread is not used for processing for most part,
+            charts and other GUI-driven program parts are way more responsive
+            than with old automatic analysis<br>
+          </li>
+          <li><strong>multiple instances </strong>- you can run more than one
+            instance of New Analysis at a time, so you can run many scans/backtest/explorations/optimizations
+            in parallel without waiting for one to complete<br>
+          </li>
+          <li><strong>slicker user interface <em>- </em></strong>New Analysis
+            window can act as tabbed document, can be floated, buttons can be
+            re-arranged for better workflow. There is way more space for the
+            result list, extra information about execution is provided on the
+            new &quot;Info&quot; tab. Also walk-forward results are now displayed
+            within New Analysis window for less clutter.<br>
+          </li>
+        </ul>
+  </li>
+  <li>Mini <strong>High-Low rank chart</strong> in Real Time quote window</li>
+  <li>User-definable<strong> mini bar charts in Explorations</strong> (see AddColumn
+    function)</li>
+  <li><strong>Add Rank Column</strong> feature - right-click Analysis result
+    list and choose &quot;Add Rank column&quot; - it adds a column with ordinal
+    rankings based on current sort or just row number column when list is not
+    sorted</li>
+  <li>IRA account backtesting via SettlementDelay feature (see SetOption function)</li>
+  <li><strong>Range bars</strong> algorithm improved significantly </li>
+  <li><strong>new AFL functions</strong>: ThreadSleep, StaticVarCompareExchange</li>
+  <li><strong>updated AFL functions</strong> with new functionality: AddColumn,
+    SetOption, GetOption, CategoryGetSymbols, PopupWindow, GetFnData, ClipboardSet</li>
+  <li>updated OLE interface to support new Analysis window</li>
+  <li>updated custom backtester interface to support access to local, per-analysis
+    EquityArray property</li>
+  <li>updated UI in many places</li>
+  <li>Owner-draw list views for 10x speed improvement when displaying millions
+    of rows</li>
+  <li>many other improvements (see Release Notes for details)</li>
+</ul>
+<p>&nbsp;</p>
+</body>
+</html>

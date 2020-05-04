@@ -1,0 +1,168 @@
+<HTML><HEAD>
+<TITLE>RB_All_In_One - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'>Statistics</a> | <a href='charts.html'>Charts</a> | <a href='trades.html'>Trades</a> | <a href='formula.html'><FONT class='SELTAB'>Formula</FONT></a> | <a href='settings.html'>Settings</a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Formula</TH></TR>
+</TABLE><PRE> 
+_SECTION_BEGIN("robert all in one"); 
+GfxSetBkMode(1); 
+X=750; 
+Y=20; 
+Font=8; 
+GfxSelectFont("Impact",Font*2.2, 550);GfxSetTextColor(colorRed);GfxTextOut("Robert All In One",x,y); 
+//GfxSelectFont("Impact",Font*2.2, 550);GfxSetTextColor(colorGreen);GfxTextOut("RESEARCH",x+120,Y); 
+ 
+_SECTION_END(); 
+ 
+//------------------------------------------------------------------------------ 
+ 
+ 
+_SECTION_BEGIN("Bollinger Bands"); 
+_N(Title = StrFormat("{{NAME}} - {{INTERVAL}} {{DATE}} Open %g, Hi %g, Lo %g, Close %g (%.1f%%) {{VALUES}}", O, H, L, C, SelectedValue( ROC( C, 1 ) ) )); 
+SetBarFillColor( IIf( C&gt;O, colorGreen, colorRed ) );  
+Plot( C, "Close", colorBlack, styleNoTitle | ParamStyle("Style") | GetPriceStyle() );  
+ 
+ 
+P = ParamField("Price field",-1); 
+Periods = Param("Periods", 15, 2, 300, 1 ); 
+Width = Param("Width", 2, 0, 10, 0.05 ); 
+Color = ParamColor("Color", colorCycle ); 
+Style = ParamStyle("Style"); 
+bbtop=BBandTop( P, Periods, Width ); 
+bbbot=BBandBot( P, Periods, Width ); 
+Plot(bbtop, "BBTop" + _PARAM_VALUES(), Color, Style );  
+Plot(bbbot , "BBBot" + _PARAM_VALUES(), Color, Style ); 
+diff=bbtop-bbbot; 
+flagPercent = 9.5; 
+diffPercent = (diff/bbtop)*100; 
+sqeezcolor=ColorRGB(194,220,218); 
+expandcolor=ColorRGB(255,220,218); 
+ 
+ 
+ 
+ 
+wma5 = WMA(Close, 5); 
+// draw wma5 
+Plot(wma5, "Wma5",colorBrown,styleLine); 
+ 
+//Plot( diff, "Diff", colorGreen, Style );  
+ 
+/////// Filter 
+// Gia cat len duong WMA 5 ngay 
+Con1 = Close &gt; wma5;  
+ 
+// EMA 3 ngay cat len WMA 5 ngay. 
+ema3 = EMA(Close,3); 
+Plot(ema3, "ema3",colorBlueGrey,styleLine); 
+Con2 = ema3/wma5 &gt;= 0.999; 
+ 
+// Vol giao dich tai thoi diem loc cho tin hieu &gt;= 80% vol giao dich  trung binh 10 phien truoc do. 
+AvgVolume = MA(Volume, 10); 
+Con3 = Volume &gt;= (AvgVolume*0.8); 
+ 
+// Duong MACD huong len tren. 
+Con4 = (MACD() &gt;= Ref (MACD (), -1)); 
+ 
+// volume lon hon 50k 
+Con5 = Volume &gt; 50000; 
+ 
+// Kiem tra BB hep 
+Con6 = diffPercent &lt; flagPercent; 
+// Kiem tra BB phai di ngang hoac huong len 
+Con6_1 = (bbtop / Ref(bbtop, -1)) &gt; 0.99;// AND ((bbbot / Ref(bbbot, -1)) &gt; 0.99) ; 
+ 
+// Gia dong cua (gia tai thoi diem kiem tra) phai lon hon gia mo cua 
+Con7 = Close &gt; Open; //Close &gt; Ref(Close, -1); 
+ 
+ 
+// DK sell, khi gia dong cua cat xuong duong WMA 5 ngày 
+Con8 =  wma5 &gt; Close; 
+ 
+ 
+Buy = Con1 AND Con2 AND Con3  
+AND Con4 AND Con5  
+AND Con6 AND Con6_1 AND Con7; 
+ 
+//Plot(Con6_1,"con", colorWhite, styleLine );  
+ 
+ 
+ 
+//Sell = Con8; 
+// smart trading system 
+A = DEMA(C,2); 
+BH = DEMA(a,34)+2*(StDev(a,34)); 
+BL = DEMA(a,34)-2*(StDev(a,34)); 
+BM = (BH+BL)/2; 
+Highs = TEMA(High, 30); 
+Lows = TEMA(Low, 30); 
+A = DEMA(L,2); 
+BH = DEMA(A,34)+2*(StDev(A,34)); 
+BL = DEMA(A,34)-2*(StDev(A,34)); 
+BM = (BH+BL)/2; 
+A = DEMA(H,2); 
+BH = DEMA(A,34)+2*(StDev(A,34)); 
+BL = DEMA(A,34)-2*(StDev(A,34)); 
+UpTrend = C &gt; Highs; 
+DnTrend = C &lt; Lows ; 
+BM1 = (BH+BL)/2; 
+Sell=Cross(BM,C); 
+//Buy=Cross(C,BM1); 
+//Buy=ExRem(Buy,Sell); 
+Sell=ExRem(Sell,Buy); 
+ 
+ 
+Filter = Buy &gt; 0;//OR Sell; 
+ 
+AddColumn( Close, "Close " ); 
+AddColumn( Volume,"Volume " ); 
+//AddColumn(Iff(Buy &gt; 0, Buy,"Action ")); 
+//AddColumn( Con6, "BB"); 
+// gui ket qua ve telegram 
+/* 
+if(LastValue(Filter) ) { 
+	message = "name=" + Name() + "&date=" + Date() + "&price=" + Close; 
+	//hURL	= InternetOpenURL("https://api.telegram.org/bot878637551:AAEZ1AoVeEOKVfkezOhFsXHvQxzQrMPIxNU/sendMessage?chat_id=-1001445799293&text="+ message); 
+	hURL	= InternetOpenURL("http://172.104.47.247:9944/api/updatestock?" + message); 
+	InternetClose(hURL); 
+} 
+*/ 
+// draw on chart 
+PlotShapes(IIf(Buy, shapeHollowUpArrow, shapeNone),colorGreen, 0,L, Offset=-45);  
+PlotShapes(IIf(Sell, shapeHollowDownArrow, shapeNone),colorRed, 0, H, Offset=-35); 
+//Colors = IIf(UpTrend, colorGreen, IIf(DnTrend, colorRed, colorLightGrey)); 
+//Filter = Buy &gt; 0;//OR Sell; 
+ 
+// fill color for BB 
+PlotOHLC( bbtop,bbtop, bbbot,bbbot, "BB",IIf(diffPercent &lt; flagPercent,sqeezcolor,expandcolor), styleCloud );  
+_SECTION_END(); 
+ 
+ 
+ 
+
+</PRE></BODY></HTML>

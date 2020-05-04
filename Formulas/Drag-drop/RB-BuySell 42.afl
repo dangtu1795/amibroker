@@ -1,0 +1,33 @@
+_SECTION_BEGIN("ADX");
+Range             = Param(" +DI - D range", 10, 5, 30,1 );
+Plot(PDI(Range),"",8,4);
+Plot(MDI(Range),"",4,4);
+Plot(MDI(Range),"",4,10);
+Plot(ADX(Range),"",6,styleGradient);
+Plot(ADX(Range),"",6,4);
+
+Buy             = Cross(PDI(Range), MDI(Range)) OR Cross (PDI(Range), ADX(Range))OR Cross (ADX(Range), MDI(Range))OR (MDI(Range)>=(45) );
+;
+Sell            = Cross(MDI(Range), PDI(Range))OR Cross (MDI(Range), ADX(Range))OR Cross (ADX(Range), PDI (Range)) OR(PDI(Range)>=(45) );
+ 
+Buy           = 
+PlotShapes(IIf(Buy,shapeUpArrow,shapeNone),colorGreen);
+PlotShapes(IIf(Sell,shapeDownArrow,shapeNone),colorRed);
+
+bars=SelectedValue(Min( BarsSince( Cross(PDI(Range) , MDI(Range) )), BarsSince( Cross( MDI(Range), PDI(Range))) ));
+prevclose=Ref(Close,-bars);
+Com=EncodeColor(colorTan)+("\n\nCurrently the +DMI ("+Range+") is "+
+WriteIf(PDI(Range) > MDI(Range),"bullish","bearish")+", and it crossed "+
+WriteIf(PDI(Range) > MDI(Range),"above","below")+" -DMI ("+Range+") ."+"\n"+EncodeColor(colorAqua)+
+WriteVal( Min( BarsSince( Cross( PDI(Range), MDI(Range) )), BarsSince( Cross( MDI(Range), PDI(Range)))), 0.0)+
+" period(s) ago.")+EncodeColor(colorTan)+
+Com=("\n\nSince the +DMI crossed -DMI, "+Name()+ "'s price has  : ")+EncodeColor(colorGold)+"\n"+
+WriteIf(Close>prevclose,"increased %","decreased %")+WriteVal(100*(Close-prevclose)/prevclose)+
+EncodeColor(colorTan)+Com=("\n\nAnd has ranged from a high of "+
+WriteVal(HHV(High,bars+1),6.2)+" to a low of "+WriteVal(LLV(Low,bars+1),6.2));
+Title = EncodeColor(colorWhite)+ "ABS3" + " - " +  Name()  + EncodeColor(colorRed)+ Interval(2) + EncodeColor(colorWhite) +
+"  - " + Date() +"  -  "+"\n" +EncodeColor(colorBlue) +"Op-"+O+"  "+"Hi-"+H+"  "+"Lo-"+L+"  "+
+"Cl-"+C+"  "+ "Vol= "+ WriteVal(V)+ Com;
+Plot(40,"",colorDarkGrey,styleDashed|styleNoLabel);
+Plot(20,"",colorDarkGrey,styleDashed|styleNoLabel);
+_SECTION_END();

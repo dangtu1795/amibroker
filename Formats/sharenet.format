@@ -1,0 +1,5 @@
+$FORMAT Name,DATE_YMD,Close,High,Low,Volume
+$SKIPLINES 0
+$SEPARATOR 
+$DEBUG 1
+$AUTOADD 1

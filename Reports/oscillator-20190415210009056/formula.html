@@ -1,0 +1,68 @@
+<HTML><HEAD>
+<TITLE>oscillator - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'>Statistics</a> | <a href='charts.html'>Charts</a> | <a href='trades.html'>Trades</a> | <a href='formula.html'><FONT class='SELTAB'>Formula</FONT></a> | <a href='settings.html'>Settings</a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Formula</TH></TR>
+</TABLE><PRE>// Downloaded From www.WiseStockTrader.com 
+_SECTION_BEGIN( "Stoch KD Cloud" ); 
+ 
+periods = Param( "Periods", 15, 1, 200, 1 ); 
+Ksmooth = Param( "%K Avg", 3, 1, 200, 1 ); 
+a = StochK( periods , Ksmooth); 
+Plot( a, _DEFAULT_NAME(), ParamColor( "Color", colorBrightGreen ), ParamStyle("Style") ); 
+Dsmooth = Param( "%D Avg", 3, 1, 200, 1 ); 
+b = StochD( periods , Ksmooth, DSmooth ); 
+Plot( b, _DEFAULT_NAME(), ParamColor( "Color", colorRed ), ParamStyle("Style") ); 
+ 
+PlotOHLC( a,a,b,a,"", IIf(a&gt;b, colorBrightGreen, colorRed), styleCloud); 
+ 
+Overbought= 80; Oversold= 20; 
+Plot(Overbought,"OB",colorRed); 
+Plot(Oversold,"OS",colorGreen); 
+ 
+Buy = Cross( a, b ); 
+Sell = Cross( b, a ); 
+PlotShapes( shapeSmallUpTriangle * Buy + shapeSmallDownTriangle * Sell, IIf( Buy, colorWhite, colorWhite ) ); 
+ 
+_SECTION_END(); 
+ 
+_SECTION_BEGIN("Animated_BackGround_"); 
+// http://amibrokertraders.blogspot.com // 
+//==================== 
+ 
+for( i = 1; i &lt; BarCount; i++ ) 
+z = (GetPerformanceCounter()/100)%256; 
+anim=ColorHSB( ( i + z ) % 256, 255, 100 ); 
+SetChartBkColor(anim); 
+RequestTimedRefresh(1); 
+ 
+//==================== 
+_SECTION_END(); 
+
+</PRE></BODY></HTML>

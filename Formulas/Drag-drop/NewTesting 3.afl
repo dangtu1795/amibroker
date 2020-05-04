@@ -1,0 +1,91 @@
+_SECTION_BEGIN( "Algoji.com intraday.afl" );
+per10 = Param( "Trade Entry From(HHMM)", 1000, 900, 2300, 1 );
+per11 = Param( "Trade Entry Upto(HHMM)", 1430, 900, 2300, 1 );
+per12 = Param( "Trade Exit(HHMM)", 1515, 900, 2300, 100 );
+sl = Param( "StopLoss(Rs.)", 0, 0, 1000, 0.1 );
+tgt = Param( "Target(Rs.)", 0, 0, 1000, 0.1 );
+intra = ParamToggle( "Activate Intraday Mode", "NO|YES" );
+
+intraex = intra AND TimeNum() > per12 * 100;
+intraen = !intra OR ( TimeNum() < per11 * 100 AND TimeNum() > per10 * 100 );
+
+Col = ParamColor( "Color of Signals", colorBlack );
+
+
+Buy1 = Buy;
+Sell1 = Sell;
+Short1 = Short;
+Cover1 = Cover;
+bflag = sflag = 0;
+slarr = tgtarr = Null;
+
+for ( i = 10; i < BarCount; i++ )
+{
+    if ( Buy1[i] AND intraen[i] AND bflag == 0 )
+    {
+        Buy[i] = 1;
+        bflag = 1;
+
+        if ( sl )
+            slarr[i] = C[i] - sl;
+
+        if ( tgt )
+            tgtarr[i] = C[i] + tgt;
+    }
+    else
+        Buy[i] = 0;
+
+    if ( bflag AND Buy[i] == 0 )
+    {
+        slarr[i] = slarr[i-1];
+        tgtarr[i] = tgtarr[i-1];
+    }
+
+    if ( ( Sell1[i] OR intraex[i] OR( L[i] < slarr[i-1] AND sl > 0 ) OR ( H[i] > tgtarr[i] AND tgt > 0 ) ) AND bflag )
+    {
+        Sell[i] = 1;
+        bflag = 0;
+    }
+    else
+        Sell[i] = 0;
+
+    if ( Short1[i] AND intraen[i] AND sflag == 0 )
+    {
+        Short[i] = 1;
+        sflag = 1;
+
+        if ( sl )
+            slarr[i] = C[i] + sl;
+
+        if ( tgt )
+            tgtarr[i] = C[i] - tgt;
+    }
+    else
+        Short[i] = 0;
+
+    if ( sflag AND Short[i] == 0 )
+    {
+        slarr[i] = slarr[i-1];
+        tgtarr[i] = tgtarr[i-1];
+    }
+
+    if ( ( Cover1[i] OR intraex[i]OR( H[i] > slarr[i-1] AND sl > 0 )  OR ( L[i] < tgtarr[i] AND tgt > 0 ) ) AND sflag )
+    {
+        Cover[i] = 1;
+        sflag = 0;
+    }
+    else
+        Cover[i] = 0;
+}
+
+Plot( slarr, "SL", Col, styleThick );
+
+Plot( tgtarr, "TGT", Col, styleThick );
+
+
+PlotShapes( IIf( Buy, shapeUpArrow, shapeNone ), Col, 0, L, Offset = -45 );
+PlotShapes( IIf( Short, shapeDownArrow, shapeNone ), Col, 0, H, Offset = -45 );
+PlotShapes( IIf( Cover, shapeStar, shapeNone ), Col, 0, L, Offset = -55 );
+PlotShapes( IIf( Sell, shapeStar, shapeNone ), Col, 0, H, Offset = -55 );
+
+_SECTION_END();

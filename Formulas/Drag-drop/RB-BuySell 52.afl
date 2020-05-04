@@ -1,0 +1,445 @@
+//------------------------------------------------------------------------------
+//  Formula Name	:      NIRMALA PATTERN FOR AMIBROKER AFL by pipschart
+//  Author	:      KrT group
+//  Uploader	:      www.pipschart.com
+//  E-mail		:      info@pipschart.com
+//  Amibroker Blog	:      www.pipschart.com/amibroker
+//  Origin		:      Modified & Collected from different sources.
+//------------------------------------------------------------------------------
+
+_SECTION_BEGIN("KrT group");
+GfxSetBkMode(1);
+X=750;
+Y=1;
+Font=10;
+GfxSelectFont("Impact",Font*2.2, 550);GfxSetTextColor(colorRed);GfxTextOut("KrT group",x,y);
+GfxSelectFont("Impact",Font*2.2, 550);GfxSetTextColor(colorGreen);GfxTextOut("RESEARCH",x+120,Y);
+
+_SECTION_END();
+
+//------------------------------------------------------------------------------
+
+
+function bulat(Lo)
+{
+ return (
+IIf(Lo<= 200,round(Lo/1)*1,
+IIf(Lo<= 500,round(Lo/5)*5,
+IIf(Lo<=2000,round(Lo/10)*10,
+IIf(Lo<=5000,round(Lo/25)*25,
+IIf(Lo> 5000,round(Lo/50)*50,0)))))
+);
+}
+
+/*
+_SECTION_BEGIN("Head & Shouders Pattern");
+// Set Background
+SetChartBkGradientFill(ParamColor("Bg Top",colorGreen),ParamColor("Bg Bottom",colorLavender));//tan=139,103,54
+*/
+_SECTION_BEGIN("Background Color");
+BKswitch = ParamToggle("Background Color","On,Off");
+ 
+OUTcolor = ParamColor("Outer Panel Color",colorLightBlue);
+INUPcolor = ParamColor("Inner Panel Upper",colorLightYellow);
+INDNcolor = ParamColor("Inner Panel Lower",colorSeaGreen);
+TitleColor = ParamColor("Title Color ",ColorRGB(245,245,245));
+ 
+if (NOT BKswitch)
+{
+SetChartBkColor(OUTcolor); // color of outer border
+SetChartBkGradientFill(INUPcolor,INDNcolor,TitleColor); // color of inner panel
+}
+_SECTION_END();
+
+
+//
+x = Cum(1);
+per = 5;
+back = 50;
+inter = 100;
+s11 = H;
+s12 = L;
+//-------------------------------------------------------------------------------------------------
+/* H & S */
+pR = PeakBars( s11, per, 1 ) == 0;
+endt1 = LastValue(ValueWhen( pR, x, 1 ));
+medt1 = LastValue(ValueWhen( pR, x, 2 ));
+startt1= LastValue(ValueWhen( pR, x, 3 ));
+dt1 = endt1-startt1;
+C1 = x==endt1 OR x==medt1 OR x==startt1;
+endR = LastValue(ValueWhen( pR, s11, 1 ) );
+medR = LastValue(ValueWhen( pR, s11, 2 ) );
+medRr = LastValue(ValueWhen( pR, C, 2 ) );//modifikasi head.....................
+startR = LastValue( ValueWhen( pR, s11, 3 ));
+//
+Filter1 = medR>endR AND medR>startR AND abs(startR-endR)<0.02*(startR+endR) AND dt1<inter AND endt1>LastValue(x)-back;
+MaxGraph = 10; 
+Graph1 = C;
+Graph1Style=64;
+GraphXSpace=5;
+Buyhs=Cross(C,medrr)AND Filter1;//BELI HS
+Sellhs=Cross(medrr,C)AND Filter1;
+AlertIf(Buyhs, "SOUND C:\\Windows\\Media\\afternoon\\windows print complete.wav", "Audio alert", 1,1+2 );
+PlotShapes(IIf(Buyhs, shapeSquare, shapeNone),colorDarkBlue, 0, L, Offset=-40);
+PlotShapes(IIf(Buyhs, shapeSquare, shapeNone),colorBlue, 0,L, Offset=-50);                      
+PlotShapes(IIf(Buyhs, shapeUpArrow, shapeNone),colorWhite, 0,L, Offset=-45); 
+//-------------Siap-siap--------------
+tick=IIf( C<=200,1,
+     IIf(C>200 AND C<=500,5,
+     IIf(C>500 AND C<=2000,10,
+     IIf(C>2000 AND C<=5000,25,
+     IIf(C>5000,50,0)))));
+
+sbh3=C==(medrr-(3*tick)) AND Filter1;
+sbh2=C==(medrr-(2*tick)) AND Filter1;
+sbh1=C==(medrr-(1*tick)) AND Filter1;
+AlertIf(sbh3, "SOUND C:\\Windows\\Media\\speech off.wav", "Audio alert", 1,1+2 );
+AlertIf(sbh2, "SOUND C:\\Windows\\Media\\speech off.wav", "Audio alert", 1,1+2 );
+AlertIf(sbh1, "SOUND C:\\Windows\\Media\\speech off.wav", "Audio alert", 1,1+2 );
+/*H&S Neck Line*/
+
+Aper = medt1-startt1;
+bper = endt1-medt1;
+La = LastValue(ValueWhen(x==medt1,LLV(L,Aper)));
+Lb = LastValue(ValueWhen(x==-1+endt1,LLV(L,bper)));
+Fa=L==La AND x>startt1 AND x<medt1;
+Fb=L==Lb AND x>medt1 AND x<endt1;
+endt = LastValue(ValueWhen( Fb, x ));
+startt = LastValue(ValueWhen( Fa, x ));
+dtS = endt-startt;endS = Lb;startS = La;
+aS = (endS-startS)/dtS;bS = endS;
+trendlineS= aS * ( x -endt ) + bS;
+Graph3 = IIf(Filter1 AND x>startt-5,trendlineS,-1e10);Graph3BarColor=32;
+neck3=Cross(C,Graph3);//buy
+neck4=Cross(Graph3,C);//sell
+//PlotShapes(shapeUpArrow*neck3,colorBlue,0,L,-5);
+//PlotShapes(shapeDownArrow*neck4,colorRed,0,H,5);
+//PlotShapes(IIf( neck3, shapeUpArrow , shapeNone), colorBlue,0,H, Offset=20);
+//PlotShapes(IIf( neck4, shapeDownArrow , shapeNone), colorRed,0,L, Offset=-20);
+//shape1 = neck3 * shapeUpArrow + neck4 * shapeDownArrow ;
+PlotShapes(shapeUpArrow*neck3,colorBlue,0,L);
+PlotShapes(shapeDownArrow*neck4,colorRed,0,H);
+//PlotShapes( shape1, IIf( neck3, colorBlue, colorRed ), 0, IIf( neck4, H, L),Offset=20 );
+//-------------------------------------------------------------------------------------------------
+
+
+/*Inverted H & S*/
+
+tpR = TroughBars( s12, per, 1 ) == 0;
+tendt1 = LastValue(ValueWhen(tpr,x,1));
+tmedt1 = LastValue(ValueWhen(tpr,x,2));
+tstartt1 = LastValue(ValueWhen(tpr,x,3));
+tdt1 = tendt1-tstartt1;
+C2 = x==tendt1 OR x==tmedt1 OR x==tstartt1;
+tendR = LastValue(ValueWhen( tpR, s12, 1 ) );
+tmedR = LastValue(ValueWhen( tpR, s12, 2 ) );
+tstartR = LastValue( ValueWhen( tpR, s12, 3 ));
+//
+Filter2=tmedR<tendR AND tmedR<tstartR AND abs(tstartR-tendR)<0.02*(tstartR+tendR) AND tdt1<inter AND tendt1>LastValue(x)-back;
+Graph1BarColor=IIf(C1 AND Filter1,colorRed,IIf(C2 AND Filter2,colorCustom11,1));
+trab=C1 AND Filter1;
+trub=C2 AND Filter2;
+PlotShapes(shapeHollowSmallSquare*trab,colorRed,0,H,5);
+PlotShapes(shapeSmallCircle*trab,colorRed,0,H,5);
+PlotShapes(shapeHollowSmallSquare*trub,colorCustom11,0,L,-5);
+PlotShapes(shapeSmallCircle*trub,colorCustom11,0,L,-5);
+
+/*Inverted H&S Neck Line*/
+
+tAper = tmedt1-tstartt1;
+tbper=tendt1-tmedt1;
+Ha = LastValue(ValueWhen(x==tmedt1,HHV(H,tAper)));
+Hb = LastValue(ValueWhen(x==-1+tendt1,HHV(H,tbper)));
+tFa = H==Ha AND x>tstartt1 AND x<tmedt1;
+tFb = H==Hb AND x>tmedt1 AND x<tendt1;
+Rendt = LastValue(ValueWhen(tFb, x ));
+Rstartt = LastValue(ValueWhen( tFa, x ));
+Rdt = Rendt-Rstartt;endR = Hb;startR = Ha;
+aR = (endR-startR)/Rdt;bR = endR;
+trendlineR= aR * ( x -Rendt ) + bR;
+Graph4 = IIf(Filter2 AND x>Rstartt-5,trendlineR,-1e10);//GARIS NECKLINE
+Graph4BarColor=colorCustom11;//warna neckline
+
+neck1= Cross(C,Graph4);//buy cross neckline
+neck2= Cross(Graph4,C);//sell cross neckline
+PlotShapes(shapeUpArrow*neck1,colorBlue,0,L);
+PlotShapes(shapeDownArrow*neck2,colorRed,0,H);
+
+sbi3=C==(Graph4-(3*tick));
+sbi2=C==(Graph4-(2*tick));
+sbi1=C==(Graph4-(1*tick));
+//AlertIf(sbh3, "SOUND C:\\Windows\\Media\\speech off.wav", "Audio alert", 1,1+2 );
+
+//shape = neck1 * shapeUpArrow + neck2 * shapeDownArrow ;
+//PlotShapes( shape, IIf( neck1, colorBrightGreen, colorRed ), 0, IIf( neck1, H, L),Offset=15 );
+AlertIf( sbi3, "SOUND C:\\Windows\\Media\\afternoon\\windows print complete.wav", "Audio alert", 1,1+2 );
+AlertIf( sbi2, "SOUND C:\\Windows\\Media\\afternoon\\windows print complete.wav", "Audio alert", 1,1+2 );
+AlertIf( sbi1, "SOUND C:\\Windows\\Media\\afternoon\\windows print complete.wav", "Audio alert", 1,1+2 );
+Filter = Filter1 OR Filter2;
+//
+NumColumns= 2;/*Graph2=x==-1+tendt1;*/
+Column0 = Filter1;
+Column1 = Filter2;
+Column0Format=Column1Format=1.0;
+Column0Name="H&S";
+Column1Name="inv H&S";
+//-------------------------------------------------------------------------------------------------
+
+/* 
+Title = EncodeColor(colorWhite)+Name()+" - "+EncodeColor(colorYellow)+FullName()+"\n "+
+EncodeColor(colorWhite)+StrFormat(" - Open %g, Hi %g, Lo %g, Close %g ",O,H,L,C )+EncodeColor(colorBrightGreen)+
+", Vol "+WriteVal(V,1.0);
+_SECTION_END();
+*/ 
+
+
+VO=IIf(C>=O,0,IIf(C<=O,V,0));
+VC=IIf(C>=O,V,IIf(C<=O,0,V));
+Vol1 = ParamToggle( "Volume", "OFF|ON", 1 );
+
+if ( vol1 == 1 )
+{
+
+	Color= IIf(C==O,colorGrey50,IIf(C>O,colorDarkGreen,colorOrange));
+	SetBarFillColor(Color);
+   	PlotOHLC(0,V,V,V, "",colorBlack , styleNoTitle |  styleCandle|styleOwnScale   |styleThick | styleNoLabel,6);
+}
+
+
+
+MAcolor=IIf(MA(C,14)>Ref(MA(C,14),-1),colorBlue,colorOrange);
+Plot(MA(C, 14), "", macolor,
+        styleLine+styleNoRescale);
+MAbuy=Cross((Close),(MA(Close,14)));
+MAsell=Cross((MA(Close,14)),(Close));
+//PlotShapes(shapeHollowSmallSquare*MAbuy,colorBlue,0,L,-5);
+PlotShapes(shapeHollowSmallCircle*MAbuy,colorGreen,0,L,-5);
+//PlotShapes(shapeHollowSmallSquare*MAsell,colorRed,0,H,5);
+PlotShapes(shapeHollowSmallCircle*MAsell,colorRed,0,H,5);
+_SECTION_END();
+
+
+//-----THE HOUND OF BACKERVILLES-----------
+MAbuy=Cross((Close),(MA(Close,14))); 
+MAsell=Cross((MA(Close,14)),(Close)); 
+Condbuy=Filter1 AND MAbuy;//harga menembus MA=backersvilles dan apabila selanjutnya menembus head=buy (HS)
+Condsell=Filter1 AND MAsell;
+neckbuy=Cross(C,Graph3);//harga berbalik arah menuju MA (HS)
+Buyhs=Cross(C,medrr)AND Filter1;//harga melewati HEAD (HS)
+_SECTION_END();
+
+
+_SECTION_BEGIN("SetTanggal");
+DB1=ParamToggle("SetTanggal","OFF|ON",0);
+tanggal = ParamDate("Tanggal","2010-7-21");
+
+HighestEver = ValueWhen(DateNum() >= tanggal, SelectedValue(HighestSince(DateNum() == tanggal,High)));//asli=lastvalue
+
+//Plot(HighestEver,"Tertinggi",colorDarkOliveGreen, styleLine);
+
+for (i=1;i<BarCount;i++);
+LowestEver = ValueWhen(DateNum() <= tanggal, SelectedValue(LowestSince(DateNum() == tanggal,Low)));
+
+//Plot(LowestEver,"Terendah",colorPlum, styleLine);
+ //Colore=IIf(C>Lrline,colorOrange,IIf(C<Lrline,colorLime,7));
+for (i=1;i<BarCount;i++);
+lastBar=BarCount-1;
+PlotText(" Highest = "+HighestEver[Lastbar],Lastbar,HighestEver[Lastbar],colorDarkOliveGreen); 
+PlotText(" Lowest = "+LowestEver[Lastbar],Lastbar,LowestEver[Lastbar],colorRed); 
+//PlotOHLC( HighestEver, HighestEver, LowestEver , LowestEver , "", ColorBlend( colorBlueGrey, 0.9 ), styleCloud | styleNoRescale, Null, Null, Null, -1 );
+//PlotOHLC( HighestEver, HighestEver, LowestEver , LowestEver , "",Colore, styleCloud | styleNoRescale, Null, Null, Null, -1 );
+//PlotOHLC( HighestEver, HighestEver, LowestEver , LowestEver , "", IIf(C<cf,colorDarkRed,IIf(C>Cf,colorGreen,colorYellow)), styleCloud | styleNoRescale, Null, Null, Null, -1 );
+_SECTION_END();
+
+//============== VOLUME ==============
+Vlp=30; //Volume lookback period
+Vrg=MA(V,Vlp);
+St = StDev(Vrg,Vlp); 
+Vp3 = Vrg + 3*st; 
+Vp2 = Vrg + 2*st;;
+Vp1 = Vrg + 1*st;;
+Vn1 = Vrg -1*st; 
+Vn2 = Vrg -2*st;
+
+/*
+_SECTION_BEGIN("Background Name");
+GfxSelectFont("Tahoma", 11,500 ); 
+GfxSetBkMode(2); //2--
+GfxSetTextColor(colorBrown); 
+GfxTextOut(Name()+"   "+Date() + "  • O= " +WriteVal(O,0)+ "  • Hi= "+WriteVal(H,0)+ "  • Lo= "+WriteVal(L,0)+ "  • Close= "+WriteVal(C,0) + "  • Chg= "+WriteVal(C-Ref(C,-1),0) +"  • %Chg= "+WriteVal( ROC( C, 1 ),1.2 ) + " % " 
++"  • V= "+WriteVal(V,0)+"  • MA= "+WriteVal(EMA(C,15),1.0)
+,8, 3 )   ;
+*/
+ 
+
+ 
+ 
+/* signal dragon */
+perd=Param ("per1", 0.1,0.1,50,0.10);
+//x = Cum(1);
+xc=BarIndex();
+xx=SelectedValue(xc);
+t1=SelectedValue(ValueWhen(PeakBars(C,perd)==1,xc)) ;//asli 0 ganti dg 1, kalau o=muncul dihari kemarin dg kejadian sekarang, kalau=1, muncul hari ini dg kejadian sekarang
+H1=SelectedValue(ValueWhen(PeakBars(C,perd)==1,C)) ;
+t11=SelectedValue(ValueWhen(TroughBars(C,perd)==1, xc));
+H11=SelectedValue(ValueWhen(TroughBars(C,perd)==1, C));
+g=t1>t11;
+//shape=IIf(g,shapeHollowDownArrow*(x==t1),shapeHollowUpArrow*(x ==t11));
+Color=IIf(g,colorRed,colorBlue);
+//PlotShapes(shape,color);
+pon=(xc==t11);//buy hollow ......................
+nop=(xc==t1);//sell hollow .....................
+//AlertIf(pon, "SOUND C:\\Windows\\Media\\afternoon\\windows print complete.wav", "Audio alert", 1,1+2 );
+//AlertIf(nop, "SOUND C:\\Windows\\Media\\afternoon\\windows Pop-up blocked.wav", "Audio alert", 1,1+2 );
+PlotShapes(shapeHollowUpArrow*pon,colorBlue,0,L);
+PlotShapes(shapeHollowDownArrow*nop,colorRed,0,H);
+
+//-------Risk Management-----------
+BuyStop=EMA(L,3);//mulai beli (start)to target sell
+SellStop=EMA(H,3);//mulai jual (start)to target buy
+TargetBuy=C+ATR(14)*2;//profit
+TargetSell=C-ATR(14)*2;//cutloss beli 
+                    //range pembelian antara buystop dan sellstop
+
+
+Title = 
+EncodeColor(colorYellow)+Name()+" - "+EncodeColor(colorTan)+FullName()+"\n "+
+EncodeColor(colorWhite)+StrFormat(" - Open %g, Hi %g, Lo %g, Close %g ",O,H,L,C )+EncodeColor(colorWhite)+
+", Vol "+WriteVal(V,1.0)
+
++EncodeColor(colorBlack)+"  -  " + 
+ 
+                                                                        WriteIf(V>Vp2,EncodeColor(29)+"Very High",
+                                                                   WriteIf(V>Vp1,EncodeColor(29)+"High",
+                                                              WriteIf(V>Vrg,EncodeColor(29)+"Above Average",
+                                                         WriteIf(V<Vrg AND V>Vn1,EncodeColor(32)+"Less than Average",
+                                                    WriteIf(V<Vn1,EncodeColor(32)+"Low",""))))) 
+
+
+
+
++"\n\n"  
+//+EncodeColor(colorRed)+"  •  HEAD  "+WriteVal(medrr,1.0) +EncodeColor(colorWhite)+"  :::: "+ EncodeColor(colorBrightGreen)+" NECK  "+WriteVal(Graph4,1.0);
+ 
+
++EncodeColor(colorWhite)+"   HEAD  "+ WriteIf(C>=medrr ,EncodeColor(colorRed),EncodeColor(colorYellow))+WriteVal(bulat(medrr),1.0)
++EncodeColor(colorBlack)+"  :::: "
++EncodeColor(colorWhite)+" NECK  "+ WriteIf(C>=Graph4 ,EncodeColor(colorLime),EncodeColor(colorCustom11))+WriteVal(bulat(Graph4),1.0)
+
+
+
++"\n"
++EncodeColor(colorBlack)+ 
+  WriteIf(sbi1,EncodeColor(7)+"      Inverted, bersiap menunggu 1 tick lagi !",
+    WriteIf(sbi2,EncodeColor(7)+"      Inverted, bersiap menunggu 2 tick lagi !",
+      WriteIf(sbi3,EncodeColor(7)+"      Inverted, bersiap menunggu 3 tick lagi !", 
+        WriteIf(neck1,EncodeColor(7)+"      Inverted, Break Up !", 
+WriteIf(Condbuy,EncodeColor(colorWhite)+"      The Hound of Baskervilles", 
+WriteIf(neckbuy,EncodeColor(7)+"      Cross Neckline, Balik menuju MA", 
+WriteIf(sbh3,EncodeColor(55)+"      HS, bersiap menunggu 3 tick lagi !", 
+ WriteIf(sbh2,EncodeColor(55)+"      HS, bersiap menunggu 2 tick lagi !", 
+  WriteIf(sbh1,EncodeColor(55)+"      HS, bersiap menunggu 1 tick lagi !",
+    WriteIf(buyhs,EncodeColor(colorBlue)+"      HS, Break Up !","")))))))))) ;
+
+/* 
++"\n\n"
++EncodeColor( colorYellow ) + "   •  ENTRY  " +
+	 EncodeColor( colorWhite ) +WriteVal(Buystop,1.0)+"-"+WriteVal(Sellstop,1.0)+
+"\n"
++EncodeColor( colorYellow ) + "   •  EXIT  " +
+    EncodeColor( colorWhite )+WriteVal(targetbuy,1.0)+"-"+WriteVal(targetsell,1.0);
+ 
+
+
+
+_SECTION_BEGIN("BACK COLR");
+
+
+k = (GetPerformanceCounter()/300)%55; 
+printf("GetPerformance Counter %g",k);
+if( SelectedValue(Filter1) OR SelectedValue(Filter2))
+{ 
+ if( SelectedValue(Filter1)) { printf("We're in a Head and Shoulders."); };
+ if( SelectedValue(Filter2)) { printf("We're in a Inverted HS."); };
+}
+
+
+GfxSelectFont("Arial Narrow", 10, 700 ); 
+GfxSetBkMode(1); 
+GfxSetTextColor(colorYellow); 
+GfxTextOut("Anda bersama kami dalam anjungan Head and Shoulders",9+k ,26); 
+GfxSelectFont("Century Goliath",12,500); 
+GfxSetBkMode(1); 
+//GfxSetTextColor(colorLime); 
+//GfxTextOut("Prasad Inspirations",80 ,25); 
+RequestTimedRefresh(1); 
+_SECTION_END();
+*/
+
+_SECTION_BEGIN("Semi Cup");
+Parameter = Param( "parameter", 1.1, 1, 10, 0.1 ); //asli=1.5
+
+FilC = ( log( C ) ); 
+
+eps = 0.0000000001; 
+// basic Definitions 
+semicupperiod = SelectedValue( Max( BarsSince( C >= SelectedValue( C * parameter ) ), 1 ) ) + 1; 
+
+Ptop = SelectedValue( HHV( FilC, Semicupperiod ) ); 
+Pbot = SelectedValue( LLV( FilC, Semicupperiod ) ); 
+boxheight = SelectedValue( abs( Ptop - Pbot ) / 5 ); 
+boxlength = SelectedValue( Max( int( semicupperiod / 5 ), 1 ) ); 
+
+//   Grid Nodes 
+bar = Cum( 1 ); 
+b0 = SelectedValue( bar - semicupperiod + 1 ); 
+b5 = SelectedValue( bar ); 
+b1 = SelectedValue( Min( b0 + boxlength, b5 ) ); 
+b2 = SelectedValue( Min( b1 + boxlength, b5 ) ); 
+b3 = SelectedValue( Min( b2 + boxlength, b5 ) ); 
+b4 = SelectedValue( Min( b3 + boxlength, b5 ) ); 
+L2 = Pbot + 2 * boxheight; 
+L3 = Pbot + 3 * boxheight; 
+
+// Directional Strength 
+Diff = FilC - Ref( FilC, -1 ); 
+UpSum2 = Sum( Max( Diff, 0 ), 2 * boxlength ); 
+DnSum2 = Sum( Max( -Diff, 0 ), 2 * boxlength ); 
+DSX1 = abs( UpSum2 - DnSum2 ) / ( eps + UpSum2 + DnSum2 ) * 100; 
+UpSum3 = Sum( Max( Diff, 0 ), 3 * boxlength ); 
+DnSum3 = Sum( Max( -Diff, 0 ), 3 * boxlength ); 
+DSX2 = abs( UpSum3 - DnSum3 ) / ( eps + UpSum3 + DnSum3 ) * 100; 
+
+// Coditions 
+isSemicup = ( semicupperiod >= 20 ) AND 
+            ( Ref( DSX1, -( b5 - b2 ) ) > 25 ) AND 
+            ( DSX2 < 25 ) AND 
+            ( Cum( IIf( bar >= b2, FilC > L3, 0 ) ) == 0 ) AND 
+            ( Cum( IIf( bar >= b4, FilC > L2, 0 ) ) == 0 ); 
+
+LIS = SelectedValue( isSemicup ); 
+Lastbar = SelectedValue( Cum( bar ) ); 
+
+
+Line = LIS * ( ValueWhen( LIS * bar == b0, 1 ) * 
+       ( ( exp( Ptop ) - exp( Pbot ) ) / 
+         ( bar - b0 + 2 ) * 2 + 0.98 * exp( Pbot ) ) ); 
+
+if( LIS ) Plot( Line , "IsSemiCupPlot", colorYellow, styleThick ); 
+Plot( C, Date() + " Close", ParamColor("Color", colorBlack ), styleBar ); 
+
+Filter = isSemicup; 
+AddColumn( semicupperiod, "Semicup period", 1.0 );
+_SECTION_END();
+
+/*
+GfxSelectFont("amienne",20,500);//15--18,tinggi dari layar bawah
+GfxSetTextColor( colorRed );
+GfxTextOut( "HS and Semi Cup", 6, Status("pxheight")/11.3*10.-8);//4--10, lebar dari samping kiri
+*/
+
+
+_SECTION_BEGIN("Graphics");
+GrpPrm=Param("Graphic Space",1,-10,10);
+GraphXSpace=GrpPrm;
+_SECTION_END();

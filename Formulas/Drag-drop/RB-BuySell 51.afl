@@ -1,0 +1,101 @@
+_SECTION_BEGIN("Intraday Second Candle Range Breakout system"); 
+
+SetOption( "InitialEquity", 200000);
+SetOption("FuturesMode" ,True);
+SetOption("MinShares",1);
+SetOption("CommissionMode",2);
+SetOption("CommissionAmount",50);
+SetOption("AccountMargin",10);
+//SetOption("RefreshWhenCompleted",True);
+SetPositionSize(150,spsShares);
+SetOption( "AllowPositionShrinking", True );
+
+//--Intraday time frame 
+TimeFrameSet(in15Minute); 
+TimeFrameInMinutes = 15; 
+
+
+Candle=BarsSince(Day()!=Ref(Day(),-1))+1;
+RHigh=ValueWhen(candle==2,H);
+RLow=ValueWhen(candle==2,L);
+
+BuyPrice=RHigh+0.15;
+ShortPrice=RLow-0.15;
+Range=RHigh-RLow;
+BuyTarget=BuyPrice+Range;
+BuySL=BuyPrice-Range;
+ShortTarget=ShortPrice-Range;
+ShortSL=ShortPrice+Range;
+
+NewDay = (Day()!= Ref(Day(), -1)) OR BarIndex() == 0; 
+printf("\n NewDay : " + NewDay ); 
+EndDay = (Day()!= Ref(Day(), 1)); 
+printf("\n EndDay : " + EndDay ); 
+FirstBarTime = ValueWhen(NewDay,TimeNum(),1); 
+printf("\n FirstBarTime : " + FirstBarTime ); 
+EndTime = ValueWhen(EndDay,TimeNum(),1); 
+printf("\n EndTime : " + EndTime ); 
+SquareOffTime = 151500;
+printf("\n SquareOffTime : " + SquareOffTime ); 
+
+BarsSinceNewDay = BarsSince(NewDay);
+printf("\n BarsSinceNewDay : " + BarsSinceNewDay ); 
+
+BuySignal = Candle>2 AND Cross(H,BuyPrice);
+printf("\n BuySignal : " + BuySignal );
+ShortSignal=Candle>2 AND Cross(ShortPrice,L);
+printf("\n ShortSignal: " + ShortSignal);
+
+BarsSinceLastBuySignal = (BarsSince(Ref(BuySignal,-1)) + 1); 
+printf("\n BarsSinceLastBuySignal : " + BarsSinceLastBuySignal );
+BarsSinceLastShortSignal = (BarsSince(Ref(ShortSignal,-1)) + 1);
+printf("\n BarsSinceLastShortSignal : " + BarsSinceLastShortSignal );
+
+BarsSinceLastEntrySignal = Min(BarsSinceLastBuySignal, BarsSinceLastShortSignal); 
+printf("\n BarsSinceLastEntrySignal : " + BarsSinceLastEntrySignal );
+BothEntrySignalsNull = IsNull(BarsSinceLastBuySignal) AND IsNull(BarsSinceLastShortSignal); //true for start of Day 1 
+printf("\n BothEntrySignalsNull : " + BothEntrySignalsNull );
+
+
+Buy=BuySignal AND (BarsSinceNewDay < BarsSinceLastBuySignal);
+printf("\n Buy: " + Buy);
+
+Sell=((Candle>2) AND (H > BuyTarget) OR (BuySL > L) OR (TimeNum() > SquareOffTime) AND (BarsSinceNewDay > BarsSinceLastBuySignal));
+Sell = IIf((BarsSince(Buy) < (BarsSince(Ref(Sell,-1))+1)) OR (BarsSince(Buy) AND IsNull(BarsSince(Ref(Sell,-1)))),Sell,0); 
+printf("\n Sell: " + Sell);
+
+Short=ShortSignal AND (BarsSinceNewDay < BarsSinceLastShortSignal);
+printf("\n Short: " + Short);
+
+
+
+Cover=((Candle>2) AND (L<ShortTarget) OR (H>ShortSL) OR (TimeNum() > SquareOffTime) AND (BarsSinceNewDay > BarsSinceLastShortSignal));
+Cover = IIf((BarsSince(Short) < (BarsSince(Ref(Cover,-1))+1)) OR (BarsSince(Short) AND IsNull(BarsSince(Ref(Cover,-1)))),Cover,0); 
+printf("\n Cover : " + Cover );
+
+
+_N(Title = StrFormat("{{NAME}} - {{INTERVAL}} {{DATE}} Open %g, Hi %g, Lo %g, Close %g (%.1f%%) {{VALUES}}", O, H, L, C, SelectedValue( ROC( C, 1 ) ) )); 
+PlotOHLC ( O, H, L, C, "", IIf(C>O,colorBrightGreen,colorRed), styleCandle);
+Plot( RHigh, "", colorRed, styleLine | styleThick );
+Plot( RLow, "", colorGreen, styleLine | styleThick );
+il=L-1.05;
+ih=H+1.05;
+ib=H+1;
+is=L-1;
+
+PlotShapes(IIf(Buy, shapeSquare, shapeNone),colorBlue, 0, iL, Offset=-40);
+PlotShapes(IIf(Buy, shapeSquare, shapeNone),colorBlue, 0,iL, Offset=-50);
+PlotShapes(IIf(Buy, shapeUpArrow, shapeNone),colorLightBlue, 0,iL, Offset=-45);
+//PlotShapes(IIf(Sell, shapeSquare, shapeNone),colorBlue, 0, iB, Offset=-40);
+//PlotShapes(IIf(Sell, shapeSquare, shapeNone),colorBlue, 0,iB, Offset=-50);
+PlotShapes(IIf(Sell, shapeDownArrow, shapeNone),colorDarkYellow, 0,iB, Offset=-10);
+PlotShapes(IIf(Short , shapeSquare, shapeNone),colorRed, 0, iH, Offset=40);
+PlotShapes(IIf(Short , shapeSquare, shapeNone),colorRed, 0,iH, Offset=50);
+PlotShapes(IIf(Short , shapeDownArrow, shapeNone),colorDarkRed, 0,iH, Offset=-45);
+//PlotShapes(IIf(Cover, shapeSquare, shapeNone),colorRed, 0, iS, Offset=-10);
+//PlotShapes(IIf(Cover, shapeSquare, shapeNone),colorRed, 0,iS, Offset=-20);
+PlotShapes(IIf(Cover, shapeUpArrow, shapeNone),colorDarkGreen, 0,iS, Offset=-20);
+
+//--Restore time frame 
+TimeFrameRestore(); 
+_SECTION_END();

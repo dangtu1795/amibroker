@@ -1,0 +1,25 @@
+// Downloaded From www.WiseStockTrader.com
+//Quick Check for Uptrend Stock by Sosrodiningrat @2017
+
+initeq=Param("InitialEquity",1e6,1,1e8,1);
+SetOption("InitialEquity",initeq);
+SetOption("AllowSameBarExit",True);
+SetTradeDelays(0,0,0,0);
+
+Candlestick=ParamToggle("Candlestick","OFF|ON",0);
+BuyPrice=O;
+SellPrice=C;
+
+Buy=Sell=1;
+Plot(C,"",colorBlack,styleCandle);
+Plot(Equity(1),"",colorGrey50,styleLine|styleThick|styleOwnScale);
+printf("\nEquity= "+Equity(1));
+printf(" >>>> "+WriteIf((LastValue(Equity(1))/initeq)>1,"GOOD","BAD"));
+
+{_N(Title = StrFormat(Name()+" - {{INTERVAL}} {{DATE}} Open %g, Hi %g, Lo %g, Close %g (%.1f%%) Val(B)=%.2f Equity=%.f", O, H, L, C,SelectedValue(ROC(C,1)),SelectedValue(C*V/1e9),Equity()/1));}
+
+GfxSetOverlayMode(1);
+GfxSetBkMode(1); // transparent
+GfxSelectFont("Tahoma", Status("pxheight")/10 );
+GfxSetTextColor(IIf((LastValue(Equity(1))/initeq)>1,colorBlue,colorRed));
+GfxTextOut(WriteIf((LastValue(Equity(1))/initeq)>1,"GOOD","BAD"),610,90);

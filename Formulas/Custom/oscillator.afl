@@ -1,0 +1,35 @@
+// Downloaded From www.WiseStockTrader.com
+_SECTION_BEGIN( "Stoch KD Cloud" );
+
+periods = Param( "Periods", 15, 1, 200, 1 );
+Ksmooth = Param( "%K Avg", 3, 1, 200, 1 );
+a = StochK( periods , Ksmooth);
+Plot( a, _DEFAULT_NAME(), ParamColor( "Color", colorBrightGreen ), ParamStyle("Style") );
+Dsmooth = Param( "%D Avg", 3, 1, 200, 1 );
+b = StochD( periods , Ksmooth, DSmooth );
+Plot( b, _DEFAULT_NAME(), ParamColor( "Color", colorRed ), ParamStyle("Style") );
+
+PlotOHLC( a,a,b,a,"", IIf(a>b, colorBrightGreen, colorRed), styleCloud);
+
+Overbought= 80; Oversold= 20;
+Plot(Overbought,"OB",colorRed);
+Plot(Oversold,"OS",colorGreen);
+
+Buy = Cross( a, b );
+Sell = Cross( b, a );
+PlotShapes( shapeSmallUpTriangle * Buy + shapeSmallDownTriangle * Sell, IIf( Buy, colorWhite, colorWhite ) );
+
+_SECTION_END();
+
+_SECTION_BEGIN("Animated_BackGround_");
+// http://amibrokertraders.blogspot.com //
+//====================
+
+for( i = 1; i < BarCount; i++ )
+z = (GetPerformanceCounter()/100)%256;
+anim=ColorHSB( ( i + z ) % 256, 255, 100 );
+SetChartBkColor(anim);
+RequestTimedRefresh(1);
+
+//====================
+_SECTION_END();

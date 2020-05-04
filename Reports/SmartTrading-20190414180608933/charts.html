@@ -1,0 +1,46 @@
+<HTML><HEAD>
+<TITLE>SmartTrading - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'>Statistics</a> | <a href='charts.html'><FONT class='SELTAB'>Charts</FONT></a> | <a href='trades.html'>Trades</a> | <a href='formula.html'>Formula</a> | <a href='settings.html'>Settings</a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Charts</TH></TR>
+</TABLE><P><FONT class='BIG'>1. Portfolio Equity</FONT></P><P ALIGN=CENTER><IMG SRC='1. Portfolio Equity.png'></P>
+<P><FONT class='BIG'>2. Underwater Equity</FONT></P><P ALIGN=CENTER><IMG SRC='2. Underwater Equity.png'></P>
+<P><FONT class='BIG'>3. Profit Table</FONT></P><P ALIGN=CENTER><table border='1' bordercolor='#000000' cellspacing='0' cellpadding='3'style='border-collapse:collapse;'>
+<tr bgcolor='#eeffee' >
+<td><b>Year</b></td><td><b>Jan</b></td><td><b>Feb</b></td><td><b>Mar</b></td><td><b>Apr</b></td><td><b>May</b></td><td><b>Jun</b></td><td><b>Jul</b></td><td><b>Aug</b></td><td><b>Sep</b></td><td><b>Oct</b></td><td><b>Nov</b></td><td><b>Dec</b></td><td><b>Yr%</b></td></tr>
+<tr bgcolor='#ffffee'>
+<td bgcolor='#eeffee'><b>2018</b></td><td>N/A</td><td>N/A</td><td>N/A</td><td nowrap>0.0%</td><td nowrap><font color='880000'>-0.0%</font></td><td nowrap>0.0%</td><td nowrap>0.0%</td><td nowrap>0.0%</td><td nowrap><font color='880000'>-0.0%</font></td><td nowrap>0.0%</td><td nowrap>0.0%</td><td nowrap><font color='880000'>-0.0%</font></td><td nowrap bgcolor='#eeffee'><b>0.0%</b></td></tr>
+<tr bgcolor='#ffffff'>
+<td bgcolor='#eeffff'><b>2019</b></td><td nowrap>0.0%</td><td nowrap>0.0%</td><td nowrap><font color='880000'>-0.0%</font></td><td nowrap>0.0%</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td nowrap bgcolor='#eeffff'><font color='880000'><b>-0.0%</b></font></td></tr>
+<tr bgcolor='#eeffee' >
+<td><b>Avg</b></td><td nowrap><b>0.0%</b></td><td nowrap><b>0.0%</b></td><td nowrap><font color='880000'><b>-0.0%</b></font></td><td nowrap><b>0.0%</b></td><td nowrap><font color='880000'><b>-0.0%</b></font></td><td nowrap><b>0.0%</b></td><td nowrap><b>0.0%</b></td><td nowrap><b>0.0%</b></td><td nowrap><font color='880000'><b>-0.0%</b></font></td><td nowrap><b>0.0%</b></td><td nowrap><b>0.0%</b></td><td nowrap><font color='880000'><b>-0.0%</b></font></td><td>&nbsp;</td></tr></table>
+</P><P><FONT class='BIG'>Profit distribution</FONT></P><P ALIGN=CENTER><IMG SRC='profdist.png'></P>
+<P><FONT class='BIG'>Max. Adverse Excursion distribution</FONT></P><P ALIGN=CENTER><IMG SRC='maedist.png'></P>
+<P><FONT class='BIG'>Max. Favorable Excursion distribution</FONT></P><P ALIGN=CENTER><IMG SRC='mfedist.png'></P>
+</BODY></HTML>

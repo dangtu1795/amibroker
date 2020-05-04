@@ -1,0 +1,47 @@
+colorOk = colorGreen;
+colorFail = colorRed;
+
+procedure OpenLogfile()
+{
+    // replace it to use your favorite editor
+    sEditorCmd = "notepad.exe";
+    //sEditorCmd = "C:\\Program Files (x86)\\Notepad++\\notepad++.exe";
+
+    result = ShellExecute(sEditorCmd , DotNetGetLogFile(), DotNetGetHomeDirectory() + "\\.NET for AmiBroker\\Logs", 5);
+    if (result < 32)
+    {
+        YTracePrintMessage("", 10);
+        YTracePrintMessage("Cannot start editor to open log file! Error code: " + result, 10, colorFail);
+    }
+}
+
+// NOTE: If you see this comment in a panel's error message, your .NET for AmiBroker installation is corrupt.
+// Start Diag & License Utility (dl.exe) and review the latest log files in <AmiBroker>\.NET for AmiBroker\Logs folder.
+YTracePrintMessage("Click this panel to open the log file.", 14, colorOk);
+
+YTracePrintMessage("", 14, colorOk);
+YTracePrintMessage("AmiBroker:", 10, colorOk);
+YTracePrintMessage("Version: " + NumToStr(Version(), 1.2), 10, colorOk);
+
+YTracePrintMessage("", 14, colorOk);
+YTracePrintMessage(".NET for AmiBroker:", 10, colorOk);
+YTracePrintMessage("Product: " + DNfABProduct(), 10, colorOk);
+YTracePrintMessage("Version: " + DNfABVersion(), 10, colorOk);
+YTracePrintMessage("Home Directory: " + DotNetGetHomeDirectory(), 10, colorOk);
+
+if (ParamTrigger("Log", "Open log file") OR GetCursorMouseButtons() == 9)
+    OpenLogfile();
+
+if (ParamTrigger("Assemblies", "Dump and open log file"))
+{
+    DotNetDumpAssemblies();
+    OpenLogfile();
+}
+
+if (ParamTrigger("AFL methods",  "Dump and open log file"))
+{
+    DotNetDumpFunctions("");
+    OpenLogfile();
+}
+
+Title = ".NET for AmiBroker - Admin panel";

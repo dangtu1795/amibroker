@@ -1,0 +1,19 @@
+_SECTION_BEGIN("Filter Strongest Stocks over 2 years old");
+// only check stockers over 2years old ( 500 bars)
+Cond1 =  BarCount >= 500;
+// the price is smaller than 10% with the highest high value of 2 years
+Cond2 = C <= (0.1 * (HHV(H, 500)));
+// the Price is higher than MA200 at-least 20%.
+Cond3 = C >= (MA(C, 200) *  0.2);
+
+Buy  = Cond1 AND Cond2 AND Cond3;
+
+Filter = Buy;
+
+AddColumn( Close, "Close " );
+AddColumn( Volume,"Volume " );
+
+_SECTION_END();
+
+
+

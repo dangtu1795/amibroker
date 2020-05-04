@@ -1,0 +1,707 @@
+
+//Robert
+
+_SECTION_BEGIN("Price 396");
+_TRACE("!CLEAR!"); // this clears the internal log window.
+SetChartBkColor(colorGrey50);
+
+
+_N(Title = StrFormat("{{NAME}} - {{INTERVAL}} {{DATE}} Open %g, Hi %g, Lo %g, Close %g (%.1f%%){{VALUES}}",
+       O, H, L, C, SelectedValue(ROC(C, 1))));
+
+SelPds = ParamList("Periods:", "34,55,89,144", 0);
+
+if (SelPds == "34")
+    Pds = 34;
+if (SelPds == "55")
+    Pds = 55;
+
+Middle = EMA(C, pds);
+
+Himid = EMA(H, Pds);
+Lomid = EMA(L, Pds);
+
+UpperBand = Middle + 3.5 * ATR(Pds);
+UpperBand1 = Middle + 1.75 * ATR(Pds);
+LowerBand = Middle - 3.5 * ATR(Pds);
+LowerBand1 = Middle - 1.75 * ATR(Pds);
+
+Plot(C, "", colorBlack, styleCandle);
+
+Plot(Middle, "Middle", colorCustom12, styleThick);
+Plot(Himid, "", colorCustom12, styleDashed);
+Plot(Lomid, "", colorCustom12, styleDashed);
+Plot(UpperBand, "Upper", colorGold, styleThick);
+Plot(UpperBand1, "", colorGold, styleDashed);
+Plot(LowerBand, "Lower", colorGold, styleThick);
+Plot(LowerBand1, "", colorGold, styleDashed);
+PlotOHLC(Lomid, Himid, Lomid, Himid, "", ColorRGB(230, 200, 200), styleCloud | styleNoLabel);
+_SECTION_END();
+
+_SECTION_BEGIN("Price 3150");
+
+/* **********************************
+
+Code to automatically identify pivots
+
+********************************** */
+
+// -- what will be our lookback range for the hh and ll?
+farback = Param("How Far back to go", 100, 50, 5000, 10);
+nBars = Param("Number of bars", 12, 5, 40);
+
+// -- Title.
+stockDate = "{{INTERVAL}} {{DATE}}";
+Title = Name() + " (" + StrLeft(FullName(), 15) + ") O: " + Open + ", H: " + High + ", L: " + Low + ", C: " + Close + " - " + stockDate;
+
+// -- Plot basic candle chart
+
+
+PlotOHLC(Open, High, Low, Close,
+
+    "BIdx = " + BarIndex() +
+
+        "\n" + "O = " + O + "\n" + "H = " + H + "\n" + "L = " + L
+
+        + "\n" + "C ",
+
+    colorBlack, styleCandle);
+
+rbBidx = "BIdx = " + BarIndex() +
+
+        "\n" + "O = " + O + "\n" + "H = " + H + "\n" + "L = " + L
+
+        + "\n" + "C " + C;
+
+//_TRACE("rbBidx: " + rbBidx);
+
+GraphXSpace = 7;
+
+//track LastSellBuy value
+
+lastRemindValue = 0;
+sig = "SELL";
+nPhien = 0;
+barIndexAtSignal = 0;
+
+// -- Create 0-initialized arrays the size of barcount
+
+oldIndicatory = H-H;
+
+aHPivs = H - H;
+
+aLPivs = L - L;
+
+// -- More for future use, not necessary for basic plotting
+
+aHPivHighs = H - H;
+
+aLPivLows = L - L;
+
+aHPivIdxs = H - H;
+
+aLPivIdxs = L - L;
+
+nHPivs = 0;
+
+nLPivs = 0;
+
+lastHPIdx = 0;
+
+lastLPIdx = 0;
+
+lastHPH = 0;
+
+lastLPL = 0;
+
+curPivBarIdx = 0;
+
+// -- looking back from the current bar, how many bars
+
+// back were the hhv and llv values of the previous
+
+// n bars, etc.?
+
+aHHVBars = HHVBars(H, nBars);
+
+aLLVBars = LLVBars(L, nBars);
+
+aHHV = HHV(H, nBars);
+
+aLLV = LLV(L, nBars);
+
+// -- Would like to set this up so pivots are calculated back from
+
+// last visible bar to make it easy to "go back" and see the pivots
+
+// this code would find. However, the first instance of
+
+// _Trace output will show a value of 0
+
+aVisBars = Status("barvisible");
+
+nLastVisBar = LastValue(Highest(IIf(aVisBars, BarIndex(), 0)));
+
+//_TRACE("Last visible bar: " + nLastVisBar);
+
+// -- Initialize value of curTrend
+
+curBar = (BarCount - 1);
+
+curTrend = "";
+
+if (aLLVBars[curBar] <
+
+    aHHVBars[curBar]) {
+
+    curTrend = "D";
+}
+
+else {
+
+    curTrend = "U";
+}
+
+// -- Loop through bars. Search for
+
+// entirely array-based approach
+
+// in future version
+
+for (i = 0; i < farback; i++) {
+
+    curBar = (BarCount - 1) - i;
+
+    // -- Have we identified a pivot? If trend is down...
+
+    if (aLLVBars[curBar] < aHHVBars[curBar]) {
+
+        // ... and had been up, this is a trend change
+
+        if (curTrend == "U") {
+
+            curTrend = "D";
+
+            // -- Capture pivot information
+
+            curPivBarIdx = curBar - aLLVBars[curBar];
+			aLPivs[curPivBarIdx] = 1;
+			testPhien = BarCount - curPivBarIdx - 1;
+            //_TRACE("Trend updated to UP cach day" + testPhien);
+            if (lastRemindValue == 0) {
+                lastRemindValue = C[curPivBarIdx];
+                barIndexAtSignal = curPivBarIdx;
+                nPhien = BarCount - curPivBarIdx - 1;
+                sig = "BUY";
+            }
+
+            //_TRACE("curPivBarIdx for Up: " +  curPivBarIdx);
+
+            aLPivLows[nLPivs] = L[curPivBarIdx];
+
+            aLPivIdxs[nLPivs] = curPivBarIdx;
+
+            nLPivs++;
+        }
+
+        // -- or current trend is up
+    }
+    else {
+
+        if (curTrend == "D") {
+
+            curTrend = "U";
+
+            curPivBarIdx = curBar - aHHVBars[curBar];
+			testPhien = BarCount - curPivBarIdx - 1;
+            //_TRACE("Trend updated to Down cach day" + testPhien);
+            if (lastRemindValue == 0) {
+                lastRemindValue = C[curPivBarIdx];
+                barIndexAtSignal = curPivBarIdx;
+                nPhien = BarCount - curPivBarIdx - 1;
+                sig = "SELL";
+            }
+            //_TRACE("curPivBarIdx for down: " +  curPivBarIdx);
+
+            aHPivs[curPivBarIdx] = 1;
+
+            aHPivHighs[nHPivs] = H[curPivBarIdx];
+
+            aHPivIdxs[nHPivs] = curPivBarIdx;
+
+            nHPivs++;
+        }
+
+        // -- If curTrend is up...else...
+    }
+
+    // -- loop through bars
+}
+
+// -- Basic attempt to add a pivot this logic may have missed
+
+// -- OK, now I want to look at last two pivots. If the most
+
+// recent low pivot is after the last high, I could
+
+// still have a high pivot that I didn't catch
+
+// -- Start at last bar
+
+curBar = (BarCount - 1);
+
+candIdx = 0;
+
+candPrc = 0;
+
+lastLPIdx = aLPivIdxs[0];
+
+lastLPL = aLPivLows[0];
+
+lastHPIdx = aHPivIdxs[0];
+
+lastHPH = aHPivHighs[0];
+
+if (lastLPIdx > lastHPIdx) {
+
+    // -- Bar and price info for candidate pivot
+
+    candIdx = curBar - aHHVBars[curBar];
+
+    candPrc = aHHV[curBar];
+
+    if (
+
+        lastHPH<candPrc AND
+
+                candIdx> lastLPIdx AND
+
+            candIdx
+        < curBar) {
+
+        // -- OK, we'll add this as a pivot...
+
+        aHPivs[candIdx] = 1;
+        //_TRACE("Another SELL at index: " + candIdx);
+        //_TRACE("sell value: " + candPrc);
+        lastRemindValue = C[candIdx];
+        barIndexAtSignal = candIdx;
+        nPhien = BarCount - candIdx - 1;
+        sig = "SELL";
+
+        // ...and then rearrange elements in the
+
+        // pivot information arrays
+
+        for (j = 0; j < nHPivs; j++) {
+
+            aHPivHighs[nHPivs - j] = aHPivHighs[nHPivs -
+
+                (j + 1)];
+
+            aHPivIdxs[nHPivs - j] = aHPivIdxs[nHPivs - (j + 1)];
+        }
+
+        aHPivHighs[0] = candPrc;
+
+        aHPivIdxs[0] = candIdx;
+
+        nHPivs++;
+    }
+}
+else {
+
+    // -- Bar and price info for candidate pivot
+
+    candIdx = curBar - aLLVBars[curBar];
+
+    candPrc = aLLV[curBar];
+
+    if (
+
+        lastLPL > candPrc AND
+
+                      candIdx
+        > lastHPIdx AND
+
+              candIdx
+        < curBar) {
+
+        // -- OK, we'll add this as a pivot...
+
+        aLPivs[candIdx] = 1;
+        //_TRACE("Another BUY at index: " + candIdx);
+        
+        lastRemindValue = C[candIdx];
+        barIndexAtSignal = candIdx;
+        nPhien = BarCount - candIdx - 1;
+        sig = "BUY";
+
+        // ...and then rearrange elements in the
+
+        // pivot information arrays
+
+        for (j = 0; j < nLPivs; j++) {
+
+            aLPivLows[nLPivs - j] = aLPivLows[nLPivs - (j + 1)];
+
+            aLPivIdxs[nLPivs - j] = aLPivIdxs[nLPivs - (j + 1)];
+        }
+
+        aLPivLows[0] = candPrc;
+
+        aLPivIdxs[0] = candIdx;
+
+        nLPivs++;
+    }
+}
+
+// -- Dump inventory of high pivots for debugging
+
+/*
+
+for (k=0; k<nHPivs; k++) {
+
+_TRACE("High pivot no. " + k
+
++ " at barindex: " + aHPivIdxs[k] + ", " 
+
++ WriteVal(ValueWhen(BarIndex()==aHPivIdxs[k], 
+
+DateTime(), 1), formatDateTime)
+
++ ", " + aHPivHighs[k]);
+
+}
+
+*/
+
+
+
+
+
+// -- OK, let's plot the pivots using arrows
+
+PlotShapes(
+
+    IIf(aHPivs == 1, shapeDownArrow, shapeNone), colorRed, 0, High, Offset = -15);
+
+PlotShapes(
+
+    IIf(aLPivs == 1, shapeUpArrow, shapeNone), colorGreen, 0, Low, Offset = -15);
+
+
+
+
+//functions
+function DateNumToStr(DtNum)
+{
+DayNm = round(frac(DtNum/100)*100);
+MthNm = round(frac(DtNum/10000)*100);
+YrNm = int(DtNum/10000)+1900;
+return NumToStr(DayNm,1.0)+"/"+NumToStr(MthNm,1.0)+"/"+NumToStr(YrNm,1.0,False);
+} 
+
+function BarIndexToDate(nBarindex)
+{
+
+Bi=BarIndex();
+DtN=DateNum();
+BiNum= nBarindex ;
+BiDtNum=ValueWhen(Bi==BiNum,DtN);
+
+BiDt=DateNumTostr(BiDtNum);
+
+return BiDt;
+}
+
+function GetBuySellHistory(fileName) {
+	fh = fopen( fileName, "r"); 
+	lastLine = "0";
+	if( fh ) 
+	{ 
+	   while( ! feof( fh ) ) 
+		   { 
+		      lastLine = fgets( fh ) ;
+		   }
+	   fclose(fh);
+	} 
+	else 
+	{ 
+		_TRACE("ERROR: file can not be found (does not exist)");
+	} 
+	return lastLine;
+}
+
+function CompareTwoDateString(date1, date2){
+	//_TRACE("date1" + date1);
+	if(date1 == date2){
+		//_TRACE("date1 == date2");
+		result =  0;
+
+	} else {
+		
+		year1 = StrToNum(StrExtract(date1, 2, '-'));
+		month1 = StrToNum( StrExtract(date1, 1, '-'));
+		day1 = StrToNum( StrExtract(date1, 0,'-'));
+
+		year2 = StrToNum( StrExtract(date2, 2, '-'));
+		month2 =  StrToNum( StrExtract(date2, 1,'-'));
+		day2 = StrToNum( StrExtract(date2, 0, '-'));
+		
+		if (year1 > year2) {
+			result = 1;
+			
+		}else{
+			if(month1 > month2){
+				result = 1;
+				
+			}else{
+			
+				if(day1 > day2) {
+				
+					result = 1;
+				}else{
+				
+					result = -1;
+				}
+			}
+		}
+	}
+	return result;
+}
+
+function AppendNewLineToFile(fileName,newStr, mailContent, sig) {
+	
+	//https://api.telegram.org/bot878637551:AAEZ1AoVeEOKVfkezOhFsXHvQxzQrMPIxNU/sendMessage?chat_id=-1001445799293&text=oeqjdsjadj
+	// send message to telegram
+	hURL	= InternetOpenURL("https://api.telegram.org/bot878637551:AAEZ1AoVeEOKVfkezOhFsXHvQxzQrMPIxNU/sendMessage?chat_id=-1001445799293&text="+mailContent);
+	InternetClose(hURL);
+	//_TRACE("mstr : " + mstr);
+   	f = fopen( fileName, "a"); 
+	if( f ) 
+	{ 
+	   fputs( newStr , f );
+	   fclose(f);
+	} 
+	else 
+	{ 
+		_TRACE("ERROR: file can not be found (does not exist)");
+	   
+	} 
+}
+
+function YearMonthDayFormat(olddateFormart) {
+
+	years = StrExtract(olddateFormart, 2, '/');
+	months = StrExtract(olddateFormart, 1, '/');
+	days = StrExtract(olddateFormart, 0, '/');
+	newDateStr = years + "-" +  months + "-" + days;
+	return newDateStr;
+}
+
+
+
+// try reading file
+filename = Name() + ".txt";
+
+firstLine = GetBuySellHistory(filename);
+_TRACE("historyData:" + firstLine);
+detectedDatestr = BarIndexToDate(barIndexAtSignal);
+detectedDate = YearMonthDayFormat(detectedDatestr);
+emailcontent = Name() + " Has new signal: " + sig + " -- Value: " + lastRemindValue + " -- At: " + detectedDate ;
+//emailcontent = "Hello Vietnam";
+if (firstLine == "") {
+	   	// dont have any data => just need to push new one
+	   	
+	   	str = sig + "," + lastRemindValue + "," + detectedDate;
+	   	AppendNewLineToFile(filename,str, emailcontent, sig);
+	}else{
+	   	// we have data, only push latest signal
+	   	_TRACE("Have data for " + Name() + " already");
+
+	   	// first, need to check last updated date.
+		// get the last recored data
+		lastData = StrExtract( firstLine, -1, ';' );
+		_TRACE("lastData: " + lastData);
+	   	lastDateStr = StrExtract( lastData, 2 );
+		_TRACE("lastDate " +  lastDateStr);
+	   	
+	   	if(lastDateStr != "") {
+	   		_TRACE("detectedDate " +  detectedDate);
+	   		
+	   		// compare:
+	   		rs = CompareTwoDateString(detectedDate, lastDateStr);
+	   		_TRACE("date comparation: " + rs);
+	   		if( rs > 0) {
+	   			// need to update
+	   			str = ";" + sig + "," + lastRemindValue + "," + detectedDate;
+	   			AppendNewLineToFile(filename,str, emailcontent, sig);
+	   		} else{
+	   			// do nothing as we saved this result before.
+	   		}
+	   		// need to draw the indicator in the pass
+	   		// update by sell signal based on last value:
+	   			// higlight all saved date from text file.
+	   				//id = 0;
+	   				//currentData = StrExtract(firstLine,0, ';');
+	   				//while(currentData != "") {
+					for(id = 0; id < 50; id++){
+						currentData = StrExtract(firstLine,id, ';');
+						//_TRACE("I am here");
+						if(currentData == ""){
+							break;
+						}
+						//_TRACE("running here: " + currentData);
+						InputDate = StrExtract(currentData,2);//"2011-04-05"; must be year month day
+						_TRACE("InputDate " +  InputDate);
+						biatdate = Lookup( BarIndex(), _DT( InputDate ), 0 );
+						_TRACE("biatdate " + biatdate);
+						if(biatdate){
+							if (StrExtract( currentData, 0 ) == "BUY") {
+							_TRACE("draw Buy");
+							oldIndicatory[biatdate]= 1;
+								//PlotShapes(IIf(oldIndicatory == 1, shapeUpArrow, shapeNone), colorYellow, 0, Low, Offset = -35);	
+							}else{
+								oldIndicatory[biatdate]= 2;
+								//PlotShapes(IIf(oldIndicatory == 1, shapeDownArrow, shapeNone), colorYellow, 0, High, Offset = -35);
+								_TRACE("draw Sell");
+							}
+						//oldIndicatory[biatdate]= 1;
+						
+							sig = StrExtract( currentData, 0 );
+							lastRemindValue = StrToNum(StrExtract( currentData, 1 ));
+							nPhien = BarCount - biatdate - 1;
+						}
+
+						
+						//id = id +1;
+						
+	   				}
+	   				PlotShapes(IIf(oldIndicatory == 1, shapeUpArrow, shapeNone), colorYellow, 0, Low, Offset = -35);	
+	   				PlotShapes(IIf(oldIndicatory == 2, shapeDownArrow, shapeNone), colorYellow, 0, High, Offset = -35);
+	   	}else{
+	   		_TRACE("can not convert string to date");
+	   	}
+
+	}
+_TRACE("lastRemindValue " + lastRemindValue );
+_TRACE("sig " + sig );
+GfxSelectFont("Times New Roman", 11, 700);
+GfxTextOut(("Bao " + sig + " luc: " + lastRemindValue + " cach day " + nPhien + " phien."), 15, 100);
+
+profit = IIf(sig == "BUY", (C[BarCount - 1] / lastRemindValue - 1) * 100, 0);
+GfxTextOut(("Profit: " + profit + "%"), 15, 150);
+
+_SECTION_END();
+
+_SECTION_BEGIN("Price");
+SetChartOptions(0,chartShowArrows|chartShowDates);
+_N(Title = StrFormat("{{NAME}} - {{INTERVAL}} {{DATE}} {{OHLCX}} Vol %.0f {{VALUES}}", V ));
+Plot( C, "Close", ParamColor("Color", colorDefault ), styleNoTitle | ParamStyle("Style") | GetPriceStyle() ); 
+_SECTION_END();
+
+_SECTION_BEGIN("MA");
+P = ParamField("Price field",-1);
+Periods = Param("Periods", 15, 2, 200, 1 );
+Plot( MA( P, Periods ), _DEFAULT_NAME(), ParamColor( "Color", colorCycle ), ParamStyle("Style", styleLine | styleNoLabel ) | styleNoRescale ); 
+_SECTION_END();
+
+_SECTION_BEGIN("Mid MA");
+P = ParamField("Price field",-1);
+Periods = Param("Periods", 45, 2, 300, 1 );
+Plot( MA( P, Periods ), _DEFAULT_NAME(), ParamColor( "Color", colorCycle ), ParamStyle("Style", styleLine | styleNoLabel ) | styleNoRescale ); 
+_SECTION_END();
+
+_SECTION_BEGIN("Long MA");
+P = ParamField("Price field",-1);
+Periods = Param("Periods", 100, 2, 400, 1 );
+Plot( MA( P, Periods ), _DEFAULT_NAME(), ParamColor( "Color", colorCycle ), ParamStyle("Style", styleLine | styleNoLabel ) | styleNoRescale ); 
+_SECTION_END();
+
+_SECTION_BEGIN("BBands");
+P = ParamField("Price field",-1);
+Periods = Param("Periods", 15, 2, 100, 1 );
+Width = Param("Width", 2, 0, 10, 0.05 );
+Color = ParamColor("Color", colorLightGrey );
+Color = ColorBlend( Color,  GetChartBkColor(), 0.5 );
+Style = ParamStyle("Style", styleLine | styleNoLabel ) | styleNoRescale;;
+Plot( bbt = BBandTop( P, Periods, Width ), "BBTop" + _PARAM_VALUES(), Color, Style ); 
+Plot( bbb = BBandBot( P, Periods, Width ), "BBBot" + _PARAM_VALUES(), Color, Style ); 
+PlotOHLC( bbt, bbt, bbb, bbb, "", ColorBlend( Color, GetChartBkColor(), 0.7 ), styleNoLabel | styleCloud | styleNoRescale, Null, Null, Null, -1 );
+_SECTION_END();
+
+_SECTION_BEGIN("Volume");
+Color = ParamColor("Color", ColorRGB( 128, 128, 192 ) );
+Plot( Volume, _DEFAULT_NAME(), ColorBlend( Color, GetChartBkColor(), 0.5  ), styleNoTitle | ParamStyle( "Style", styleHistogram | styleOwnScale | styleThick | styleNoLabel, maskHistogram  ), 2 );
+_SECTION_END();
+
+_SECTION_BEGIN("Price Interpretation");
+movshort = ParamField("Short Time MA", 8 );
+movmed = ParamField("Mid Time MA", 9 );
+movlong = ParamField("Long Time MA", 10 );
+btop = ParamField("BBTop", 11 );
+bbot = ParamField("BBBottom", 12 );
+if( Status("action") == actionCommentary )
+{
+width = btop - bbot;
+lslop = LinRegSlope( C, 30 ) + 100;
+lslo = LLV( lslop, 90 );
+lshi = HHV( lslop, 90 );
+lswidth = lshi - lslo;
+trend = 100*( lslop - lslo )/lswidth;
+
+mawidth = MA( width, 100 );
+relwidth = 100*(width - mawidth)/mawidth;
+
+_N( tname = Name()+"("+FullName()+")" );
+
+printf("Price and moving averages:\n");
+printf( tname + " has closed " + WriteIf( C > movshort, "above" , "below" ) + " its Short time moving average. ");
+
+printf("\nShort time moving average is currently " + WriteIf( movshort > movmed, "above", "below") + " mid-time, AND " + WriteIf( movshort > movlong, "above", "below" ) + " long time moving averages.");
+
+printf("\nThe relationship between price and moving averages is: "+
+WriteIf( C > movshort AND movshort > movmed, "bullish",
+WriteIf( C < movshort AND movshort < movmed, "bearish", "neutral" ) ) + " in short-term, and "+
+WriteIf( movshort > movmed AND movmed > movlong , "bullish",
+WriteIf( movshort < movmed AND movmed < movlong, "bearish", "neutral" ) ) + " in mid-long term. ");
+
+printf("\n\nBollinger Bands:\n");
+printf(tname+ " has closed " + 
+WriteIf( C < bbot, "below the lower band by " +
+WriteVal( 100 *( bbot-C )/ width, 1.1 ) + "%%. " +
+WriteIf( trend < 30, " This combined with the steep downtrend can suggest that the downward trend in prices has a good chance of continuing.  However, a short-term pull-back inside the bands is likely.",
+WriteIf( trend > 30 AND trend < 70, "Although prices have broken the lower band and a downside breakout is possible, the most likely scenario for "+tname+" is to continue within current trading range.", "" ) ), "" ) +
+
+WriteIf( C > btop, "above the upper band by " +
+WriteVal( 100 *( C- btop )/ width, 1.1 ) + "%%. " +
+WriteIf( trend > 70, " This combined with the steep uptrend suggests that the upward trend in prices has a good chance of continuing.  However, a short-term pull-back inside the bands is likely.",
+WriteIf( trend > 30 AND trend < 70, "Although prices have broken the upper band and a upside breakout is possible, the most likely scenario for "+tname+" is to continue within current trading range.", "" ) ), "" ) +
+
+WriteIf( C < btop AND ( ( btop - C ) / width ) < 0.5, 
+"below upper band by " +
+WriteVal( 100 *( btop - C )/ width, 1.1 ) + "%%. ", 
+WriteIf( C < btop AND C > bbot , "above bottom band by " +
+WriteVal( 100 *( C - bbot )/ width, 1.1 ) + "%%. ", "" ) ));
+
+printf("\n"+
+WriteIf( ( trend > 30 AND trend < 70 AND ( C > btop OR C < bbot ) ) AND abs(relwidth) > 40,
+		 "This picture becomes somewhat unclear due to the fact that Bollinger Bands are  currently",
+		 "Bollinger Bands are " )+	  
+WriteVal( abs( relwidth ), 1.1 ) + "%% " +
+WriteIf( relwidth > 0, "wider" , "narrower" ) +
+" than normal.");
+
+printf("\n");
+
+printf(
+WriteIf( abs( relwidth ) < 40, "The current width of the bands (alone) does not suggest anything conclusive about the future volatility or movement of prices.","")+
+WriteIf( relwidth < -40, "The narrow width of the bands suggests low volatility as compared to " + tname + "'s normal range.  Therefore, the probability of volatility increasing with a sharp price move has increased for the near-term. "+
+"The bands have been in this narrow range for " + WriteVal(BarsSince(Cross(-40,relwidth)),1.0) + " bars. The probability of a significant price move increases the longer the bands remain in this narrow range." ,"")+
+WriteIf( relwidth > 40, "The large width of the bands suggest high volatility as compared to " + tname + "'s normal range.  Therefore, the probability of volatility decreasing and prices entering (or remaining in) a trading range has increased for the near-term. "+
+"The bands have been in this wide range for  " + WriteVal(BarsSince(Cross(relwidth,40)),1.0) + " bars.The probability of prices consolidating into a less volatile trading range increases the longer the bands remain in this wide range." ,""));
+
+printf("\n\nThis commentary is not a recommendation to buy or sell. Use at your own risk.");
+}
+_SECTION_END();

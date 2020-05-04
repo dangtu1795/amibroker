@@ -1,0 +1,42 @@
+_SECTION_BEGIN("super swing trader");
+P = ParamField("Price field",-1);
+Buy=Cross (TEMA(C,20),WMA(C,60));
+up = TEMA(High, 30);
+Sell=Cross (WMA(C,60),TEMA(C,20));
+down = TEMA(Low, 30);
+Buy=ExRem(Buy,Sell);
+Sell=ExRem(Sell,Buy);
+PlotShapes(IIf(Buy, shapeUpArrow,shapeNone),colorBlue, 0, L, Offset=-20);
+PlotShapes(IIf(Sell, shapeDownArrow,shapeNone),colorOrange, 0, H, Offset=-35);
+dist = 2.0*ATR(10);
+dist1 = 3.5*ATR(10);
+for( i = 0; i < BarCount; i++ ) 
+{ 
+ if( Buy[i] ) 
+ {
+  PlotText( "\nBuy:" + C[ i ] + "\nT= " + (L[i]*1.005) + "\nSL= " + (L[i]*0.9975), i, L[ i ]-dist[i], colorTan );
+ }
+ if( Sell[i] )
+ {
+  PlotText( "Sell:" + C[ i ] + "\nT= " + (H[i]*0.995) + "\nSL= " + (H[i]*1.0025), i, H[ i ]+dist1[i], colorTan); 
+ }
+}
+UpTrend = C > up;
+DnTrend = C < down ;
+Colors = IIf(UpTrend, colorGreen, IIf(DnTrend, colorRed, colorLightGrey));
+Plot(Close, "", Colors, styleCandle | styleThick);
+x=Param("xposn",1,0,1000,1);
+y=Param("yposn",1,0,1000,1);
+GfxSetBkMode(0);
+GfxSelectFont( "Georgia", 18, 800, False );
+GfxSetTextColor( colorWhite );
+GfxTextOut( "SUPER SWING TRADER ", x+500, y+16 );
+GfxSelectFont( "Tahoma", 13, 600, False );
+GfxTextOut( Name(), x+100, y+16 );
+GfxSetTextColor( colorWhite );
+GfxSelectFont( "Comic Sans MS", 12, 300, False );
+GfxTextOut( Interval(2), x+330, y+16 );
+GfxSelectFont( "tahoma", 11, 100, False );
+GfxSetTextColor( colorWhite );
+GfxTextOut( "Created By Ginto ", x+1070, y+22 );
+_SECTION_END();

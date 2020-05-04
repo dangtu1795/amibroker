@@ -1,0 +1,38 @@
+
+_SECTION_BEGIN("robert all in one");
+GfxSetBkMode(1);
+X=750;
+Y=15;
+Font=10;
+GfxSelectFont("Impact",Font*2.2, 550);GfxSetTextColor(colorRed);GfxTextOut("Robert All In One",x,y);
+//GfxSelectFont("Impact",Font*2.2, 550);GfxSetTextColor(colorGreen);GfxTextOut("RESEARCH",x+120,Y);
+_SECTION_END();
+
+//------------------------------------------------------------------------------
+
+_SECTION_BEGIN("Bollinger Bands");
+_N(Title = StrFormat("{{NAME}} - {{INTERVAL}} {{DATE}} Open %g, Hi %g, Lo %g, Close %g (%.1f%%) {{VALUES}}", O, H, L, C, SelectedValue( ROC( C, 1 ) ) ));
+SetBarFillColor( IIf( C>O, colorGreen, colorRed ) ); 
+Plot( C, "Close", colorBlack, styleNoTitle | ParamStyle("Style") | GetPriceStyle() ); 
+
+P = ParamField("Price field",-1);
+Periods = Param("Periods", 15, 2, 300, 1 );
+Width = Param("Width", 2, 0, 10, 0.05 );
+Color = ParamColor("Color", colorCycle );
+Style = ParamStyle("Style");
+bbtop=BBandTop( P, Periods, Width );
+bbbot=BBandBot( P, Periods, Width );
+Plot(bbtop, "BBTop" + _PARAM_VALUES(), Color, Style ); 
+Plot(bbbot , "BBBot" + _PARAM_VALUES(), Color, Style );
+diff=bbtop-bbbot;
+
+sqeezcolor=ColorRGB(194,220,218);
+expandcolor=ColorRGB(255,220,218);
+PlotOHLC( bbtop,bbtop, bbbot,bbbot, "Price chart shifted 10% up",IIf(((diff/bbtop)*100)<6.5,sqeezcolor,expandcolor), styleCloud ); 
+// Plot( diff, "Diff", colorGreen, Style ); 
+
+
+_SECTION_END();
+
+
+

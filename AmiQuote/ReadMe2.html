@@ -1,0 +1,1100 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>AmiQuote Readme</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<table border="0" width="100%" bgcolor="#C00000">
+    <tr>
+        <td><font color="#FFFFFF" size="6" face="Arial"><strong>AmiQuote
+        Read Me</strong></font></td>
+    </tr>
+</table>
+
+<p><font size="4" face="Arial, sans-serif"><strong>AmiQuote 3.12 Read Me
+      ( 
+      <!-- #BeginDate format:Am1 -->April 1, 2015<!-- #EndDate -->
+)</strong></font></p>
+<p><font size="3" face="Arial, sans-serif"><b>INTRODUCTION</b></font><font
+size="2" face="Arial, sans-serif"> </font></p>
+<blockquote> 
+  <p>AmiQuote is a companion program to AmiBroker stock charting/analysis software. 
+  </p>
+  <p>The main purpose of AmiQuote is to simplify and automate downloading financial
+    data from the following free, public web sites::</p>
+</blockquote>
+<ul><li><b>NEW! EOD data </b> from Quandl.com</li>
+  <li><b>NEW! INTRADAY data (1-minute and 5-minute bars) </b> from Google Finance</li>
+  <li><b>NEW! INTRADAY data (1-minute and 5-minute bars) </b> from Yahoo Finance    </li>
+  <li><b>Current day and historical EOD quotation</b> data from Yahoo! Finance
+     sites </li>
+  <li><b>Fundamental data</b> (basic and extra) from Yahoo Finance</li>
+  <li><b>Historical EOD quotes</b> from Google Finance</li>
+  <li><strong>historical EOD quotes </strong>from MSN Money Central </li>
+  <li><strong>historical EOD and Intraday FOREX quotes </strong>from FinAm </li>
+</ul>
+<blockquote>
+  <p>AmiQuote performs downloads using multiple threads allowing you to fully 
+    utilise your connection bandwidth. </p>
+</blockquote>
+<p><font size="3" face="Arial, sans-serif"><b>DISCLAIMER</b></font></p>
+<blockquote>
+      <p>This software is provided &quot;as is&quot; without warranty of any
+        kind. Any use of the program is at your own risk. The author disclaims
+        any implied
+      warranty of merchantability and/or fitness for a particular purpose.</p>
+      <p><strong>AmiBroker.com is NOT a data vendor.</strong> Quotes available
+        via AmiQuote are provided by Yahoo Finance (finance.yahoo.com), Google
+        Finance (finance.google.com) , Lycos/Quote.com (quote.com), MSN Money
+        Central (moneycentral.msn.com) and other free web pages. AmiQuote
+        is just a web browser/downloader
+        (just
+        like Internet Explorer, Firefox, Opera, etc) but specialized in getting
+        quotes from mentioned vendors/sites. AmiBroker.com makes NO REPRESENTATIONS
+        on accuracy
+        of
+        quotes retrieved and provides no warranty on availability of quotes.</p>
+      <p>By downloading quotes from aformentioned vendors/sites you agree to
+        the terms and conditions of respective web sites/data vendors. Most vendors
+        provide the data for &quot;personal informational purposes only&quot; - consult
+        individual data vendor web sites for detailed terms of service.</p>
+      <p>Free data are usually 15-minute delayed.</p>
+      <p>If at any time in the future Yahoo Finance, Google Finance, Lycos/Quote.com,
+        MSN Money Central or any other quote source used by AmiQuote stops to
+        provide the data, AmiBroker.com
+        will
+        not
+        be liable
+        for the any loss caused by inability to obtain quotes via AmiQuote. </p>
+  <blockquote>  
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </blockquote>
+</blockquote>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 3.12?</b></font></p>
+<ul>
+  <li>Yahoo changed the format slightly
+    causing problems with Yahoo Fundamental Basic download. Incompatibility is
+    fixed now.</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 3.10?</b></font></p>
+<ul>
+  <li>Added new data source: <strong>Quandl.com</strong> (US stocks, EOD data) -
+    <strong>please do not forget to enter your AuthToken for Quandl.com</strong> -
+    it is required if you want to issue more than 50 download requests per day.
+    AuthToken can be obtained from <a href="http://www.quandl.com">Quandl.com
+  web site</a>.</li>
+  <li>Removed code and settings for Lycos/Quote.com (taken over by
+  eSignal and shut down) - no longer available</li>
+  <li>Code cleanup</li>
+</ul>
+<blockquote>
+  <blockquote>
+    <p></p>
+    <p></p>
+  </blockquote>
+</blockquote>
+<blockquote>
+  <blockquote>
+    <p></p>
+  </blockquote>
+</blockquote>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 3.03?</b></font></p>
+<ul>
+  <li>added &quot;Max days&quot; edit to control maximum intraday backfill length. Specifying
+    lower than maximum allowed days results in faster download and less data
+    to transfer. <strong>Google
+    Intraday</strong> supports <strong>1..15</strong> max days for 1-minute bars
+    and <strong>1..60</strong> max
+    days for 5-minute bars. <strong>Yahoo Intraday</strong> supports only <strong>1-day
+    of 1-minute bars</strong>    and only <strong>1 and 5 days of 5-minute</strong> bars.
+    Specifying other combinations (such as 2, 3 or 4 max days for 5-minute bars)
+    for Yahoo results in retrieving
+    all 5 days.</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 3.02?</b></font></p>
+<ul>
+  <li>added support for EXCHANGE:SYMBOL syntax - this allows downloading non-US
+    symbols from Google Intraday. For example ASX:BHP (BHP Billiton Limited traded
+    on Australian Stock Exchange)</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 3.01?</b></font></p>
+<ul>
+  <li>New Intraday (1-minute and 5-minute bars) backfill data from Google Finance.
+    Includes all US markets  covered by Google Finance<br>
+    Limitations:
+    <ul>
+      <li>Only 1-minute and 5-minute intraday bar intervals are supported</li>
+      <li>The backfill always covers 15 most recent days back for 1-minute
+        bars and 60  most recent days back for 5-minute bars</li>
+      <li>Only regular trading session is included</li>
+      <li>You need to be REGISTERED user of AmiQuote to use Google Intraday download</li>
+    </ul>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b> WHAT'S NEW IN VERSION 3.00?</b></font></p>
+<ul>
+<li>New Intraday (1-minute and 5-minute bars) backfill data from Yahoo Finance.
+  Includes all US markets and International markets covered by Yahoo Finance<br>
+  Limitations:
+  <ul>
+    <li>Only 1-minute and 5-minute intraday bar intervals are supported</li>
+    <li>The backfill always covers just one most recent day back for 1-minute
+      bars and 5 (five) most recent days back for 5-minute bars</li>
+    <li>Only regular trading session is included</li>
+    <li>You need to be REGISTERED user of AmiQuote to use Yahoo Intraday download</li>
+    </ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p><font size="3" face="Arial, sans-serif"><b> WHAT'S NEW IN VERSION 2.13?</b></font></p>
+  <ul>
+    <li>thousand separators (commas) are removed from value fields in &quot;Key Statistics&quot;
+      page to prevent interpretting them as field delimiters</li>
+  </ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 2.12?</b></font></p>
+<ul>
+  <li>
+    <p>adjusted to work with changed
+          &quot;Key statistics&quot; Yahoo Finance page (April 2010)</p>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 2.10?</b></font></p>
+<ul>
+  <li>adjusted to work with changed &quot;Key Statistics&quot; Yahoo Finance page.</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 2.00?</b></font></p>
+<ul>
+  <li>Added new Google Finance EOD data source (finance.google.com), US and International
+    stocks (finance.google.com) - very fast downloads, much faster than Yahoo</li>
+  <li>Fixed some rare random crashes</li>
+  <li>Fixed occassional crash on Vista</li>
+  <li>Historical EOD downloads overwrite temporary
+  files always to prevent consuming too much hard disk space</li>
+  <li>Livecharts/Quote.com
+    by default is now disabled because vendor discontinued the service. (Use
+    Tools-&gt;Settings
+    to re-enable if needed)<br>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.95?</b></font></p>
+<ul>
+  <li>Adjusted Forex source to address Finam server change</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.94?</b></font></p>
+<ul>
+  <li>OLE automation server registration checks registry access rights correctly
+    on Windows Vista now (this prevents &quot;Failed to update registry. Try using
+    REGEDIT&quot; message)</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.93?</b></font></p>
+<ul>
+  <li>Implemented fix for inconsistent  Yahoo  date
+    format change (some Yahoo Historical servers changed the date from DD-MMM-YY
+    to YYYY-MM-DD,
+    but
+    some
+    others do
+    not, so
+    downloads from Yahoo use two different formats. AmiQuote now detects new
+    format YYYY-MM-DD and converts to old format on-the-fly)</li>
+  <li>Added an option to send cookies (to enable this, check Tools-&gt;Settings, &quot;Allow
+    cookies&quot;).
+    This is useful if you are subscribed to Yahoo Realtime and want to get non-delayed
+    quotes</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.92?</b></font></p>
+<ul>
+  <li>Solved compatibility issue with AmiBroker 4.85 </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.91?</b></font></p>
+<ul>
+  <li>Fixed enabling of start/end date and run every controls after addition of new
+    data sources.
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.90?</b></font></p>
+<ul>
+  <li>Implemented <b>Yahoo Fundamental - Basic</b> data source (free basic fundamental
+    data, 200 symbols in one request). <br>
+    Data are retrieved from the following URL: http://finance.yahoo.com/q?s={Ticker} (Download
+    data link).<br>
+    <br>
+    The following fundamental data fields are available:<br>
+    <br>
+ EPS (ttm)<br>
+ EPS Est Current Year<br>
+EPS Est Next Year<br>
+ EPS Est Next Quarter<br>
+ PEG Ratio<br>
+ Book Value<br>
+ EBITDA<br>
+ Sales Revenue<br>
+  Dividend Pay date<br>
+ Ex Dividend date<br>
+ Dividend Per Share<br>
+ 1yr Target Price<br>
+Shares Float<br>
+Shares Outstanding<br>
+<br>
+Explanation of values: 
+<a href="http://help.yahoo.com/help/us/fin/quote/quote-03.html">http://help.yahoo.com/help/us/fin/quote/quote-03.html</a><br>
+    <br>
+    You have to use <b>AmiBroker 4.81</b> or higher to use automatic import
+      feature of fundamental data. <br>
+  </li>
+  <li>Implemented <b>Yahoo Fundamental - Extra</b> data source (extended fundamental
+    data, 1 symbol in one request, more data - available in registered version
+    only). <br>
+    Data are retrieved from the 
+    following URL: http://finance.yahoo.com/q/ks?s={Ticker} (Key Statistics page)<br>
+    <br>
+    The following fundamental data fields are downloaded:<br>
+    <br>
+	Forward P/E <br>
+	PEG Ratio <br>
+	Profit Margin <br>
+	Operating Margin <br>
+	Return on Assets <br>
+	Return on Equity <br>
+	Revenue (ttm) <br>
+	Qtrly Revenue Growth <br>
+	Gross Profit <br>
+	EBITDA <br>
+   (Diluted) EPS <br>
+	Qtrly Earnings Growth <br>
+	Book Value Per Share <br>
+	Operating Cash Flow <br>
+	Levered Free Cash Flow <br>
+	Beta <br>
+	Shares Outstanding <br>
+	Float <br>
+	% Held by Insiders <br>
+	% Held by Institutions <br>
+	Shares Short (prior month) <br>
+	Shares Short <br>
+	Forward Annual Dividend Rate <br>
+	Trailing Annual Dividend Rate <br>
+	Dividend Date <br>
+	Ex-Dividend Date <br>
+	Last Split Factor <br>
+	Last Split Date <br>
+    <br>
+  Explanation of values: <a href="http://help.yahoo.com/help/us/fin/research/research-12.html">http://help.yahoo.com/help/us/fin/research/research-12.html</a><br>
+  <br>
+You have to use <b>AmiBroker 4.81 </b>or higher to use automatic import feature of fundamental
+data.<br>
+<br>
+IMPORTANT NOTE: Unregistered version of AmiQuote allows you to download fundamental-ex
+data
+for first 20 tickers in the list. To download data for more symbols you need
+to register AmiQuote ($59 one time fee)<br>
+  </li>
+  <li>Removed not working servers F and G from the auto-rotate list (completed:
+    2006-05-28)<br>
+  </li>
+  <li> Removed Integratir source as it stopped working (completed: 2006-05-28)<br>
+  </li>
+  <li> Removed Britefutures source as it stopped working (Britefutures stopped
+  delivering free quotes) (completed: 2006-05-28)<br>
+  </li>
+  <li> If symbol has slash (/) inside
+      it is replaced by underscore in the file name to allow creation of the
+    file (slash is file system reserved
+        character)
+  (completed: 2005-11-10)<br>
+  </li>
+  <li> Implemented blocking message filter in AmiQuote
+      to disallow getting messages during OLE call (completed: 2005-11-10)<br>
+  [#24535]<br>
+  </li>
+  <li>Registration fee is now $59 (for lifetime license)<br>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.81?</b></font></p>
+<ul>
+  <li>Additional checks added to late binding code that prevents from crashes
+    when AmiBroker is not installed or AmiBroker has no symbols in its database</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.80?</b></font></p>
+<ul>
+  <li>  Calls to AmiBroker automation objects now use late
+            binding instead of early binding - this should solve all past and
+    future problems occuring when AB's OLE interface changes<br>
+    <br>
+  </li>
+  <li>Added handling of &quot;CON&quot; as special case
+    (like LPT, PRN, etc...) <br>
+    <br>
+  </li>
+  <li>OLE: AmiQuote now reflects the TLS file name
+    in the title bar after calling Open() method - its was showing &quot;Amiquote
+    - Untitled&quot;.<br>
+    <br>
+  </li>
+  <li>OLE: Ability to assign the destination folder per
+            session.<br>
+            <br>
+            <code>AQ = new ActiveXObject(&quot;AmiQuote.Document&quot;);<br>
+            OldPath
+            = AQ.DestinationFolder; // preserve old path !<br>
+      AQ.DestinationFolder= &quot;C:\\Program Files\\AmiBroker\\AmiQuote\\Download&quot;;
+      <br>
+      // without trailing backslash please<br>
+    ...your code...<br>
+    AQ.DestinationFolder=
+      OldPath; // restore original path</code><br>
+      <br>
+  </li>
+  <li> OLE: Ability to position and size window<br>
+            <br>
+            <code>AQ = new ActiveXObject(&quot;AmiQuote.Document&quot;);<br>
+    AQ.MoveWindow(
+            10, 10, 600, 400 );<br>
+            </code></li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.71?</b></font></p>
+<ul>
+  <li>added support for a new data source for EOD Futures quotes: www.britefutures.com.<br>
+  Symbology can be found here: <a href="http://www.britefutures.com/symbols.asp" target="_blank">http://www.britefutures.com/symbols.asp</a> ,
+  for example ES mini March 2005 contract has the symbol of : ESH05, Euro FX
+  Currency December 2004 future: ECZ04</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.70?</b></font></p>
+<ul>
+  <li>added OLE automation interface.
+        <a href="#OLE">Click here for more details</a>. Note that OLE automation inteface is functional
+    only in registered version of AmiQuote</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.69?</b></font></p>
+<ul>
+  <li><font size="3">more Yahoo historical servers
+        to select from (from B..L) in Tools-&gt;Settings</font></li>
+  <li><font size="3">automatic server rotation mode
+        (registered version only) that switches servers B to L on round-robin
+        manner allowing to download in several threads with lowered risk of your
+        IP being blocked by Yahoo.</font></li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.68?</b></font></p>
+<ul>
+<li>updated default Yahoo Historical URL to ichart.yahoo.com</li>
+<li>added ability to select particular Yahoo Historical server in Tools-&gt;Settings:<strong>  Yahoo Historical Server<br>
+  </strong>Yahoo uses server load-balancing so data are delivered by many servers
+  &quot;appearing&quot; under one URL. Problem is that some servers from timem to time
+  are not updated (offer only old data) while others are up-to-date. This new
+  setting allows to handle such cases by selecting the server that is up-to-date.
+  Default setting is &quot;ichart.yahoo.com&quot; which works in usual load-balancing scheme
+  (switched servers). But you can also select Server B, C, D, and E. As of today
+  (June 8th) servers B and D offer up-to-date data, while server C and E offer
+  old data (only upto 4th and 3rd of June respectively). This may however change
+  at any time. Please note that selection of Servers C, D and E is available
+  only in registered version of AmiQuote.</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.67?</b></font></p>
+<ul>
+  <li>fix: when user-selected 'from'
+        date is earlier than last date of quote available in AmiBroker then earlier
+        date is used.</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.66?</b></font></p>
+<ul>
+  <li>better detection if AmiBroker is or is not running<br>
+  </li>
+  <li>eSigCentral option removed<br>
+  </li>
+  <li>added new free FOREX
+    data source providing EOD and Intraday forex quotes.<br>
+    <br>
+    FOREX data source works ONLY with the following symbols:<br>
+    EURCHF,EURGBP,EURJPY,EURUSD,GBPUSD,USDCHF,USDJPY<br>
+    Attempt to download any other symbol with &quot;Forex&quot; data source will
+  result in error message.<br>
+  Intraday downloads are available only in registered version of AmiQuote<br>
+  </li>
+  <li> last
+    update date for each ticker individually is retrieved only if database has
+    less than 50 symbols. Otherwise the update date of the first ticker is taken
+    for all.This speeds up ticker list retrieval in large databases.<br>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.65?</b></font></p>
+<ul>
+  <li>
+    <p>new &quot;All sessions (quote.com)&quot; check box added. Turning this on causes
+      that 24-hours trading is included in downloaded quotes (important for futures
+      like ES04M). When this switch is off only regular trading hours are included
+      in downloaded quotes.</p>
+  </li>
+  <li>AmiQuote warns about &quot;eSigCentral&quot; being unavailable</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.64?</b></font></p>
+<ul>
+  <li>
+    <p>when doing &quot;auto-update AmiBroker database&quot; AmiQuote does NOT switch back
+      to Yahoo Historical, hence allows you to set any source and still use Tools-&gt;Auto-update
+      in AmiBroker.</p>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.63?</b></font></p>
+<ul>
+  <li>
+    <p>MSN Money data source adjusted for new download URL </p>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.62?</b></font></p>
+<ul>
+  <li>
+    <p>when 'automatic import' flag is not checked then import is
+          not performed</p>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.61?</b></font></p>
+<ul>
+  <li>quotes are imported once (eliminated extra second import at the end of
+    downloading all tickers)</li>
+  <li>added 3 built-in settings sets: &quot;fail safe&quot;, &quot;modem&quot;, &quot;dsl/cable&quot; (see
+    Tools-&gt;Settings page)</li>
+  <li>after downloading you can double click the item in the list to open downloaded
+    file in the Notepad. This works also in case of errors in downloaded file</li>
+  <li>cookies set by Internet Explorer are not sent to Yahoo server </li>
+  <li>first-time user defaults changed to fail-safe level: 1 simultaneous download
+    and 1000 ms between requests</li>
+  <li>new command line switches accepted:<br>
+    /download   - triggers automatic download on start<br>
+    /close - causes automatic close of AmiQuote after download<br>
+    <br>
+    Example command line:<br>
+    <br>
+    Quote.exe C:\mylist.tls /download /close<br>
+    <br>
+    - this will open ticker list from C:\mylst.tls, run automatid download (and
+    import if &quot;automatic import&quot; box is selected) and close AmiQuote after download/import
+    is finished<br>
+  </li>
+  <li>(on user request) maximum number of simultaneous downloads from Quote.com
+    increased to 4</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.60?</b></font></p>
+<ul>
+  <li>new experimental source: Integratir. US stocks only. Free. EOD quotes.
+    (note this source is rather slow and may be removed)</li>
+  <li>$NAME directive added to the downloaded file ensures that ticker is not
+    renamed even if AmiQuote needs to rename file for symbols using Quote.com's
+    convention
+    that
+    , i.e.NASDAQ:NVDA</li>
+  <li>minimum connection timeout increased to 10 seconds and minimum download
+    timeout increased to 20 seconds</li>
+  <li>slightly changed options (added keep alive and referer) in hope to improve
+    download 'robustness'</li>
+  <li>import occurs immediatelly after download of each file so you get updated
+    quote faster</li>
+  <li>prepared for new GetTickers method in AmiBroker 4.51.0 that allows to get
+    last update date on per-symbol basis leading to better work in &quot;auto-update&quot;
+    mode. Also new AmiBroker 4.51.0 will skip composites so they are not added
+    to download list.</li>
+  <li>maximum number of simultaneous downloads from Quote.com decreased to 2
+    (bigger number cause troubles with quote.com anyway)</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.55?</b></font></p>
+<ul>
+  <li>fixed  misleading &quot;import failed&quot; message in 'Yahoo Current'
+    mode</li>
+  <li>eSignalCentral symbol translation tables are saved between sessions</li>
+  <li>updated addresses of Quote.com servers (Server #1 works now even without
+    Livecharts subscription)</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.54?</b></font></p>
+<ul>
+  <li>fixed problem with sometimes misleading &quot;import failed&quot;, &quot;aqe.format missing&quot;
+    messages</li>
+  <li>Source: eSignal Central stays selected between sessions</li>
+  <li>other bug fixes</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.53?</b></font></p>
+<ul>
+  <li>added new EOD data source: eSignal Central featuring all US exchanges,
+    European exchanges, Futures, Currencies / Forex.</li>
+  <li>added data-source sensitive symbol search (Tools-&gt;Symbol Search) - automatically
+    opens web page with symbol lookup for data source selected in the &quot;Source&quot;
+    combo-box.</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.52?</b></font></p>
+<ul>
+  <li>added initial delay between requests (delay that is added before attempt 
+    to download each new symbol data) to the Settings page. It is defined in milliseconds 
+    (1/1000 part of the second). It should help the owners of very fast connections 
+    to slow down AmiQuote and avoid problems with Yahoo rejecting too frequent 
+    requests.</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.51?</b></font></p>
+<ul>
+  <li>Added support for MSN Money Central. End-of-day historical stocks, mutual 
+    funds, currencies US, Canada, Japan, Australia and major European exchanges. 
+    See <a href="http://moneycentral.msn.com/investor/common/find.asp?NextPage=%2Fscripts%2Fwebquote%2Edll%3FiPage%3Dqd">http://moneycentral.msn.com/investor/common/find.asp?NextPage=%2Fscripts%2Fwebquote%2Edll%3FiPage%3Dqd</a><br>
+    and this<a href="http://moneycentral.msn.com/investor/research/welcome.asp"> 
+    http://moneycentral.msn.com/investor/research/welcome.asp</a><br>
+    to learn about symbols used by MSN. You have to have aqm.format file (supplied 
+    with this install) copied to AmiBroker's Formats subdirectory to make auto-import 
+    from MSN feature work)</li>
+  <li>Added symbol translation table ( Tools-&gt;Symbol Translation Table menu 
+    ) that allows to get symbols from alternative source without need to rename 
+    tickers in AmiBroker. It can be used for example to update Yahoo database 
+    from MSN. If you define ^DJI, $INDU pair AmiQuote will issue request for $INDU 
+    to MSN server when the ticker list contains ^DJI (Yahoo-style symbol). A sample 
+    translation is included (msn.translations file - loaded automatically at startup).</li>
+  <li>Added some checks for Quote.com mode so it displays correct error message 
+    if &quot;feature available to subscribers&quot; is received from Quote.com 
+    server</li>
+  <li>Added check for operating system reserved names like PRN.AX - they are renamed 
+    to PR_.AX to allow storing such file in windows (should I say MSDOS) operating 
+    system.</li>
+  <li>removed obsolete &quot;country&quot; combo box and other cleanups.</li>
+</ul>
+<blockquote> 
+  <p></p>
+</blockquote>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.50?</b></font></p>
+<ul>
+  <li>Retrieving ticker list from AmiBroker is 10 times faster now (requires AmiBroker 
+    4.00 or higher), so Tools-&gt;Auto-update quotes start in 2-3 seconds for 
+    7000+ symbols</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.49?</b></font></p>
+<ul>
+  <li>New URL for requesting historical data from Yahoo is used. </li>
+  <li>Appropriate error message is displayed if downloaded file contains HTML 
+    tags (message: &quot;Error in downloading&quot;) or has only one header line 
+    (message &quot;No data for this symbol&quot;)</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.48?</b></font></p>
+<ul>
+  <li>Definable proxy server, port, user name and password in the Settings dialog 
+    allows using AmiQuote in corporate environments</li>
+  <li>(experimental) ability to specify Livecharts user/password for intraday 
+    Quote.com server (Setting page) - the Livecharts password needs to be entered 
+    in the encrypted form see <a href="http://www.amibroker.com/members/">http://www.amibroker.com/members/</a> 
+    for the details.</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.47?</b></font></p>
+<ul>
+  <li>AmiQuote now supports 3 different intraday Quote.com servers. You can select 
+    one in Tools-&gt;Settings &quot;Intraday server&quot;</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.46?</b></font></p>
+<ul>
+  <li>bug fix: solved problem with renaming of tickers with &quot;COM&quot;, &quot;AUX&quot;, 
+    &quot;LPT&quot; substrings. Now only full ticker symbol is matched (not substring)</li>
+  <li>bug fix: &quot;Number of symbols per request (current mode)&quot; does not 
+    switch back to 1 anymore when the settings page is opened </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.45?</b></font></p>
+<ul>
+  <li>rewritten downloading code - more robust - closes &quot;dead&quot; connections 
+    and includes auto-retry feature</li>
+  <li>settings dialog now allows to define the number of auto-retries, delay between 
+    retries, connection and receive timeouts used to detect not responding connections</li>
+  <li>colon character ':' in the ticker name is automatically replaced by underscore 
+    '_' to avoid problems with file system not allowing colon in the file name.</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.41?</b></font></p>
+<ul>
+  <li>5-min and larger intervals work correctly now</li>
+  <li>daily interval added for downloads from Quote.com servers (allowing you 
+    to get quotes of E-minis for example not supported by Yahoo)</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.4?</b></font></p>
+<ul>
+  <li>Download delayed intra-day bar data (1-min, 5-min, 15-min, 60-min, 120-min 
+    bars) for US securities</li>
+  <li>Simplified download historical and daily data from 50 international exchanges 
+    (one setting works for all exchanges)</li>
+  <li>Ability to run downloads automatically in user-defined intervals </li>
+  <li>AmiQuote is now shareware. The evaluation version is almost fully functional
+    and has NO time limit, so you can use it as long as you wish, but if you
+    like
+    
+    the program and use it often you are encouraged to purchase life-time license
+     for only $35. <a href="https://www.swreg.org/soft_shop/1269/shopscr9.shtml">Click
+      here to buy</a></li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.3?</b></font></p>
+<ul>
+  <li>Retrieving multiple symbols data in one request (current mode only) - provides 
+    huge speed-up for download in &quot;current&quot; mode. Number of symbols 
+    definable in the Settings.</li>
+  <li>User-definable number of simultaneous downloads</li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>WHAT'S NEW IN VERSION 1.2?</b></font></p>
+<ul>
+  <li>Fully automatic updates of AmiBroker database (US &amp; Canada markets only)</li>
+  <li>Editing and saving ticker lists</li>
+  <li>Integration with AmiBroker (retrieving ticker lists and last update date)</li>
+  <li>Better error handling and greatly improved stability</li>
+  <li>Selective downloads</li>
+  <li>Support for updating mutual fund quotes (close price only)</li>
+  <li>Support for appending data files</li>
+  <li>User-defined destination folder</li>
+  <li>Settings are preserved between sessions</li>
+  <li>added support for Argentina, Brazil, China, Denmark, Hong Kong, India, Japan, 
+    Mexico, Norway, Sweden, Singapore, Spain, Taiwan (version 1.21)<br>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>INSTALLATION</b></font></p>
+<blockquote> 
+  <p>If you have installed AmiBroker already, no special installation of AmiQuote 
+    is required. Just unzip AmiQuote package to a separate directory (the default 
+    is &quot;C:\Program Files\AmiBroker\AmiQuote&quot;). If you haven't installed 
+    AmiBroker yet it is recommended to do so, because AmiQuote uses MFC libraries 
+    (version 6.0) that are supplied with AmiBroker.</p>
+</blockquote>
+<p><font size="3" face="Arial, sans-serif"><b>QUICK START</b></font></p>
+<p><i><u>Note: this procedure works only if you have AmiBroker installed:</u></i></p>
+<ol>
+  <li>Launch AmiBroker and AmiQuote</li>
+  <li>Choose <b>Tools-&gt;Auto-update AmiBroker database</b> (or corresponding 
+    toolbar button) </li>
+</ol>
+<p><font size="3" face="Arial, sans-serif"><b>HOW IT WORKS</b></font></p>
+<blockquote> 
+  <p>AmiQuote loads (or retrieves from AmiBroker) a ticker list file (.TLS) which 
+    is simple ASCII file with ticker symbols, then parses it and downloads data 
+    from either Yahoo Finance or Quote.com servers. Then, when you start the download 
+    process, it requests the data from Yahoo and stores downloaded data in the 
+    separate .AQD (daily) or .AQH (historical) or .AQI (intraday bar) files for 
+    each ticker. After download, if AmiBroker is running, AmiQuote will import 
+    the quotes into AmiBroker automaticaly.</p>
+</blockquote>
+<p><font size="3" face="Arial, sans-serif"><b>USAGE</b></font></p>
+<blockquote> 
+  <p>Below you will find some tips on using AmiQuote 1.2 with and without AmiBroker. 
+    More detailed instructions will be provided with the upcoming AmiBroker 3.65.</p>
+</blockquote>
+<p><i>Using AmiQuote in stand-alone mode</i></p>
+<blockquote> 
+  <p>Although AmiQuote is provided as a companion program to AmiBroker it is however 
+    possible to use it without AmiBroker. Here is a simple procedure of downloading 
+    quotes using stand-alone AmiQuote:</p>
+  <ol>
+    <li>Launch AmiQuote</li>
+    <li>Open supplied example file DJIA.TLS in the directory DJIA<br>
+      This will load example ticker list (components of Dow Jones Industrial Average) 
+    </li>
+    <li>Choose between downloading current or historical or intraday interval 
+      bar quotes (intraday interval bars are available only for US exchanges)</li>
+    <li>Click on green arrow toolbar button (Start download)<br>
+      now for a couple of minutes you can watch the download operation progress 
+    </li>
+    <li>When all downloads are complete you can close the program and find appropriate 
+      .AQD (daily quotes) or .AQH (historical) or .AQI (intraday) files stored 
+      in the directory where TLS file is located. </li>
+  </ol>
+</blockquote>
+<p><i>Using AmiQuote with AmiBroker</i></p>
+<blockquote> 
+  <p><font face="Arial, Helvetica, sans-serif" size="-1"><b>Automatic update</b></font></p>
+  <p>The easiest method to work with AmiQuote and AmiBroker is to use the procedure 
+    given in <b>Quick Start</b> section of this document. Just run AmiBroker and 
+    AmiQuote and choose <b>Tools-&gt;Auto-update AmiBroker database</b>. This 
+    method updates historical quotes from the last date present in AmiBroker upto 
+    today. When performing automatic update, AmiQuote performs internally 4 steps 
+    a) retrieves the ticker list from AmiBroker (all stocks loaded currently in 
+    AmiBroker);<br>
+    b) gets the last quotation date available in AmiBroker;<br>
+    c) performs historical download from last date upto today;<br>
+    d) instructs AmiBroker to import downloaded files.</p>
+  <p>AmiQuote now supports over 50 international exchanges in &quot;historical&quot; 
+    and &quot;daily&quot; modes.</p>
+  <p>Note that AmiQuote currently supports a new command line parameter: <b>/autoupdate</b>. 
+    This option forces AmiQuote to perform automatic update procedure without 
+    user intervention. <br>
+    You may setup you custom tools menu in AmiBroker to call AmiQuote with this 
+    argument:</p>
+  <p><code>C:\Program Files\AmiBroker\AmiQuote\Quote.EXE /autoupdate </code></p>
+  <p>If you do so, you will be able to update your database with a single click.</p>
+  <p><font face="Arial, Helvetica, sans-serif" size="-1"><b>Manual operation</b></font></p>
+  <p>Automatic mode is nice but there are cases when you have to perform some 
+    tasks manually. There is a good old document describing that mode of operation 
+    at: <a href="http://www.amibroker.com/docs/ab304.html" target="_blank">http://www.amibroker.com/docs/ab304.html</a> 
+    . Everything written in this document remains valid with one exception - now 
+    importing to AmiBroker are performed automatically if you have <b>Automatic 
+    import</b> checkbox marked.</p>
+  <p>There are also several cases when you prefer to do things manualy, then please 
+    don't forget about some useful tools available at your fingertips:</p>
+  <p><b>File-&gt;Open, File-&gt;Save, File-&gt;Save As </b></p>
+  <blockquote> 
+    <p>These functions enable you to load and save your edited ticker lists for 
+      future repeated use.</p>
+  </blockquote>
+  <p><b>Edit-&gt;Add tickers</b></p>
+  <blockquote> 
+    <p>This function allows you to add the tickers to the list. Just type space 
+      separated tickers into the field that will show up when you choose this 
+      function.</p>
+  </blockquote>
+  <p><b>Edit-&gt;Delete tickers</b></p>
+  <blockquote> 
+    <p>This function allows you to delete tickers from the list. Just select the 
+      items you want to delete from the list view (multiple selection possible 
+      by holding SHIFT or CTRL key while clicking on items), and choose this function.</p>
+  </blockquote>
+  <p><b>Edit-&gt;Mark all, Edit-&gt;Unmark all, Edit-&gt;Toggle, Edit-&gt;Mark 
+    selection, Edit-&gt;Unmark selection</b></p>
+  <blockquote> 
+    <p>These functions allow you to mark the tickers for download. Please note 
+      that AmiQuote puts a checkmark before ticker name in the list view. ONLY 
+      MARKED items will be downloaded. This allows you to perform selective downloads/updates.</p>
+  </blockquote>
+  <p><b>View-&gt;Refresh</b></p>
+  <blockquote> 
+    <p>Basically AmiQuote handles refreshes by itself when needed. For example 
+      if you changed the date range, the list will be refreshed before starting 
+      download. But there are some cases when you may want to refresh the list 
+      by yourself. For example if you downloaded and imported quotes once and 
+      want to do this again you would need to choose this function. The Refresh 
+      function simply applies all date and type settings to the URLs listed, and 
+      MARKS all tickers for a new download.</p>
+  </blockquote>
+  <p><b>Tools-&gt;Import into AmiBroker</b></p>
+  <blockquote> 
+    <p>This function is useful if you want to import just downloaded quotes into 
+      AmiBroker but you have <b>Automatic import</b> checkbox cleared.</p>
+  </blockquote>
+  <p><b>Tools-&gt;Get tickers from AmiBroker</b></p>
+  <blockquote> 
+    <p>This function retrieves all stocks from currently loaded AmiBroker database 
+      and fills the AmiQuote ticker list with them.</p>
+  </blockquote>
+  <p><b>Tools-&gt;Get last update date</b></p>
+  <blockquote> 
+    <p>This function retrieves the date of the most recent quotation of the first 
+      stock present in currently loaded AmiBroker database and sets the <b>From</b> 
+      date to this date.</p>
+  </blockquote>
+  <p><b>Tools-&gt;Settings</b></p>
+  <blockquote> 
+    <p>Displays the settings window where you can define the destination directory 
+      where all downloads are stored. Note that blank destination directory means 
+      that downloads will be stored in the current working directory (in most 
+      cases this is the folder from where current .TLS file was loaded).</p>
+    <p>In this window you can also change the mode of writing the files. By default 
+      historical files are overwritten while daily files get appended. This is 
+      recommended setup. Appending daily files simply allows you to create intra-day 
+      historical files when you do the updates daily. You may change this behaviour 
+      for your particular purpose.</p>
+  </blockquote>
+</blockquote>
+<p><font size="3" face="Arial, sans-serif"><b>LIMITATIONS</b></font></p>
+<blockquote> 
+  <p>Intraday interval bar data (1-min, 5-min, 15-min, 60-min and 120-min) are 
+    available for US securities only.<br>
+    Historical data for international exchanges are usually much shorter than 
+    for US markets.</p>
+  <p>Because intraday bar data are downloaded from Quote.com servers the ticker 
+    symbols for indices are different than those used by Yahoo. For complete reference 
+    please check <a href="http://finance.lycos.com/home/misc/symbol_search.asp?options=i">http://finance.lycos.com/home/misc/symbol_search.asp?options=i</a></p>
+  <p>Intraday bar data are limited to 500 bars regardless of bar interval. In 
+    other words you always get 500 bars data, whenever these are 1-min, 5-min, 
+    15-min, 60-min or 120-min data - so by choosing bigger interval you get data 
+    from more days. This is the limitation imposed by free delayed Quote.com server.</p>
+</blockquote>
+<p><font size="3" face="Arial, sans-serif"><b>SUPPLIED EXAMPLE FILES</b></font></p>
+<blockquote> 
+  <p>AmiQuote 1.2 with the following example ticker lists:</p>
+</blockquote>
+<ul>
+  <li>DJIA.tls - components of Dow Jones Industrial Average (USA) 
+    <p>More example ticker lists could be downloaded from <a href="http://www.amibroker.com/starter/" target="_blank">http://www.amibroker.com/starter/</a> 
+      . </p>
+  </li>
+</ul>
+<p><font size="3" face="Arial, sans-serif"><b>DISTRIBUTION</b></font></p>
+<blockquote> 
+  <p>AmiQuote is distributed as shareware. The evaluation version is  almost
+    fully functional and has NO time limit, so you can use it as long as you
+    wish, but if you
+    like 
+    the program and use it often you are encouraged to purchase life-time license
+     for only $35. <a href="https://www.swreg.org/soft_shop/1269/shopscr9.shtml">Click
+      here to buy</a></p>
+</blockquote>
+<p><font size="3" face="Arial, sans-serif"><b>LEGAL</b></font><font
+size="2" face="Arial, sans-serif"> </font></p>
+<blockquote> 
+  <p>AmiQuote 1.70. Copyright (C)2000-2004 by Tomasz Janeczko/AmiBroker.com. <br>
+    All rights reserved. <br>
+    All trademarks are the property of their respective owners. </p>
+  <hr>
+</blockquote>
+<p><font size="3" face="Arial, Helvetica, sans-serif"><strong><a name="OLE"></a>AMIQUOTE OLE AUTOMATION
+      INTERFACE (Version 1.70 and above)</strong></font></p>
+<p><font face="Arial, Helvetica, sans-serif"><em>Introduction</em></font></p>
+<p>Note: AmiQuote's OLE automation interface is available for REGISTERED AmiQuote
+  users only and requires at least version 1.70 of AmiQuote. If you attempt to
+  trigger download or import from OLE automation interface using unregistered
+  version you will be presented with a message box telling you to register.</p>
+<p>All AmiQuote automation is available via methods and properties of single
+  object: <strong>AmiQuote.Document.</strong><br>
+  After the initial installation, AmiQuote 1.70 must be run at least once in
+  stand-alone mode in order to setup registry entries for AmiQuote.Document automation
+  object
+  properly. From then on you can use AmiQuote OLE automation.</p>
+<p>To instantiate AmiQuote use standard CreateObject (VBScript and alike)
+  or new ActiveXObject (JScript) statements:</p>
+<blockquote>
+  <p>VBScript sample:</p>
+  <blockquote>
+    <p><code>Set AB = CreateObject(&quot;AmiQuote.Document&quot;)</code></p>
+  </blockquote>
+  <p>JScript sample:</p>
+  <blockquote>
+    <p><code>AB = new ActiveXObject(&quot;AmiQuote.Document&quot;);</code></p>
+  </blockquote>
+</blockquote>
+<p>Important: Note that AmiQuote.Document object is registered as multiple instance
+  object so each call to CreateObject will launch a new instance of AmiQuote.
+  (this is different from AmiBroker)</p>
+<p> <font face="Arial, Helvetica, sans-serif"><em><br>
+Typing Conventions</em></font></p>
+<ul>
+  <li><em>bool</em> - lowercase italic represents the type of parameter/variable/return
+    value</li>
+  <li><strong>AddSymbols</strong> - bold represents function / method / property
+    name</li>
+  <li><u>SymbolList</u> - underline type face represents formal parameter</li>
+</ul>
+<p><font face="Arial, Helvetica, sans-serif"><em><br>
+Methods of AmiQuote.Document object</em></font></p>
+<p>AmiQuote.Document object exposes the following methods (functions) (in alphabetical
+  order):</p>
+<ul>
+  <li><em>bool</em> <strong>AddSymbols</strong>( <em>string</em> <u>SymbolList</u> )<br>
+    <br>
+    This method adds symbols to the download list. <u>SymbolList</u> is comma-separated list
+    of ticker symbols. <br>
+    <br>
+  </li>
+  <li><em>bool</em> <strong>Download</strong>()<br>
+    <br>
+    This method starts the download process. It returns immediatelly (without
+    waiting for download to complete). You should use <strong>DownloadInProgress</strong> property
+    to find out if download has completed or not before continuing.<br>
+    <br>
+  </li>
+  <li><em>bool</em> <strong>GetSymbolsFromAmiBroker</strong>()<br>
+    <br>
+    This method retrieves symbol list from running instance of AmiBroker. Before
+    calling this you should ensure that AmiBroker is running and has loaded correct
+    database.<br>
+    <br>
+  </li>
+  <li><em>bool</em> <strong>Import</strong>()<br>
+    <br>
+    This method starts the import process. Currently it waits until import is
+    finished, but in the future versions this may change (it may return immediatelly).
+    You should use <strong>ImportInProgress</strong> property
+  to find out if import has completed or not before continuing.<br>
+  <br>
+</li>
+  <li><em>bool</em> <strong>Open</strong>( <em>string</em> <u>FileName</u> )<br>
+    <br>
+    This method opens (loads) ticker list file (.TLS extension). <u>FileName</u> should
+    represent full path to the file name.<br>
+    <br>
+  </li>
+  <li><em>bool</em> <strong>RemoveAllSymbols</strong>()<br>
+    <br>
+    This method removes all symbols from the download list<br>
+    <br>
+  </li>
+  <li><em>bool</em> <strong>RemoveSymbols</strong>(<em> string</em> <u>SymbolList</u> )<br>
+    <br>
+    This method removes specified symbols to the download list. <u>SymbolList</u> is
+    comma-separated list of ticker symbols you want to remove. Please note that
+    this function may be slow on large symbol lists.<br>
+    <br>
+  </li>
+  <li><em>bool</em> <strong>Save</strong>()<br>
+    <br>
+    This method saves the ticker list to the .TLS file under current name.<br>
+    <br>
+  </li>
+  <li><em>bool</em> <strong>SaveAs</strong>( <em>string</em> <u>FileName</u> )<br>
+    <br>
+  This method saves the ticker list to the .TLS file under new name. <u>FileName</u>  should represent full path to the file name. <br>
+  </li>
+</ul>
+<p>All methods return True on success and False on failure.</p>
+<p align="left"><font face="Arial, Helvetica, sans-serif"><em><br>
+  Properties of AmiQuote.Document
+object</em></font></p>
+<p align="left">AmiQuote.Document object exposes the following properties
+(in alphabetical order):</p>
+<ul>
+  <li><em align="left">bool</em> <strong>AllSessions<br>
+    <br>
+    </strong>decides if quotes from Lycos (Livecharts)<strong>
+    </strong>should include pre/after market data (if set to True) or not. Default
+    value is false (include quotes from regular trading hours only). This property
+    affects only downloads from Lycos (livecharts). All other sources are not
+    affected.<strong><br>
+    <br>
+  </strong></li>
+  <li><em align="left">bool</em> <strong>AutoImport<br>
+    <br>
+    </strong>if set to true -  AmiQuote will automatically import downloaded
+    quotes into running instance of AmiBroker<strong><br>
+    <br>
+  </strong></li>
+  <li><em align="left">bool</em> <strong>DownloadInProgress<br>
+    <br>
+    </strong>(read-only property)<br>
+    gives true value if there is any download running, gives false value if there
+    are no downloads running. You should check this property in a waiting loop
+    (see below for example) right after you have started the download to make
+    sure
+  that you don't trigger any further action before downloads are complete.<strong><br>
+  <br>  
+    </strong></li>
+  <li><em align="left">date</em>  <strong>From<br>
+    <br>
+    </strong>allows to get/set the start date for historical downloads. This
+    property has OLE DATE type and when you are using JScript you have to use
+    getVarDate() method of JScript Date object to convert from JScript type to
+    OLE-compliant
+    type. VB-like languages can get/set this property directly because VB internally
+    uses the same date type as OLE.<strong><br>
+    <br>
+    </strong></li>
+  <li><em align="left">bool</em> <strong>ImportInProgress<br>
+      <br>
+      </strong>(read-only property)<br>
+gives true value if there is any import running, gives false value if there
+are no imports running. You should check this property in a waiting loop (see
+below for example) right after you have started the download or import to make
+sure
+that
+you don't trigger any further action before imports are complete.    <strong><br>
+<br>
+  </strong></li>
+  <li><em align="left">integer</em> <strong>Interval<br>
+    <br>
+    </strong>allows to get/set the intraday bar interval for intraday sources
+    (Livecharts/Integratir). The bar interval here is NOT expressed in minutes.
+    There is a fixed number
+    of intervals available (0..7) and they are encoded as follows:<br>
+    <br>
+  0
+  - 1 minute bars<br>
+  1 - 
+  3 minute bars<br>
+  2 - 
+  5 minute bars<br>
+  3 - 15 minute bars<br>
+  4 - 30 minute bars<br>
+  5 - 
+  60 minute bars<br>
+  6 - 120 minute bars<br>
+  7 - daily bars
+  <strong><br>
+  <br>
+  </strong></li>
+  <li><em align="left">integer</em> <strong>RunEvery<br>
+    <br>
+    </strong>allows to get/set the &quot;run every&quot; time (in minutes). &quot;Run every&quot;
+    feature allows AmiQuote to repeat downloads automatically in fixed periods
+    of time.
+    If it
+    is set
+    to zero then no repeated downloads occur. If it is set to value higher then
+    zero then AmiQuote will re-run the download after specified number of minutes.
+    Please note that using this feature from automation has very little merrit
+    because you have better control using Download() method and can trigger repeated
+    downloads from your own code. Also be warned that RunEvery feature needs
+    running AmiQuote instance while usually scripting engines shut down all automation
+    objects when script is finished, therefore you would need to keep the script
+    running all the time so AmiQuote object is not closed by the script.<strong><br>
+    <br>
+    </strong></li>
+  <li><em align="left">integer</em> <strong>Source<br>
+    <br>
+    </strong>allows to get/set the data source. There is a fixed number of data sources
+  available now and they are encoded as follows:<br>
+  <br>
+  0 - Yahoo Historical<br>
+  1 - Yahoo Current<br>
+  2 - 
+  Lycos / Quote.com<br>
+  3 - 
+  MSN Historical<br>
+  4 - 
+  Forex<br>
+  5 - Integratir<br>
+  6 - Brite Futures<br>
+    <br>
+  </li>
+  <li><em align="left">date</em> <strong>To<br>
+    <br>
+    </strong>allows to get/set the end date for historical downloads. This property
+    has OLE DATE type and when you are using JScript you have to use getVarDate()
+    method of JScript Date object to convert from JScript type to OLE-compliant
+    type. VB-like languages can get/set this property directly because VB internally
+  uses the same date type as OLE.<strong> <br>
+  <br> 
+  </strong></li>
+</ul>
+<p><font face="Arial, Helvetica, sans-serif"><em>Examples</em></font></p>
+<p>Example 1: <br>
+  Load ticker list from the file, download historical data since
+  June 1st, 1995 using Yahoo, import to running instance of AmiBroker:<br>
+</p>
+<p><code>AQ = new ActiveXObject(&quot;AmiQuote.Document&quot;);<br>
+  AQ.Open(&quot;C:\\mysymbols.tls&quot;);</code></p>
+<p><code>FromDate = new Date(1995,5,1,0,0,0);<br>
+</code><code>/* year, month-1, day, hour, min, sec
+(required by JScript date constructor) */</code></p>
+<p><code>  ToDate = new Date; // current time<br>
+    <br>
+    /* getVarDate is required to convert from JScript Date to OLE-automation
+    date */<br>
+  AQ.From = FromDate.getVarDate(); <br>
+  AQ.To = ToDate.getVarDate(); <br>
+  <br>
+  AQ.AutoImport = true; // import automatically<br>
+  AQ.Source = 0; // Yahoo Historical</code></p>
+<p><code>AQ.Download(); // starts download</code></p>
+<p><code>// wait until download and import is finished<br>
+</code><code>while( AQ.DownloadInProgress || AQ.ImportInProgress )<br>
+  {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;WScript.sleep(5000); // wait 5 seconds before querying
+  status again<br>
+  }<br>
+  <br>
+WScript.echo(&quot;Download and import complete&quot;);</code></p>
+<p><br>
+  <br>
+Example 2: <br>
+Add symbols programmatically, download and import (from the code)</p>
+<p><code><br>
+  AQ = new ActiveXObject(&quot;AmiQuote.Document&quot;);<br>
+AQ.AddSymbols(&quot;MSFT,NVDA,INTC,AAPL&quot;); // comma separated list of symbols </code></p>
+<p><code>AQ.AutoImport = false; // no automatic import<br>
+AQ.Source = 0; // Yahoo Historical</code></p>
+<p><code>AQ.Download(); // starts download</code></p>
+<p><code>while( AQ.DownloadInProgress || AQ.ImportInProgress )<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;WScript.sleep(5000); // wait 5 seconds while AmiQuote is downloading <br>
+  }</code></p>
+<p><code>AQ.Import(); // starts download</code></p>
+<p><code>while(  AQ.ImportInProgress )<br>
+{<br>
+&nbsp;&nbsp;&nbsp;WScript.sleep(5000); // wait 5 seconds while AmiQuote is  importing<br>
+}</code></p>
+<p><code>WScript.echo(&quot;Download and import complete&quot;);</code></p>
+</body>
+</html>

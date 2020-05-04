@@ -1,0 +1,15 @@
+# AmiQuote historical quotes download format (.AQH extension)
+# Revision 1.1 - removed $VOLFACTOR 0.01
+$FORMAT Date_DMY,Open,High,Low,Close,Volume,AdjClose
+$SKIPLINES 0
+$BREAKONERR 0
+$SEPARATOR ,
+$DEBUG 1
+$AUTOADD 1
+$CONT 1
+$GROUP 254
+# the following switches are optional - please consult
+# the read-me for description of those options
+# $RAWCLOSE2OI 1   
+# $RECALCSPLITS 1
+# $ROUNDADJ 4

@@ -1,0 +1,13 @@
+# Format definition for importing
+# Metastock S-files
+# (C)2000 Tomasz Janeczko
+# Required AmiBroker 3.23 or higher
+$FORMAT Market,Date_DMY,Skip,Name,Close,Info,Reduction,Skip,Turnover
+$SEPARATOR ,
+$DEBUG 1
+$AUTOADD 1
+$GROUP 255
+#$RECALCVOL 1
+#$RECALCAD 1
+
+

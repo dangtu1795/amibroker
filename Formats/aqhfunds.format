@@ -1,0 +1,9 @@
+# AmiQuote historical quotes download format (.AQH extension)
+$FORMAT Date_DMY,Open,High,Low,Close,Volume
+$SKIPLINES 0
+$BREAKONERR 0
+$SEPARATOR ,
+$DEBUG 1
+$AUTOADD 1
+$CONT 1
+$GROUP 254

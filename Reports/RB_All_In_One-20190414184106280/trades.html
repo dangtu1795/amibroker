@@ -1,0 +1,39 @@
+<HTML><HEAD>
+<TITLE>RB_All_In_One - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'>Statistics</a> | <a href='charts.html'>Charts</a> | <a href='trades.html'><FONT class='SELTAB'>Trades</FONT></a> | <a href='formula.html'>Formula</a> | <a href='settings.html'>Settings</a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Trades</TH></TR>
+</TABLE><P><FONT class='BIG'>Trade list</FONT><DIV ID='partnavigation'></DIV>
+<TABLE width='800' CELLSPACING=3>
+<TR><TH class='CH'>Ticker</TH><TH class='CH'>Trade</TH><TH class='CH'>Entry</TH><TH class='CH'>Exit</TH><TH class='CH'>% change</TH><TH class='CH'>Profit</TH><TH class='CH'>Shares</TH><TH class='CH'>Pos. value</TH><TH class='CH'>Cum. profit</TH><TH class='CH'># bars</TH><TH class='CH'>Profit/bar</TH><TH class='CH'>MAE/MFE</TH><TH class='CH'>Scale In/Out</TH></TR><TBODY id='part0'><TR><TD>HBC</TD><TD>Long</TD><TD>5/18/2018<BR>26.539</TD><TD>5/22/2018<BR>25.947</TD><TD>-2.23%</TD><TD>-58863.74<BR>-2.23%</TD><TD>99432</TD><TD>2638825.80</TD><TD>-58863.74</TD><TD>3</TD><TD>-19621.25</TD><TD>-2.23%<BR>1.73%</TD><TD>0/0</TD></TR>
+<TR><TD>HBC</TD><TD>Long</TD><TD>8/10/2018<BR>22.55</TD><TD>9/6/2018<BR>21.95</TD><TD>-2.66%</TD><TD>-82791.00<BR>-2.66%</TD><TD>137985</TD><TD>3111561.64</TD><TD>-141654.74</TD><TD>19</TD><TD>-4357.42</TD><TD>-3.10%<BR>4.21%</TD><TD>0/0</TD></TR>
+<TR><TD>HBC</TD><TD>Long</TD><TD>9/13/2018<BR>22.75</TD><TD>10/8/2018<BR>23.95</TD><TD>5.27%</TD><TD>279720.00<BR>5.27%</TD><TD>233100</TD><TD>5303025.00</TD><TD>138065.26</TD><TD>18</TD><TD>15540.00</TD><TD>-2.42%<BR>13.19%</TD><TD>0/0</TD></TR>
+<TR><TD>HBC</TD><TD>Long</TD><TD>12/3/2018<BR>19.05</TD><TD>12/19/2018<BR>18.5</TD><TD>-2.89%</TD><TD>-56677.50<BR>-2.89%</TD><TD>103050</TD><TD>1963102.42</TD><TD>81387.76</TD><TD>13</TD><TD>-4359.81</TD><TD>-2.89%<BR>9.19%</TD><TD>0/0</TD></TR>
+<TR><TD>HBC</TD><TD>Long</TD><TD>2/1/2019<BR>16.1</TD><TD>3/19/2019<BR>19.95</TD><TD>23.91%</TD><TD>271509.70<BR>23.91%</TD><TD>70522</TD><TD>1135404.23</TD><TD>352897.46</TD><TD>28</TD><TD>9696.77</TD><TD>-1.86%<BR>32.92%</TD><TD>0/0</TD></TR>
+</TABLE></TBODY></TABLE><SCRIPT>document.getElementById('partnavigation').innerHTML="<P>Pages: <a href='javascript:void(0)' onclick='showPart(0)'>1</a> | </P>";</SCRIPT></BODY></HTML>

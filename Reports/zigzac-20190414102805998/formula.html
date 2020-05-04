@@ -1,0 +1,102 @@
+<HTML><HEAD>
+<TITLE>zigzac - Backtest Report</TITLE><STYLE>
+<!--
+BODY { font-family:"Tahoma,Arial,Helvetica,Sans Serif"; font-size:8pt; }
+TD {  font-size:8pt; text-align: right; white-space: nowrap; }
+TH {  font-size:8pt; text-align: left; font-weight: normal; }
+.CH { text-align: right; font-weight:bold; }
+.CHL { text-align: left; font-weight:bold; }
+.BIG { font-size:10pt; font-weight:bold; text-align: center; }
+.TAB { font-size:10pt;  text-align: center; text-color:#CCCCCC; }
+.SELTAB { font-size:10pt; font-weight:bold; text-align: center; text-color:#000000; }
+.good { color:#006600; }
+.bad { color:#880000; }
+.neut { color:#000088; }
+a:active { background-color:#DDDDFF; }
+-->
+</STYLE>
+<SCRIPT>
+var curPart = 0;
+function showPart( i )
+{
+	 document.getElementById("part" + curPart ).style.display = "none";
+	 document.getElementById("part" + i ).style.display = "";
+	 curPart = i;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV ALIGN=CENTER><FONT class='TAB'><a href='stats.html'>Statistics</a> | <a href='charts.html'>Charts</a> | <a href='trades.html'>Trades</a> | <a href='formula.html'><FONT class='SELTAB'>Formula</FONT></a> | <a href='settings.html'>Settings</a> | <a href='symbols.html'>Symbols</a> | <a href='montecarlo.html'>Monte Carlo</a></FONT></DIV><br>
+<TABLE CELLSPACING=0 CELLPADDING=2 WIDTH=100%>
+<TR bgcolor="#DDDDDD"><TH COLSPAN=5 CLASS="BIG" >Formula</TH></TR>
+</TABLE><PRE>// Downloaded From www.WiseStockTrader.com 
+_SECTION_BEGIN("Price"); 
+SetChartOptions(0,chartShowArrows|chartShowDates); 
+_N(Title = StrFormat("{{NAME}} - {{INTERVAL}} {{DATE}} Open %g, Hi %g, Lo %g, Close %g (%.1f%%) Vol " +WriteVal( V, 1.0 ) +" {{VALUES}}", O, H, L, C, SelectedValue( ROC( C, 1 )) )); 
+Plot( C, "Close", ParamColor("Color", colorYellow ), styleBar, styleNoTitle | ParamStyle("Style") | GetPriceStyle() ); 
+if( ParamToggle("Tooltip shows", "All Values|Only Prices" ) ) 
+{ 
+ToolTip=StrFormat("Open: %g\nHigh: %g\nLow: %g\nClose: %g (%.1f%%)\nVolume: "+NumToStr( V, 1 ), O, H, L, C, SelectedValue( ROC( C, 1 ))); 
+} 
+_SECTION_END(); 
+ 
+_SECTION_BEGIN("EMA"); 
+P = ParamField("Price field",-1); 
+Periods = Param("Periods", 20, 2, 200, 1 ); 
+Plot( EMA( P, Periods ), _DEFAULT_NAME(), ParamColor( "Color", colorCycle ), ParamStyle("Style") ); 
+_SECTION_END(); 
+ 
+_SECTION_BEGIN("BB-EMA"); 
+Tp=(H+L+C)/3; 
+Per = Param("EMA Periods", 20, 2, 200, 1); 
+stper=Param("StDev Period",20,10,30,1); 
+w=Param("Width",2,0.5,4,0.5); 
+BBup=EMA(tp,per)+w*StDev(C,stper); 
+BBdn=EMA(tp,per)-w*StDev(C,stper); 
+BB_Mid=EMA(((BBup+BBdn)/2),5); 
+ 
+Plot (bbup,"BB-UP",ParamColor( "Color", colorLightGrey ),styleLine); 
+Plot (bbdn,"BB-DN",ParamColor( "Color", colorLightGrey ),styleLine); 
+Plot (bb_mid,"BB_Mid",ParamColor( "Color", colorBlue ),styleLine); 
+PlotOHLC(BBup,BBup,BBdn,BBdn,"BB-EMA", ParamColor("color",colorDarkOliveGreen), styleCloud); 
+ 
+ 
+_SECTION_END(); 
+ 
+ 
+//TRENDING RIBBON 
+// Paste the code below to your price chart somewhere and green ribbon means both 
+// both MACD and ADX trending up so if the red ribbon shows up the MACD and the ADX  
+// are both trending down. 
+_SECTION_BEGIN("trending ribbon"); 
+uptrend=PDI()&gt;MDI() AND MACD()&gt;Signal(); 
+downtrend=MDI()&gt;PDI() AND Signal()&gt;MACD(); 
+Plot( 2, /* defines the height of the ribbon in percent of pane width */"ribbon", 
+IIf( uptrend, colorGreen, IIf( downtrend, colorRed, 0 )), /* choose color */ 
+styleOwnScale|styleArea|styleNoLabel, -0.5, 100 ); 
+_SECTION_END(); 
+_SECTION_BEGIN("Price"); 
+//SetChartOptions(0,chartShowArrows|chartShowDates); 
+//_N(Title = StrFormat("{{NAME}} - {{INTERVAL}} {{DATE}} Open %g, Hi %g, Lo %g, Close %g (%.1f%%) {{VALUES}}", O, H, L, C,  
+//SelectedValue( ROC( C, 1 ) ) )); 
+//Plot( C, "Close", ParamColor("Color", colorBlack ), styleNoTitle | ParamStyle("Style") | GetPriceStyle() );  
+_SECTION_END(); 
+//===================================================================================== 
+ 
+top1=BBandTop(p,20,1); 
+bot1=BBandBot(p,20,1); 
+top2=BBandTop(p,20,2); 
+bot2=BBandBot(p,20,2); 
+stocup=StochK()&gt;StochD(); 
+MACDup=MACD()&gt;Signal(); 
+Lim=ADX()&lt;30 AND StochK()&lt;80; 
+ 
+Buy=Cross(C,top1) AND C&gt;=O OR 
+    Cross(MACD(),Signal()) AND stocup AND C&gt;top1 AND C&gt;=O AND lim OR 
+    Cross(StochK(),StochD()) AND C&gt;top1 AND StochK()&lt;50 AND C&gt;=O AND Lim; 
+Sell=Cross(top1,C); 
+ 
+PlotShapes(IIf(Buy,shapeUpArrow,shapeNone),colorBlue,0,Low,Offset=-15); 
+PlotShapes(IIf(Sell,shapeDownArrow,shapeNone),colorRed,0,High,Offset=-15); 
+
+</PRE></BODY></HTML>

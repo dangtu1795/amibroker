@@ -1,0 +1,9 @@
+# AmiQuote  download format (.AQN extension)
+$FORMAT Date_MDY,Open,High,Low,Close,Volume
+$SKIPLINES 2
+$SEPARATOR ,
+$DEBUG 1
+$AUTOADD 1
+$CONT 1
+$GROUP 254
+$BREAKONERR 0

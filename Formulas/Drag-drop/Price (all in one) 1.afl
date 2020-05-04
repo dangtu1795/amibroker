@@ -1,0 +1,89 @@
+// Downloaded From www.WiseStockTrader.com
+// FROM AMIBROKER FORUMS Here we go:
+_SECTION_BEGIN("Squeesy");
+/*
+BB Squeeze (conversion for TS code)
+ 
+
+Instructions
+ Insert Linked to new chart pane
+ Periods can be selected in Param window
+*/
+
+Price = Close;
+Length = Param("Length",20,2,100,1); // { Length for Average True Range (ATR)}
+Lenght1 = Param("Length1",20,2,100,1); // {  Std. Deviation (SD) Calcs }
+
+nK = Param("Channel ATRs",1.5,0.1,2,0.1); //{ Keltner Channel ATRs from Average }
+nBB = Param("BB Std Devs",2,0.1,3,0.1); // { Bollinger Band Std. Devs. from Average }
+AlertLine = Param("AlertLine",1,0,3,1); //{ BBS_Index level at which to issue alerts }
+
+NormalColor = colorRed; //{ Normal color for BBS_Ind }
+AlertlColor = colorBlue; //{ Color for BBS_Ind below alert line }
+
+
+LHMult = Nz(PointValue/TickSize);
+
+//{-- Calculate BB Squeeze Indicator ----------------------}
+AvgTrueRange = ATR(Length);
+SDev = StDev(Price, Length);
+
+Denom = nK*AvgTrueRange;
+BBS_Ind = Nz((nBB * SDev) /Denom); 
+
+SetPlotColor = IIf( BBS_Ind < Alertline, NormalColor, AlertlColor);
+BBcrossDown = Cross(AlertLine,BBS_Ind);
+BBcrossUp = Cross(BBS_Ind,AlertLine);
+
+SetChartOptions( 0, chartShowDates|chartWrapTitle ); 
+GraphXSpace=10;
+//_N(Title = "{{NAME}} - {{INTERVAL}} {{DATE}} "+_DEFAULT_NAME()+" : {{OHLCX}} {{VALUES}}");
+//+"\nALERT: "+WriteIf(BBcrossDown,"BB Squeeze Alert",WriteIf (BBcrossUp,"BB Squeeze Is Over","")) );
+
+
+//{-- Plot the Index & Alert Line -------------------------}
+Plot(0, "BBS_Ind", SetPlotColor, styleDots );
+
+//{-- Plot delta of price from Donchian mid line ----------}
+value2 = LinearReg( price-((HHV(H, Lenght1)+LLV(L, Lenght1))/2+ MA
+(C,Lenght1))/2, Lenght1);
+color = IIf( value2 > 0, IIf( value2 > Ref(value2,-1), colorGreen, 
+colorDarkGreen),
+IIf( value2 < 0, IIf( value2 < Ref(value2,-1), colorRed, 
+colorDarkRed ), colorYellow ));
+
+Plot(value2*LHMult, "NickmNxtMove", color, styleArea );
+Plot(value2,"BB Squeeze",color, styleArea );
+//{-- Issue Alert when the Squeeze is On ------------------}
+"ALERT";
+//Write alerts to Interpretation window
+//Ticker = Name();
+//WriteIf(BBcrossDown,Ticker + " " + "BB Squeeze Alert" ,WriteIf (BBcrossUp,Ticker + " " + "BB Squeeze Is Over",""));
+ 
+//Write alerts to Alert Output window
+AlertIf(BBcrossDown,"","BB Squeeze Alert",0);
+AlertIf(BBcrossUp,"","BB Squeeze Is Over",0);
+
+//Sound alerts
+//AlertIf( BBcrossDown, "SOUND C:\\Windows\\Media\\RINGIN.WAV", "Audio alert", 2 );
+//AlertIf( BBcrossUp, "SOUND C:\\Windows\\Media\\RINGIN.WAV", "Audio alert", 2 );
+
+
+//Write text to screen
+/*
+for(i=1;i<BarCount;i++)
+{
+ if(BBcrossDown[i])
+ {
+  PlotText("BB Squeeze Alert",i,-6,colorWhite);
+ }
+ if(BBcrossUp[i])
+ {
+  PlotText("BB Squeeze Is Over",i,-3,colorWhite);
+ }
+}
+*/
+PlotShapes(shapeUpArrow*BBcrossDown,colorBrightGreen,0,0);
+PlotShapes(shapeDownArrow*BBcrossup,colorBrightGreen,0,0);
+
+_SECTION_END();

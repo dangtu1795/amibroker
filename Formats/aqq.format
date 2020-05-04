@@ -1,0 +1,14 @@
+# AmiQuote historical quotes download format for QuandDL.com (.AQQ extension)
+$FORMAT Date_YMD,Open,High,Low,Close,Volume,Skip,Skip,Skip,Skip,Skip,AdjClose,Skip
+$SKIPLINES 0
+$BREAKONERR 0
+$SEPARATOR ,
+$DEBUG 1
+$AUTOADD 1
+$CONT 1
+$GROUP 254
+# the following switches are optional - please consult
+# the read-me for description of those options
+# $RAWCLOSE2OI 1   
+# $RECALCSPLITS 1
+# $ROUNDADJ 4

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Candle.DLL Readme</title>
+<style type="text/css">
+<!--
+body {  font-family: Arial, Helvetica, sans-serif; font-size: 12px}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+<h4>Candle.DLL - Candlestick functions plug-in</h4>
+<p>Copyright (C)2001 by Tomasz Janeczko/Amibroker.com</p>
+<p>The candlestick functions plug-in is rather a very simple sample plug-in than 
+  a real tool. Currently it exposes only 8functions.<br>
+  All functions have &quot;Cd&quot; prefix appended to avoid name conflicts with 
+  built-in functions.</p>
+<ol>
+  <li> <b>CdWhite( bodyfactor = 0.4, rangefactor = 0)</b> - returns True (1) when 
+    white candle appears, False (0) otherwise. </li>
+  <li><b>CdBigWhite( bodyfactor = 0.9, rangefactor = 1.5)</b> - returns True (1) 
+    when a big white candle appears, False (0) otherwise. </li>
+  <li> <b>CdBlack( bodyfactor = 0.4, rangefactor = 0)</b> - returns True (1) when 
+    black candle appears, False (0) otherwise. </li>
+  <li><b>CdBigBlack( bodyfactor = 0.9, rangefactor = 1.5)</b> - returns True (1) 
+    when a big black candle appears, False (0) otherwise.</li>
+  <li><b>CdDoji( threshold = 0.05 )</b> - returns True (1) when doji is detected, 
+    False (0) otherwise. The threshold argument defines maximum allowed difference 
+    between open and close as a fraction of high-low range.</li>
+  <li><b>CdHammer( rangefactor= 1.1 )</b> - returns True (1) when hammer is detected, 
+    False (0) otherwise. This function checks if Close is higher than half the 
+    distance between high and low and the candle is black. In addition to that 
+    the body size of the candle must be greater rangefactor * average |close-open| 
+    range from 15 bars, and open has to be located not lower than 10% of candle 
+    height from the high price.</li>
+  <li><b>CdBearishEngulfing( bodyfactor = 0.4, rangefactor = 0.5) </b>returns 
+    True (1) when Bearish engulfing pattern is detected, False (0) otherwise. 
+  </li>
+  <li><b>CdBullishEngulfing( bodyfactor = 0.4, rangefactor = 0.5) </b>returns 
+    True (1) when Bullish engulfing pattern is detected, False (0) otherwise. 
+  </li>
+</ol>
+<p>Notes:</p>
+<p>The <b>bodyfactor</b> argument controls the minimum accepted size of candle's 
+  body as a fraction of high-low range.<br>
+  The <b>rangefactor </b>argument controls the minimum accepted size of candle's 
+  body compared to 15-bar simple moving average of |close-open| range.</p>
+<p>The source code for this plug-in DLL is available for free to registered users 
+  of AmiBroker.<br>
+</p>
+<blockquote>&nbsp;</blockquote>
+</body>
+</html>

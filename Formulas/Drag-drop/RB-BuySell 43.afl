@@ -1,0 +1,71 @@
+// Downloaded From www.WiseStockTrader.com
+_SECTION_BEGIN( "Support And Resistance for AmiBroker" );
+
+
+SetChartOptions( 0, chartShowArrows | chartShowDates );
+Plot( C, "Close", ParamColor( "Color", colorBlack ), styleNoTitle | ParamStyle( "Style" ) | GetPriceStyle() );
+
+SetBarsRequired( 100000, 0 );
+SetPositionSize(1, spsShares);
+
+function Support(p)
+{
+	sup = LLV(Low, p);
+	sup[0] = Low[0];
+	for (i = 1; i < p; i++)
+	{
+		if(Low[i] < sup[i-1]) sup[i] = Low[i];
+		else sup[i] = sup[i-1];
+	}	
+	return sup;
+}
+
+function Resistance(p)
+{
+	res = HHV(High, p);
+	res[0] = High[0];
+	for (i = 1; i < p; i++)
+	{
+		if(High[i] > res[i-1]) res[i] = High[i];
+	  	else res[i] = res[i-1];
+	}
+	return res;
+}	
+	
+
+
+fast = Param("Short-Term Periods", 15, 5, 105, 5);
+slow = Param("Long-Term Periods", 100, 20, 420, 20);
+FastRes = Resistance(fast);
+FastSup = Support(fast);
+SlowRes = Resistance(slow);
+SlowSup = Support(slow);
+
+	Plot(FastRes, "FastRes", colorRed);
+	Plot(SlowRes, "SlowRes", colorPink);
+	Plot(FastSup, "FastSup", colorGreen);
+	Plot(SlowSup, "SlowSup", colorBlue);
+
+PDI1= PDI(30);
+MDI1= MDI(30);
+Buy= H==FastRes  AND PDI1>30 AND MDI1<30;
+Sell= L==FastSup AND Buy==0;
+Buy = ExRem( Buy, Sell );
+Sell = ExRem( Sell, Buy );
+
+Short= L==FastSup AND  MDI1 >30 AND PDI1<30;
+Cover=  H==FastRes AND Short==0;
+Short = ExRem( Short, Cover );
+Cover = ExRem( Cover, Short );
+
+
+PlotShapes( IIf( Buy, shapeSquare, shapeNone ), colorGreen, 0, L, Offset = -40 );
+PlotShapes( IIf( Buy, shapeSquare, shapeNone ), colorLime, 0, L, Offset = -50 );
+PlotShapes( IIf( Buy, shapeUpArrow, shapeNone ), colorWhite, 0, L, Offset = -45 );
+PlotShapes( IIf( Sell, shapeDownArrow, shapeNone ), colorRed, 0, H, Offset = -45 );
+PlotShapes( IIf( Short, shapeSquare, shapeNone ), colorRed, 0, H, Offset = 40 );
+PlotShapes( IIf( Short, shapeSquare, shapeNone ), colorOrange, 0, H, Offset = 50 );
+PlotShapes( IIf( Short, shapeDownArrow, shapeNone ), colorWhite, 0, H, Offset = -45 );
+PlotShapes( IIf( Cover, shapeUpArrow, shapeNone ), colorBlue, 0, L, Offset = -45 );
+
+_SECTION_END();

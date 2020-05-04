@@ -1,0 +1,13 @@
+# AmiQuote daily download format (.AQD extension)
+# Revision 1.1 (previous version had missing Date_MDY field)
+# Revision 1.2 (added $STRICT 1)
+# Revision 1.3 (removed $VOLFACTOR 0.01)
+$FORMAT Ticker,FullName,Close,Date_MDY,Skip,Skip,Open,High,Low,Volume
+$SKIPLINES 0
+$SEPARATOR ,
+$DEBUG 1
+$AUTOADD 1
+$CONT 1
+$GROUP 254
+$BREAKONERR 0
+$STRICT 1

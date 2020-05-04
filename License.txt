@@ -1,0 +1,38 @@
+AmiBroker End-User License Agreement (EULA).
+
+This End-User License Agreement (EULA) is a legal agreement between you (either an individual or a single entity) and Tomasz Janeczko of AMIBROKER.COM (the "DEVELOPER") for the software product identified above, which includes computer software and associated media and printed materials (if any), and may include online or electronic documentation (Software). By installing, copying, or otherwise using the Software, you agree to be bound by the terms of this EULA. If you do not agree to the terms of this EULA, promptly destroy all copies of this software and its documentation.
+
+Software License
+The Software is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties. The Software is licensed, not sold.
+1. Grant of License. Subject to payment of applicable license fee/s, DEVELOPER grants to you a non-exclusive license to use the Software and accompanying documentation ("Documentation") as follows:
+SHAREWARE UNREGISTERED VERSION:
+You may install and use an unlimited number of copies of the Shareware unregistered version for a trial period of 30 days for evaluation purpose only.
+You may copy and distribute freely the Shareware unregistered version provided that all files are intact. 
+
+REGISTERED VERSION:
+One registered copy of the program may either be used by a single person who uses the software personally on one or more computers, or installed on a single workstation used non-simultaneously by multiple people, but not both.
+You may not disclose registration key(s) to non-registered users.
+Storage/Network Use. You may also store or install a copy of the Software on a storage device, such as a network server, used only to install or run the Software on your other computers over an internal network; however, you must acquire and dedicate a license for each separate computer on which the Software is run from the storage device. A license for the Software may not be shared or used concurrently on different computers.
+
+2. Description of Other Rights and Limitations.
+Limitations on Modification, Reverse Engineering, Decompilation, and Disassembly. You may not modify, reverse engineer, decompile, or disassemble the Software, or create derivative works based upon the Software, except and only to the extent that such activity is expressly permitted by applicable law notwithstanding this limitation.
+Separation of Components. The Software is licensed as a single product. Its component parts may not be separated for use on more than one computer. You may not remove any proprietary notices or labels on or in the Software.
+
+Rental. You may not rent or lease the Software.
+Software Transfer. You may permanently transfer all of your rights under this EULA, provided you retain no copies, you transfer all of the Software (including all component parts, the media and printed materials, any upgrades, this EULA and, if applicable, the Certificate of Authenticity), and the recipient agrees to the terms of this EULA. If the Software is an upgrade, any transfer must include all prior versions of the Software.
+
+Termination. Without prejudice to any other rights, DEVELOPER may terminate this EULA if you fail to comply with the terms and conditions of this EULA. In such event, you must destroy all copies of the Software and all of its component parts.
+
+3. Copyright. All title and copyrights in and to the Software (including but not limited to any images, photographs, animation, video, audio, music, text, and applets, incorporated into the Software), the accompanying printed materials, and any copies of the Software, are owned by DEVELOPER. The Software is protected by copyright laws and international treaty provisions. Therefore, you must treat the Software like any other copyrighted material except that you may either (a) make one copy of the Software solely for backup or archival purposes, or (b) install the Software on a single computer provided you keep the original solely for backup or archival purposes. You may not copy the printed materials accompanying the Software.
+
+4. High Risk Activities. The Software is not fault-tolerant and is not designed, manufactured or intended for use or resale as on-line control equipment in hazardous environments requiring fail-safe performance, such as in the operation of nuclear facilities, aircraft navigation or communication systems, air traffic control, direct life support machines, or weapons systems, in which the failure of the Software could lead directly to death, personal injury, or severe physical or environmental damage ("High Risk Activities"). DEVELOPER and its suppliers specifically disclaim any express or implied warranty of fitness for High Risk Activities.
+
+5. Submission of Ideas, Suggestions or other Intellectual Property 
+Any comments or information that you provide to AmiBroker.com, for example feedback or ideas, suggestions, concepts, or other information (collectively, the "Submissions"), shall be deemed, and shall remain, the property of AmiBroker.com. None of the Submissions shall be subject to any obligation of confidence on the part of AmiBroker.com, and AmiBroker.com shall not be liable for any use or disclosure (including publication in any medium) of any Submissions. Without limitation of the foregoing, AmiBroker.com shall exclusively own all now known or hereafter existing rights to the Submissions of every kind and nature and shall be entitled to unrestricted use of the Submissions for any purpose, commercial or otherwise, without compensation to the provider of the Submissions. 
+
+
+Miscellaneous
+This Agreement represents the complete agreement concerning this license and may be amended only by a writing executed by both parties. THE ACCEPTANCE OF ANY PURCHASE ORDER PLACED BY YOU IS EXPRESSLY MADE CONDITIONAL ON YOUR ASSENT TO THE TERMS SET FORTH HEREIN. If any provision of this Agreement is held to be unenforceable, such provision shall be reformed only to the extent necessary to make it enforceable.  
+
+NO OTHER WARRANTIES. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, DEVELOPER AND ITS SUPPLIERS DISCLAIM ALL OTHER WARRANTIES, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, WITH REGARD TO THE SOFTWARE, AND ANY ACCOMPANYING HARDWARE. THIS LIMITED WARRANTY GIVES YOU SPECIFIC LEGAL RIGHTS. YOU MAY HAVE OTHERS, WHICH VARY FROM JURISDICTION TO JURISDICTION.
+NO LIABILITY FOR CONSEQUENTIAL DAMAGES. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT AND UNDER NO LEGAL THEORY, TORT, CONTRACT OR OTHERWISE, SHALL DEVELOPER, ITS SUPPLIERS, OR ITS RESELLERS BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, LOSS OF GOODWILL, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, OR ANY OTHER PECUNIARY LOSS) ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE, EVEN IF DEVELOPER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO EVENT WILL DEVELOPER BE LIABLE FOR ANY DAMAGES IN EXCESS OF THE AMOUNT DEVELOPER RECEIVED FROM YOU FOR A LICENSE TO THE SOFTWARE. BECAUSE SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
